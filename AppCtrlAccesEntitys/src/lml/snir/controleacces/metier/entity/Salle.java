@@ -4,6 +4,14 @@ public class Salle {
     private long id;
     private boolean protege;
 
+    public Salle(){
+        this.protege = false;
+    }
+    
+    public Salle(boolean protege) {
+        this.protege = protege;
+    }
+
     /**
      * @return the id
      */
@@ -22,7 +30,7 @@ public class Salle {
      * @return the protege
      */
     public boolean isProtege() {
-        return protege;
+        return this.protege;
     }
 
     /**

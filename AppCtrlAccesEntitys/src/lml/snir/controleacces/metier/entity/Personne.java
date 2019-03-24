@@ -7,6 +7,18 @@ public class Personne {
     private String nom;
     private String prenom;
 
+    public Personne(){
+        this.nom = null;
+        this.prenom = null;
+    }
+    
+    public Personne(String nom, String prenom) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.nom = nom;
+        this.prenom = prenom;
+    }
+
+    
     /**
      * @return the id
      */
