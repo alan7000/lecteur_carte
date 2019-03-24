@@ -20,10 +20,10 @@ class BadgeDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Badge> implements 
     BadgeDataServiceJDBCImpl() {
         try {
             String query = "CREATE TABLE IF NOT EXISTS `" + super.getEntityName() + "` (\n"
-                    + "  `id` int(11) NOT NULL AUTO_INCREMENT\n"
-                    + "  `contenu` varchar(255) NOT NULL\n"
+                    + "  `id` int(11) NOT NULL AUTO_INCREMENT,\n"
+                    + "  `contenu` varchar(255) NOT NULL,\n"
                     + "  PRIMARY KEY (`id`),\n"
-                    + "  UNIQUE KEY `contenu` (`contenu`),\n"
+                    + "  UNIQUE KEY `contenu` (`contenu`)\n"
                     + ") ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
             super.executeQuery(query);
 

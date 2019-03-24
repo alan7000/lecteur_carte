@@ -4,8 +4,8 @@
  */
 package lml.snir.controleacces.client;
 
-import lml.snir.controleacces.client.appGestion.attribution.AttributionTableModel;
-import lml.snir.controleacces.client.appGestion.tool.Controleur;
+//import lml.snir.controleacces.client.appGestion.attribution.AttributionTableModel;
+//import lml.snir.controleacces.client.appGestion.tool.Controleur;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.TableModel;
@@ -18,7 +18,7 @@ import lml.snir.controleacces.metier.entity.Personne;
  * @author fanou
  */
 public class IhmTest extends javax.swing.JFrame {
-    private Controleur ctrl;
+    //private Controleur ctrl;
     private final AttributionTableModel attributionTableModel = new AttributionTableModel(0, 10, 1);
 
     /**
@@ -296,14 +296,14 @@ public class IhmTest extends javax.swing.JFrame {
     /**
      * @return the ctrl
      */
-    public Controleur getCtrl() {
-        return ctrl;
-    }
+//    public Controleur getCtrl() {
+//        return ctrl;
+//    }
 
     /**
      * @param ctrl the ctrl to set
      */
-    public void setCtrl(Controleur ctrl) {
-        this.ctrl = ctrl;
-    }
+//    public void setCtrl(Controleur ctrl) {
+//        this.ctrl = ctrl;
+//    }
 }

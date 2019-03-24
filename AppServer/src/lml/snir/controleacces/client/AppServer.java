@@ -3,12 +3,14 @@ package lml.snir.controleacces.client;
 import java.util.List;
 import lml.snir.controleacces.metier.AttributionService;
 import lml.snir.controleacces.metier.BadgeService;
+import lml.snir.controleacces.metier.BorneService;
 import lml.snir.controleacces.metier.MetierFactory;
 import lml.snir.controleacces.metier.PersonneService;
 import lml.snir.controleacces.metier.SalleService;
 import lml.snir.controleacces.metier.entity.Administrateur;
 import lml.snir.controleacces.metier.entity.Attribution;
 import lml.snir.controleacces.metier.entity.Badge;
+import lml.snir.controleacces.metier.entity.Borne;
 import lml.snir.controleacces.metier.entity.Day;
 import lml.snir.controleacces.metier.entity.Personne;
 import lml.snir.controleacces.metier.entity.Salle;
@@ -33,51 +35,164 @@ public class AppServer {
         BadgeService badgeSrv = MetierFactory.getBadgeService();
         SalleService salleSrv = MetierFactory.getSalleService();
         TimeSlotDataService timeSlotSrv = PhysiqueDataFactory.getTimeSlotService();
-        
+        BorneService borneSrv = MetierFactory.getBorneService();
+
+        /*
+         Add personne (admin)
+         */
+//        Personne pers;
+//        Administrateur admin;
+//        
+//        pers = new Administrateur("ALONSO", "Stéphane");
+//        admin = (Administrateur) pers;
+//        admin.setLogin("fanou");
+//        admin.setMdp("secret");
+//        System.out.println(pers);
+//        personneSrv.add(pers);
+//        pers = new Personne("Flambard", "Alan");
+//        personneSrv.add(pers);
+
+        /*
+         Remove personne
+         */
+//        Personne p = new Personne();
+//        p.setId(3);
+//        personneSrv.remove(p);
+//        System.out.println(p);
+        /*
+         Update personne
+         */
 //        Personne p = new Administrateur();
-//        p.setNom("ALONSO");
-//        p.setPrenom("Stéphane");
-//        Administrateur a = (Administrateur)p;
+//        p.setNom("TOTO");
+//        p.setPrenom("Salut");
+//        Administrateur a = (Administrateur) p;
 //        a.setLogin("fanou");
 //        a.setMdp("secret");
-//        p = personneSrv.add(p);
-//        System.out.println(p);
-        
-        
-        List<Personne> personnes = personneSrv.getAll();
-        List<Badge> badges = badgeSrv.getAll();
-        for (Personne p : personnes) {
-            System.out.println(p);
-            if (p instanceof Administrateur) {
-                Administrateur a = (Administrateur)p;
-                if (a.getLogin().equals("fanou")) {
-                    System.out.println(a.isValid("secret"));
-                    for (Badge b : badges) {
-                        if (attributionSrv.getByBadge(b) == null) {
-                            System.out.println("badge : " + b + " non attribué");
-                            if (attributionSrv.getByPersonne(p) == null) {
-                                System.out.println("personne : " + p + " sans badge");
-                                Attribution attr = new Attribution();
-                                attr.setBadge(b);
-                                attr.setPersonne(p);
-                                attributionSrv.add(attr);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        
-        List<Attribution> attributions = attributionSrv.getAll();
-        for (Attribution attr : attributions) {
-            System.out.println(attr);
-        }
-        
-        List<Salle> salles = salleSrv.getAll();
+//        p.setId(2);
+//        personneSrv.update(p);
+        /*
+         getByLogin
+         */
+        System.out.println("get by login" + personneSrv.getByLogin("fanou"));
+
+        /*
+         getByNom
+         */
+        //System.out.println("get by nom" + personneSrv.getByNom("ALONSO"));
+        /*
+         getAll
+         */
+        System.out.println("get All " + personneSrv.getAll());
+
+        /*
+         getCount
+         */
+        System.out.println("getCount " + personneSrv.getCount());
+
+        /*
+         Add Badge
+         */
+//        Badge b = new Badge();
+//        b.setContenu("salut");
+//        badgeSrv.add(b);
+//        System.out.println(b);
+        /*
+         Remove badge
+         */
+//        Badge b = new Badge();
+//        b.setId(2);
+//        badgeSrv.remove(b);
+//        System.out.println(b);
+        /*
+         getBadgeContenu
+         */
+        System.out.println("getByContenu " + badgeSrv.getByContenu("salut"));
+
+        /*
+         Badge getAll
+         */
+        System.out.println("getAll Badge " + badgeSrv.getAll());
+
+        /*
+         Badge getCount
+         */
+        System.out.println("getCount " + badgeSrv.getCount());
+
+        /*
+         Salle Add
+         */
+//        Salle salle = new Salle();
+//        salle.setId(12);
+//        salle.setProtege(false);
+//        salleSrv.add(salle);
+        /*
+         Salle remove
+         */
+//        Salle salle = new Salle();
+//        salle.setId(12);
+//        salleSrv.remove(salle);
+        /*
+         Salle getAll
+         */
+        System.out.println("getAll Salle " + salleSrv.getAll());
+
+        /*
+         Salle getByProtege
+         */
+        System.out.println("getByProtege " + salleSrv.getByProtege(true));
+
+        List<Salle> salles = salleSrv.getByProtege(false);
         for (Salle s : salles) {
             System.out.println(s);
         }
-        
+
+        /*
+         Salle getById
+         */
+        System.out.println("getById ");
+
+        /*
+         Borne Add
+       
+         */
+        Borne b = new Borne();
+        Salle s = new Salle();
+        s.setId(12);
+        b.setSalle(s);
+        borneSrv.add(b);
+
+//        List<Personne> personnes = personneSrv.getAll();
+//        List<Badge> badges = badgeSrv.getAll();
+//        for (Personne p : personnes) {
+//            System.out.println(p);
+//            if (p instanceof Administrateur) {
+//                Administrateur a = (Administrateur)p;
+//                if (a.getLogin().equals("fanou")) {
+//                    System.out.println(a.isValid("secret"));
+//                    for (Badge b : badges) {
+//                        if (attributionSrv.getByBadge(b) == null) {
+//                            System.out.println("badge : " + b + " non attribué");
+//                            if (attributionSrv.getByPersonne(p) == null) {
+//                                System.out.println("personne : " + p + " sans badge");
+//                                Attribution attr = new Attribution();
+//                                attr.setBadge(b);
+//                                attr.setPersonne(p);
+//                                attributionSrv.add(attr);
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        
+//        List<Attribution> attributions = attributionSrv.getAll();
+//        for (Attribution attr : attributions) {
+//            System.out.println(attr);
+//        }
+//        List<Salle> salles = salleSrv.getAll();
+//        for (Salle s : salles) {
+//            System.out.println(s);
+//        }
 //        TimeSlot timeSlot = new TimeSlot(Day.Monday, 10, 30, Day.Monday, 12, 30);
 //        timeSlotSrv.add(timeSlot);
 //        timeSlot = new TimeSlot(Day.Monday, 14, 00, Day.Monday, 18, 00);
@@ -89,5 +204,5 @@ public class AppServer {
             System.out.println(t);
         }
     }
-    
+
 }
