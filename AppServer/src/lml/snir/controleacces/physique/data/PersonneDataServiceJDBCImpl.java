@@ -21,15 +21,16 @@ class PersonneDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Personne> imple
     PersonneDataServiceJDBCImpl() {
         try {
             String query = "CREATE TABLE IF NOT EXISTS `" + super.getEntityName() + "` (\n"
-                    + "  `id` int(11) NOT NULL AUTO_INCREMENT\n"
-                    + "  `nom` varchar(255) NOT NULL\n"
-                    + "  `prenom` varchar(255) NOT NULL\n"
-                    + "  `login` varchar(255)\n"
-                    + "  `password` varchar(255)\n"
+                    + "  `id` int(11) NOT NULL AUTO_INCREMENT,\n"
+                    + "  `nom` varchar(255) NOT NULL,\n"
+                    + "  `prenom` varchar(255) NOT NULL,\n"
+                    + "  `login` varchar(255),\n"
+                    + "  `password` varchar(255),\n"
+                    + "  `classe` varchar(255) NOT NULL,\n"
                     + "  PRIMARY KEY (`id`),\n"
                     + "  UNIQUE KEY `nom` (`nom`),\n"
                     + "  UNIQUE KEY `prenom` (`prenom`),\n"
-                    + "  UNIQUE KEY `login` (`login`),\n"
+                    + "  UNIQUE KEY `login` (`login`)\n"
                     + ") ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
             super.executeQuery(query);
 
@@ -41,24 +42,26 @@ class PersonneDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Personne> imple
     @Override
     protected Personne createEntity(ResultSet rs) throws Exception {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        Personne p;
+ 
 
         long id = rs.getLong("id");
         String nom = rs.getString("nom");
         String prenom = rs.getString("prenom");
-
-        p = new Personne();
-        p.setId(id);
-        p.setNom(nom);
-        p.setPrenom(prenom);
-
-        if (p instanceof Administrateur) {
-            Administrateur adm = new Administrateur();
+        String classe = rs.getString("classe");
+        Personne p;
+        if(classe.equals(Personne.class.getSimpleName())){
+            p = new Personne(nom, prenom);
+        } else {
+            Administrateur adm = new Administrateur(nom, prenom);
             String login = rs.getString("login");
             adm.setLogin(login);
             String password = rs.getString("password");
             adm.setMdp(password);
+            p = adm;
         }
+        
+        p.setId(id);
+        
         return p;
 
     }
@@ -66,18 +69,20 @@ class PersonneDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Personne> imple
     @Override
     public Personne add(Personne t) throws Exception {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        String query = "INSERT INTO " + super.getEntityName() + " (id, nom, prenom) VALUES ('"
+        String query = "INSERT INTO " + super.getEntityName() + " (id, nom, prenom, classe) VALUES ('"
                 + t.getId() + "','"
                 + t.getNom() + "','"
-                + t.getPrenom() + "')";
+                + t.getPrenom() + "','"
+                + t.getClass().getSimpleName() + "')";
         if (t instanceof Administrateur) {
             Administrateur adm = (Administrateur) t;
-            query = "INSERT INTO " + super.getEntityName() + " (id, nom, prenom, login, password) VALUES ('"
+            query = "INSERT INTO " + super.getEntityName() + " (id, nom, prenom, login, password, classe) VALUES ('"
                     + t.getId() + "','"
                     + t.getNom() + "','"
                     + t.getPrenom() + "','"
                     + adm.getLogin() + "','"
-                    + adm.getMdp() + "')";
+                    + adm.getMdp() + "','"
+                    + adm.getClass().getSimpleName() + "')";
         }
 
         t.setId(super.executeAdd(query));
@@ -97,25 +102,26 @@ class PersonneDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Personne> imple
     @Override
     public void update(Personne t) throws Exception {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-String query = "UPDATE " + super.getEntityName() + " SET nom = '" + t.getNom() + 
-                "', prenom = '" + t.getPrenom() + 
-                "' WHERE id = '" + t.getId() + "'";
+        String query = "UPDATE " + super.getEntityName() + " SET nom = '" + t.getNom()
+                + "', prenom = '" + t.getPrenom()
+                + "' WHERE id = '" + t.getId() + "'";
         if (t instanceof Administrateur) {
             Administrateur adm = (Administrateur) t;
-            query = "UPDATE " + super.getEntityName() + " SET nom = '" + t.getNom() + 
-                    "', prenom = '" + t.getPrenom() + 
-                    "',  login = '" + adm.getLogin() + 
-                    "',  password = '" + adm.getMdp() + 
-                    "' WHERE id = '" + t.getId() + "'";
+            query = "UPDATE " + super.getEntityName() + " SET nom = '" + t.getNom()
+                    + "', prenom = '" + t.getPrenom()
+                    + "',  login = '" + adm.getLogin()
+                    + "',  password = '" + adm.getMdp()
+                    + "' WHERE id = '" + t.getId() + "'";
         }
-        t.setId(super.executeAdd(query, new ByteArrayInputStream[0]));
+        t.setId(super.executeAdd(query));
     }
 
     @Override
     public Administrateur getByLogin(String login) throws Exception {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        String query = "SELECT * FROM " + super.getEntityName() + " WHERE login = '" + login.toString() + "'";
-        return (Administrateur) super.getSingleResult(query);
+        String query = "SELECT * FROM " + super.getEntityName() + " WHERE login = '" + login + "'";
+        Object o = super.getSingleResult(query);
+        return (Administrateur) o;
 
     }
 
@@ -123,7 +129,7 @@ String query = "UPDATE " + super.getEntityName() + " SET nom = '" + t.getNom() +
     public List<Personne> getByNom(String nom) throws Exception {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         String query = "SELECT * FROM " + super.getEntityName() + " WHERE nom = '" + nom.toString() + "'";
-        return (List<Personne>) super.getSingleResult(query);
+        return super.getResults(query);
 
     }
 

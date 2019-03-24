@@ -50,6 +50,11 @@ public class MetierFactory {
         return autorisationRPCService;
     }
     
+    private static final BorneService borneService = new BorneServiceImpl();
+    public static BorneService getBorneService(){
+        return borneService;
+    }
+    
     private MetierFactory(){}
     
     
