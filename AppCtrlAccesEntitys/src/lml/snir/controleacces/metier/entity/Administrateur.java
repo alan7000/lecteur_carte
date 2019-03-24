@@ -13,6 +13,10 @@ public class Administrateur extends Personne {
         super(nom, prenom);
     }
 
+    public Administrateur() {
+        super();
+    }
+
     private String codeMD5(String msg) throws NoSuchAlgorithmException {
         String code = "";
         byte[] b;
