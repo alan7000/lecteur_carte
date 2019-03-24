@@ -9,6 +9,14 @@ public class Administrateur extends Personne {
     private String login;
     private String mdp;
 
+    public Administrateur(String nom, String prenom) {
+        super(nom, prenom);
+    }
+
+    public Administrateur() {
+        super();
+    }
+
     private String codeMD5(String msg) throws NoSuchAlgorithmException {
         String code = "";
         byte[] b;

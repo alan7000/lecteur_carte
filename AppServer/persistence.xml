@@ -3,6 +3,6 @@
     <dataBase>ctrlAcces</dataBase>
     <driver>mysql</driver>
     <host>localhost</host>
-    <passsword>secret</passsword>
+    <passsword>callisto</passsword>
     <user>ctrlAcces</user>
 </persistenceUnit>
