@@ -30,6 +30,10 @@ public class AppServer {
      */
     public static void main(String[] args) throws Exception {
         // TODO code application logic here
+        /*
+        Appel service
+         */
+
         AttributionService attributionSrv = MetierFactory.getAttributionService();
         PersonneService personneSrv = MetierFactory.getPersonneService();
         BadgeService badgeSrv = MetierFactory.getBadgeService();
@@ -38,11 +42,18 @@ public class AppServer {
         BorneService borneSrv = MetierFactory.getBorneService();
 
         /*
+        Création objet
+         */
+        Personne pers;
+        Administrateur admin;
+        Personne p = new Administrateur();
+        Badge b = new Badge();
+        Salle salle = new Salle();
+        Borne borne = new Borne();
+
+        /*
          Add personne (admin)
          */
-//        Personne pers;
-//        Administrateur admin;
-//        
 //        pers = new Administrateur("ALONSO", "Stéphane");
 //        admin = (Administrateur) pers;
 //        admin.setLogin("fanou");
@@ -55,14 +66,13 @@ public class AppServer {
         /*
          Remove personne
          */
-//        Personne p = new Personne();
-//        p.setId(3);
-//        personneSrv.remove(p);
-//        System.out.println(p);
+//        pers.setId(3);
+//        personneSrv.remove(pers);
+//        System.out.println(pers);
+
         /*
          Update personne
          */
-//        Personne p = new Administrateur();
 //        p.setNom("TOTO");
 //        p.setPrenom("Salut");
 //        Administrateur a = (Administrateur) p;
@@ -78,7 +88,8 @@ public class AppServer {
         /*
          getByNom
          */
-        //System.out.println("get by nom" + personneSrv.getByNom("ALONSO"));
+        System.out.println("get by nom" + personneSrv.getByNom("ALONSO"));
+
         /*
          getAll
          */
@@ -92,17 +103,17 @@ public class AppServer {
         /*
          Add Badge
          */
-//        Badge b = new Badge();
 //        b.setContenu("salut");
 //        badgeSrv.add(b);
 //        System.out.println(b);
+
         /*
          Remove badge
          */
-//        Badge b = new Badge();
 //        b.setId(2);
 //        badgeSrv.remove(b);
 //        System.out.println(b);
+
         /*
          getBadgeContenu
          */
@@ -121,16 +132,16 @@ public class AppServer {
         /*
          Salle Add
          */
-//        Salle salle = new Salle();
 //        salle.setId(12);
 //        salle.setProtege(false);
 //        salleSrv.add(salle);
+
         /*
          Salle remove
          */
-//        Salle salle = new Salle();
 //        salle.setId(12);
 //        salleSrv.remove(salle);
+
         /*
          Salle getAll
          */
@@ -155,11 +166,9 @@ public class AppServer {
          Borne Add
        
          */
-        Borne b = new Borne();
-        Salle s = new Salle();
-        s.setId(12);
-        b.setSalle(s);
-        borneSrv.add(b);
+//        salle.setId(12);
+//        borne.setSalle(salle);
+//        borneSrv.add(borne);
 
 //        List<Personne> personnes = personneSrv.getAll();
 //        List<Badge> badges = badgeSrv.getAll();
