@@ -75,8 +75,17 @@ class SalleDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Salle> implements 
 
     @Override
     public void update(Salle t) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       String strProtege = "0";
+        if(t.isProtege()){
+            strProtege = "1";
+        }
+        
+        String query = "UPDATE " + super.getEntityName() + " SET id = '" + t.getId()
+                + "', protege = '" + strProtege
+                + "' WHERE id = '" + t.getId() + "'";
+        
+        t.setId(super.executeAdd(query));
     }
 
     @Override

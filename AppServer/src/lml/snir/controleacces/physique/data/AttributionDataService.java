@@ -12,4 +12,6 @@ import lml.snir.controleacces.metier.entity.Personne;
 public interface AttributionDataService extends CrudService<Attribution> {
     public Attribution getByBadge(Badge badge) throws Exception;
     public Attribution getByPersonne(Personne personne) throws Exception;
+    public Boolean isBadgeAttribue(Personne personne) throws Exception;
+    public Boolean isBadgeAttribue(Badge badge) throws Exception;
 }

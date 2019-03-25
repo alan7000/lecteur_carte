@@ -2,6 +2,7 @@ package lml.snir.controleacces.client;
 
 import java.util.List;
 import lml.snir.controleacces.metier.AttributionService;
+import lml.snir.controleacces.metier.AutorisationService;
 import lml.snir.controleacces.metier.BadgeService;
 import lml.snir.controleacces.metier.BorneService;
 import lml.snir.controleacces.metier.MetierFactory;
@@ -9,9 +10,11 @@ import lml.snir.controleacces.metier.PersonneService;
 import lml.snir.controleacces.metier.SalleService;
 import lml.snir.controleacces.metier.entity.Administrateur;
 import lml.snir.controleacces.metier.entity.Attribution;
+import lml.snir.controleacces.metier.entity.Autorisation;
 import lml.snir.controleacces.metier.entity.Badge;
 import lml.snir.controleacces.metier.entity.Borne;
 import lml.snir.controleacces.metier.entity.Day;
+import lml.snir.controleacces.metier.entity.Evenement;
 import lml.snir.controleacces.metier.entity.Personne;
 import lml.snir.controleacces.metier.entity.Salle;
 import lml.snir.controleacces.metier.entity.TimeSlot;
@@ -31,7 +34,7 @@ public class AppServer {
     public static void main(String[] args) throws Exception {
         // TODO code application logic here
         /*
-        Appel service
+         Appel service
          */
 
         AttributionService attributionSrv = MetierFactory.getAttributionService();
@@ -40,9 +43,10 @@ public class AppServer {
         SalleService salleSrv = MetierFactory.getSalleService();
         TimeSlotDataService timeSlotSrv = PhysiqueDataFactory.getTimeSlotService();
         BorneService borneSrv = MetierFactory.getBorneService();
+        AutorisationService autorisationSrv = MetierFactory.getAutorisationService();
 
         /*
-        Création objet
+         Création objet
          */
         Personne pers;
         Administrateur admin;
@@ -50,6 +54,9 @@ public class AppServer {
         Badge b = new Badge();
         Salle salle = new Salle();
         Borne borne = new Borne();
+        Evenement evenement = new Evenement();
+        Autorisation autorisation = new Autorisation();
+        TimeSlot time = new TimeSlot();
 
         /*
          Add personne (admin)
@@ -137,6 +144,12 @@ public class AppServer {
 //        salleSrv.add(salle);
 
         /*
+         Salle update
+         */
+//        salle.setId(12);
+//        salle.setProtege(true);
+//        salleSrv.update(salle);
+        /*
          Salle remove
          */
 //        salle.setId(12);
@@ -158,10 +171,16 @@ public class AppServer {
         }
 
         /*
-         Salle getById
+         Salle getCount
          */
-        System.out.println("getById ");
+        System.out.println("getCount salle " + salleSrv.getCount());
 
+        /*
+        Salle getAll
+        */
+        System.out.println("getAll salle" + salleSrv.getAll());
+        
+        
         /*
          Borne Add
        
@@ -170,6 +189,90 @@ public class AppServer {
 //        borne.setSalle(salle);
 //        borneSrv.add(borne);
 
+        /*
+         Borne update
+         */
+//        borne.setId(1);
+//        salle.setId(1);
+//        borne.setSalle(salle);
+//        borneSrv.update(borne);
+        /*
+         Borne getBySalle
+         */
+//        salle.setId(1);
+//        System.out.println("getBySalle " + borneSrv.getBySalle(salle));
+        
+        /*
+        Borne remove
+         */
+//        borne.setId(1);
+//        borneSrv.remove(borne);
+        /*
+        Borne getCount
+        */
+        System.out.println("Nombre de borne " + borneSrv.getCount());
+        
+        /*
+        Borne getAll
+        */
+        System.out.println("getAll Borne " + borneSrv.getAll());
+        
+        /*
+        Autorisation add
+        */
+//        salle.setId(12);
+//        p.setId(4);
+//        time.setId(1);
+//        autorisation.setPersonne(p);
+//        autorisation.setPlageHoraire(time);
+//        autorisation.setSalle(salle);
+//        autorisationSrv.add(autorisation);
+        
+        /*
+        Autorisation update
+        */
+//        autorisation.setId(1);
+//        salle.setId(1);
+//        p.setId(5);
+//        time.setId(2);
+//        autorisation.setPersonne(p);
+//        autorisation.setPlageHoraire(time);
+//        autorisation.setSalle(salle);
+//        autorisationSrv.update(autorisation);
+        
+        /*
+        Autorisation getAll
+        */
+        System.out.println("Autorisation getAll " + autorisationSrv.getAll());
+        
+        /*
+        Autorisation getBySalle
+        */
+        salle.setId(1);
+        System.out.println("Autorisation getBySalle " + autorisationSrv.getBySalle(salle));
+        
+        /*
+        Autorisation getByPersonne
+        */
+        p.setId(5);
+        System.out.println("Autorisation getByPersonne " + autorisationSrv.getByPersonne(p));
+        
+        /*
+        Autorisation getByPersonneEtSalle
+        */
+        System.out.println("Autorisation getByPersonneEtSalle " + autorisationSrv.getByPeronneEtSalle(p, salle));
+        
+        /*
+        Autorisation getCount
+        */
+        System.out.println("Autorisation getByCount " + autorisationSrv.getCount());
+        
+        /*
+        Autorisation getByPlageHoraire
+        */
+        time.setId(2);
+        System.out.println("Autorisation getByPlageHoraire " + autorisationSrv.getByPlageHoraire(time));
+        
 //        List<Personne> personnes = personneSrv.getAll();
 //        List<Badge> badges = badgeSrv.getAll();
 //        for (Personne p : personnes) {

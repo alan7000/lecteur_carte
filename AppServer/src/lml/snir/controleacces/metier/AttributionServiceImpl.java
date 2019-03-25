@@ -55,5 +55,15 @@ class AttributionServiceImpl implements AttributionService {
     public List<Attribution> getAll() throws Exception {
         return this.attributionSrv.getAll();
     }
+
+    @Override
+    public Boolean isBadgeAttribue(Personne personne) throws Exception {
+        return this.attributionSrv.isBadgeAttribue(personne);
+    }
+
+    @Override
+    public Boolean isBadgeAttribue(Badge badge) throws Exception {
+        return this.attributionSrv.isBadgeAttribue(badge);
+    }
     
 }

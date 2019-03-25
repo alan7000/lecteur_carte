@@ -73,7 +73,12 @@ class BorneDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Borne> implements 
 
     @Override
     public void update(Borne t) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String query = "UPDATE " + super.getEntityName() + " SET id = '" + t.getId()
+                + "', idSalle = '" + t.getSalle().getId()
+                + "' WHERE id = '" +t.getId() + "'";
+        
+        t.setId(super.executeAdd(query));
     }
 
     @Override

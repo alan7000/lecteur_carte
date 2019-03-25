@@ -15,7 +15,6 @@ final class AttributionDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Attrib
                     + "  `idBadge` int(11) NOT NULL,\n"
                     + "  `idPersonne` int(11) NOT NULL,\n"
                     + "  PRIMARY KEY (`id`),\n"
-                    + "  UNIQUE KEY `idBadge` (`idBadge`),\n"
                     + "  UNIQUE KEY `idPersonne` (`idPersonne`)\n"
                     + ") ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;";
             super.executeQuery(query);
@@ -66,7 +65,7 @@ final class AttributionDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Attrib
     public void update(Attribution attribution) throws Exception {
         String query = "UPDATE " + super.getEntityName() + " SET id = '"
                 + attribution.getId() + "', idBadge = '"
-                + attribution.getBadge().getId() + "',  idPersonne = '"
+                + attribution.getBadge().getId() + "', idPersonne = '"
                 + attribution.getPersonne().getId() + "' WHERE id = '" + attribution.getId() + "'";
 
         super.executeQuery(query);
@@ -84,11 +83,13 @@ final class AttributionDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Attrib
         return super.getSingleResult(query);
     }
 
+    @Override
     public Boolean isBadgeAttribue(Personne personne) throws Exception {
         String query = "SELECT * FROM " + super.getEntityName() + " WHERE idPersonne = '" + personne.getId() + "'";
         return (super.getSingleResult(query) != null);
     }
 
+    @Override
     public Boolean isBadgeAttribue(Badge badge) throws Exception {
         String query = "SELECT * FROM " + super.getEntityName() + " WHERE idBadge = '" + badge.getId() + "'";
         return (super.getSingleResult(query) != null);
