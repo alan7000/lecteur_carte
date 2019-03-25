@@ -51,5 +51,5 @@ public final class SalleServiceImpl implements SalleService {
     public List<Salle> getAll(int i, int i1) throws Exception {
         return this.salleDataSrv.getAll(i, i1);
     }
-    
+   
 }
