@@ -55,6 +55,11 @@ public class MetierFactory {
         return borneService;
     }
     
+    private static final TimeSlotService timeSlotService = new TimeSlotServiceImpl();
+    public static TimeSlotService getTimeSlotService(){
+        return timeSlotService;
+    }
+    
     private MetierFactory(){}
     
     

@@ -163,7 +163,7 @@ public class AppServer {
         /*
          Salle getByProtege
          */
-        System.out.println("getByProtege " + salleSrv.getByProtege(true));
+        //System.out.println("getByProtege " + salleSrv.getByProtege(true));
 
         List<Salle> salles = salleSrv.getByProtege(false);
         for (Salle s : salles) {
@@ -243,35 +243,35 @@ public class AppServer {
         /*
         Autorisation getAll
         */
-        System.out.println("Autorisation getAll " + autorisationSrv.getAll());
+//        System.out.println("Autorisation getAll " + autorisationSrv.getAll());
         
         /*
         Autorisation getBySalle
         */
-        salle.setId(1);
-        System.out.println("Autorisation getBySalle " + autorisationSrv.getBySalle(salle));
+//        salle.setId(1);
+//        System.out.println("Autorisation getBySalle " + autorisationSrv.getBySalle(salle));
         
         /*
         Autorisation getByPersonne
         */
-        p.setId(5);
-        System.out.println("Autorisation getByPersonne " + autorisationSrv.getByPersonne(p));
+//        p.setId(5);
+//        System.out.println("Autorisation getByPersonne " + autorisationSrv.getByPersonne(p));
         
         /*
         Autorisation getByPersonneEtSalle
         */
-        System.out.println("Autorisation getByPersonneEtSalle " + autorisationSrv.getByPeronneEtSalle(p, salle));
+//        System.out.println("Autorisation getByPersonneEtSalle " + autorisationSrv.getByPeronneEtSalle(p, salle));
         
         /*
         Autorisation getCount
         */
-        System.out.println("Autorisation getByCount " + autorisationSrv.getCount());
+//        System.out.println("Autorisation getByCount " + autorisationSrv.getCount());
         
         /*
         Autorisation getByPlageHoraire
         */
-        time.setId(2);
-        System.out.println("Autorisation getByPlageHoraire " + autorisationSrv.getByPlageHoraire(time));
+//        time.setId(2);
+//        System.out.println("Autorisation getByPlageHoraire " + autorisationSrv.getByPlageHoraire(time));
         
 //        List<Personne> personnes = personneSrv.getAll();
 //        List<Badge> badges = badgeSrv.getAll();
@@ -311,10 +311,10 @@ public class AppServer {
 //        timeSlotSrv.add(timeSlot);
 //        timeSlot = new TimeSlot(Day.Thursday, 8, 30, Day.Friday, 17, 00);
 //        timeSlotSrv.add(timeSlot);
-        List<TimeSlot> timeSlots = timeSlotSrv.getAll();
-        for (TimeSlot t : timeSlots) {
-            System.out.println(t);
-        }
+//        List<TimeSlot> timeSlots = timeSlotSrv.getAll();
+//        for (TimeSlot t : timeSlots) {
+//            System.out.println(t);
+//        }
     }
 
 }
