@@ -13,41 +13,41 @@ import lml.snir.controleacces.metier.entity.TimeSlot;
  * @author alan
  */
 public class TimeSlotServiceImpl implements TimeSlotService {
-    private final TimeSlotService timeSlotService = MetierFactory.getTimeSlotService();
+    private final TimeSlotService timeSlotDataSrv = MetierFactory.getTimeSlotService();
 
     @Override
     public TimeSlot add(TimeSlot t) throws Exception {
-        return timeSlotService.add(t);
+        return this.timeSlotDataSrv.add(t);
     }
 
     @Override
     public void remove(TimeSlot t) throws Exception {
-        timeSlotService.remove(t);
+        this.timeSlotDataSrv.remove(t);
     }
 
     @Override
     public void update(TimeSlot t) throws Exception {
-        timeSlotService.update(t);
+        this.timeSlotDataSrv.update(t);
     }
 
     @Override
     public TimeSlot getById(Long l) throws Exception {
-        return timeSlotService.getById(l);
+        return this.timeSlotDataSrv.getById(l);
     }
 
     @Override
     public long getCount() throws Exception {
-        return timeSlotService.getCount();
+        return this.timeSlotDataSrv.getCount();
     }
 
     @Override
     public List<TimeSlot> getAll() throws Exception {
-        return timeSlotService.getAll();
+        return this.timeSlotDataSrv.getAll();
     }
 
     @Override
     public List<TimeSlot> getAll(int i, int i1) throws Exception {
-        return timeSlotService.getAll(i, i1);
+        return this.timeSlotDataSrv.getAll(i, i1);
     }
     
 }

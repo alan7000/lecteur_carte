@@ -16,7 +16,6 @@ import javax.ws.rs.Produces;
 import lml.snir.controleacces.metier.MetierFactory;
 import lml.snir.controleacces.metier.TimeSlotService;
 import lml.snir.controleacces.metier.entity.TimeSlot;
-import lml.snir.controleacces.physique.data.TimeSlotDataService;
 
 /**
  *

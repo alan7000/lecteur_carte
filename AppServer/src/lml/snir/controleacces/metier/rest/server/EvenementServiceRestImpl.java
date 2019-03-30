@@ -31,11 +31,12 @@ public class EvenementServiceRestImpl {
     
     private final EvenementService evenementServiceRestImpl = MetierFactory.getEvenementService();
 
-//    @GET
-//    @Path("/getByJour/{jour}")
-//    public List<Evenement> getByJour(@PathParam("jour") Date jour) throws Exception {
-//        return evenementServiceRestImpl.getByJour(jour);
-//    }
+    @GET
+    @Path("/getByJour/{jour}")
+    public List<Evenement> getByJour(@PathParam("jour") Date idjour) throws Exception {
+        Date jour = (Date) MetierFactory.getEvenementService().getByJour(idjour);
+        return evenementServiceRestImpl.getByJour(jour);
+    }
 
     @GET
     @Path("/getBySalle/{salle}")

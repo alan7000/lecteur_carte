@@ -92,7 +92,7 @@ public class AutorisationServiceRestImpl {
     }
 
     @GET
-    @Path("/")
+    @Path("/getAll")
     public List<Autorisation> getAll() throws Exception {
         return autorisationServiceRestImpl.getAll();
     }
