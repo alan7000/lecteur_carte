@@ -6,7 +6,6 @@
 package lml.snir.controleacces.physique.data;
 
 import java.sql.ResultSet;
-import java.util.List;
 import lml.persistence.jdbc.AbstracCrudServiceJDBC;
 import lml.snir.controleacces.metier.entity.Borne;
 import lml.snir.controleacces.metier.entity.Salle;
@@ -34,12 +33,10 @@ class BorneDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Borne> implements 
 
     @Override
     protected Borne createEntity(ResultSet rs) throws Exception {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         Borne b;
 
         long id = rs.getLong("id");
         long idSalle = rs.getLong("idSalle");
-        //Salle salle = (Salle) rs.getObject("idSalle");
 
         Salle salle = PhysiqueDataFactory.getSalleDataService().getById(idSalle);
 
@@ -52,7 +49,6 @@ class BorneDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Borne> implements 
 
     @Override
     public Borne add(Borne t) throws Exception {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         String query = "INSERT INTO " + super.getEntityName() + " (id, idSalle) VALUES ('"
                 + t.getId() + "','"
                 + t.getSalle().getId() + "')";  //Filtre que l'id.
@@ -65,7 +61,6 @@ class BorneDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Borne> implements 
 
     @Override
     public void remove(Borne t) throws Exception {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         String query = "DELETE FROM " + super.getEntityName() + " WHERE id = '" + t.getId() + "'";
         super.executeQuery(query);
 
@@ -73,7 +68,6 @@ class BorneDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Borne> implements 
 
     @Override
     public void update(Borne t) throws Exception {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         String query = "UPDATE " + super.getEntityName() + " SET id = '" + t.getId()
                 + "', idSalle = '" + t.getSalle().getId()
                 + "' WHERE id = '" +t.getId() + "'";
@@ -83,7 +77,6 @@ class BorneDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Borne> implements 
 
     @Override
     public Borne getBySalle(Salle salle) throws Exception {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         String query = "SELECT * FROM " + super.getEntityName() + " WHERE idSalle = '" + salle.getId() + "'";
         return super.getSingleResult(query);
 

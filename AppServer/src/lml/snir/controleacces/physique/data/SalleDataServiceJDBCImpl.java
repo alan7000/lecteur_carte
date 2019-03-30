@@ -5,7 +5,6 @@
  */
 package lml.snir.controleacces.physique.data;
 
-import java.io.ByteArrayInputStream;
 import java.sql.ResultSet;
 import java.util.List;
 import lml.persistence.jdbc.AbstracCrudServiceJDBC;
@@ -47,7 +46,6 @@ class SalleDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Salle> implements 
 
     @Override
     public Salle add(Salle t) throws Exception {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         String strProtege = "0";
         if(t.isProtege()){
             strProtege = "1";
@@ -67,7 +65,6 @@ class SalleDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Salle> implements 
 
     @Override
     public void remove(Salle t) throws Exception {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         String query = "DELETE FROM " + super.getEntityName() + " WHERE id = '" + t.getId() + "'";
         super.executeQuery(query);
 
@@ -75,7 +72,6 @@ class SalleDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Salle> implements 
 
     @Override
     public void update(Salle t) throws Exception {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
        String strProtege = "0";
         if(t.isProtege()){
             strProtege = "1";
@@ -90,7 +86,6 @@ class SalleDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Salle> implements 
 
     @Override
     public List<Salle> getByProtege(boolean protege) throws Exception {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         String query = "SELECT * FROM " + super.getEntityName() + " WHERE protege = '" + protege + "'";
         return super.getResults(query);
 

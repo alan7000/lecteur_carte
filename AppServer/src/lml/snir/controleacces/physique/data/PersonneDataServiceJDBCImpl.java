@@ -5,7 +5,6 @@
  */
 package lml.snir.controleacces.physique.data;
 
-import java.io.ByteArrayInputStream;
 import java.sql.ResultSet;
 import java.util.List;
 import lml.persistence.jdbc.AbstracCrudServiceJDBC;
@@ -40,9 +39,7 @@ class PersonneDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Personne> imple
     }
 
     @Override
-    protected Personne createEntity(ResultSet rs) throws Exception {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
- 
+    protected Personne createEntity(ResultSet rs) throws Exception { 
 
         long id = rs.getLong("id");
         String nom = rs.getString("nom");
@@ -68,7 +65,6 @@ class PersonneDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Personne> imple
 
     @Override
     public Personne add(Personne t) throws Exception {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         String query = "INSERT INTO " + super.getEntityName() + " (id, nom, prenom, classe) VALUES ('"
                 + t.getId() + "','"
                 + t.getNom() + "','"
@@ -93,7 +89,6 @@ class PersonneDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Personne> imple
 
     @Override
     public void remove(Personne t) throws Exception {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         String query = "DELETE FROM " + super.getEntityName() + " WHERE id = '" + t.getId() + "'";
         super.executeQuery(query);
 
@@ -101,7 +96,6 @@ class PersonneDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Personne> imple
 
     @Override
     public void update(Personne t) throws Exception {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         String query = "UPDATE " + super.getEntityName() + " SET nom = '" + t.getNom()
                 + "', prenom = '" + t.getPrenom()
                 + "' WHERE id = '" + t.getId() + "'";
@@ -118,7 +112,6 @@ class PersonneDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Personne> imple
 
     @Override
     public Administrateur getByLogin(String login) throws Exception {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         String query = "SELECT * FROM " + super.getEntityName() + " WHERE login = '" + login + "'";
         Object o = super.getSingleResult(query);
         return (Administrateur) o;
@@ -127,7 +120,6 @@ class PersonneDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Personne> imple
 
     @Override
     public List<Personne> getByNom(String nom) throws Exception {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         String query = "SELECT * FROM " + super.getEntityName() + " WHERE nom = '" + nom.toString() + "'";
         return super.getResults(query);
 
