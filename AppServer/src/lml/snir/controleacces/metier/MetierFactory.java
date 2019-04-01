@@ -1,5 +1,7 @@
 package lml.snir.controleacces.metier;
 
+import lml.snir.controleacces.physique.data.TimeSlotDataService;
+
 public class MetierFactory {
 
     private static AppControleAcces appControleAcces = null;
@@ -59,6 +61,10 @@ public class MetierFactory {
         return borneService;
     }
 
+    private static TimeSlotService timeSlotService = new TimeSlotServiceImpl();
+    public static TimeSlotService getTimeSlotService(){
+        return timeSlotService;
+    }
     private MetierFactory() {
     }
 

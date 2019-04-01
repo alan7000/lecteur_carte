@@ -49,7 +49,7 @@ public class AutorisationServiceRestImpl {
     @GET
     @Path("/getByPlageHoraire/{plageHoraire}")
     public List<Autorisation> getByPlageHoraire(@PathParam("plageHoraire") long idplageHoraire) throws Exception {
-        TimeSlot plageHoraire = MetierFactory.getAutorisationService().getById(idplageHoraire).getPlageHoraire();
+        TimeSlot plageHoraire = MetierFactory.getTimeSlotService().getById(idplageHoraire);
         return autorisationServiceRestImpl.getByPlageHoraire(plageHoraire);
     }
 
