@@ -37,15 +37,13 @@ final class EvenementDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Evenemen
         long id = rs.getLong("id");
         long idPersonne = rs.getLong("idPersonne");
         long idSalle = rs.getLong("idSalle");
-        //long idDate = rs.getLong("idDate");
         boolean autorise = (rs.getInt("autorise") == 1);
         Timestamp stamp = rs.getTimestamp("date");
         Date date = new Date(stamp.getTime());
 
         Personne personne = PhysiqueDataFactory.getPersonneDataService().getById(idPersonne);
         Salle salle = PhysiqueDataFactory.getSalleDataService().getById(idSalle);
-        //Date date = PhysiqueDataFactory.getEvenementDataService().getByJour(idDate);
-        
+
         event = new Evenement();
         event.setId(id);
         event.setAutorise(autorise);
@@ -99,5 +97,5 @@ final class EvenementDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Evenemen
         String query = "SELECT * FROM " + super.getEntityName() + " WHERE idSalle = '" + salle.getId() + "'";
         return super.getResults(query);
     }
-  
+
 }

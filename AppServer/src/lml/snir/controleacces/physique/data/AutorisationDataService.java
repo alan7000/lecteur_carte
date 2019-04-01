@@ -12,8 +12,12 @@ import lml.snir.controleacces.metier.entity.TimeSlot;
  * @author fanou
  */
 public interface AutorisationDataService extends CrudService<Autorisation> {
+
     public List<Autorisation> getBySalle(Salle salle) throws Exception;
+
     public List<Autorisation> getByPersonne(Personne personne) throws Exception;
+
     public List<Autorisation> getByPlageHoraire(TimeSlot plageHoraire) throws Exception;
+
     public List<Autorisation> getByPeronneEtSalle(Personne personne, Salle salle) throws Exception;
 }

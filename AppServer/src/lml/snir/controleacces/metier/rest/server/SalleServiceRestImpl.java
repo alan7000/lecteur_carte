@@ -26,7 +26,7 @@ import lml.snir.controleacces.metier.entity.Salle;
 @Consumes("application/json")
 @Produces("application/json")
 public class SalleServiceRestImpl {
-    
+
     private final SalleService salleServiceRestImpl = MetierFactory.getSalleService();
 
     @GET
@@ -76,5 +76,5 @@ public class SalleServiceRestImpl {
     public List<Salle> getAll(int i, int i1) throws Exception {
         return salleServiceRestImpl.getAll(i, i1);
     }
-    
+
 }

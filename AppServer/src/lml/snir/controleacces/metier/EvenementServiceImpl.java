@@ -2,7 +2,6 @@ package lml.snir.controleacces.metier;
 
 import java.util.Date;
 import java.util.List;
-import lml.snir.controleacces.metier.entity.Day;
 import lml.snir.controleacces.metier.entity.Evenement;
 import lml.snir.controleacces.metier.entity.Salle;
 import lml.snir.controleacces.physique.data.EvenementDataService;

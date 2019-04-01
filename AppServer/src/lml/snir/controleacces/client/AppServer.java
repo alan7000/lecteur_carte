@@ -9,11 +9,9 @@ import lml.snir.controleacces.metier.MetierFactory;
 import lml.snir.controleacces.metier.PersonneService;
 import lml.snir.controleacces.metier.SalleService;
 import lml.snir.controleacces.metier.entity.Administrateur;
-import lml.snir.controleacces.metier.entity.Attribution;
 import lml.snir.controleacces.metier.entity.Autorisation;
 import lml.snir.controleacces.metier.entity.Badge;
 import lml.snir.controleacces.metier.entity.Borne;
-import lml.snir.controleacces.metier.entity.Day;
 import lml.snir.controleacces.metier.entity.Evenement;
 import lml.snir.controleacces.metier.entity.Personne;
 import lml.snir.controleacces.metier.entity.Salle;
@@ -164,7 +162,6 @@ public class AppServer {
          Salle getByProtege
          */
         //System.out.println("getByProtege " + salleSrv.getByProtege(true));
-
         List<Salle> salles = salleSrv.getByProtege(false);
         for (Salle s : salles) {
             System.out.println(s);
@@ -176,11 +173,10 @@ public class AppServer {
         System.out.println("getCount salle " + salleSrv.getCount());
 
         /*
-        Salle getAll
-        */
+         Salle getAll
+         */
         System.out.println("getAll salle" + salleSrv.getAll());
-        
-        
+
         /*
          Borne Add
        
@@ -201,25 +197,24 @@ public class AppServer {
          */
 //        salle.setId(1);
 //        System.out.println("getBySalle " + borneSrv.getBySalle(salle));
-        
         /*
-        Borne remove
+         Borne remove
          */
 //        borne.setId(1);
 //        borneSrv.remove(borne);
         /*
-        Borne getCount
-        */
+         Borne getCount
+         */
         System.out.println("Nombre de borne " + borneSrv.getCount());
-        
+
         /*
-        Borne getAll
-        */
+         Borne getAll
+         */
         System.out.println("getAll Borne " + borneSrv.getAll());
-        
+
         /*
-        Autorisation add
-        */
+         Autorisation add
+         */
 //        salle.setId(12);
 //        p.setId(4);
 //        time.setId(1);
@@ -227,10 +222,9 @@ public class AppServer {
 //        autorisation.setPlageHoraire(time);
 //        autorisation.setSalle(salle);
 //        autorisationSrv.add(autorisation);
-        
         /*
-        Autorisation update
-        */
+         Autorisation update
+         */
 //        autorisation.setId(1);
 //        salle.setId(1);
 //        p.setId(5);
@@ -239,40 +233,33 @@ public class AppServer {
 //        autorisation.setPlageHoraire(time);
 //        autorisation.setSalle(salle);
 //        autorisationSrv.update(autorisation);
-        
         /*
-        Autorisation getAll
-        */
+         Autorisation getAll
+         */
 //        System.out.println("Autorisation getAll " + autorisationSrv.getAll());
-        
         /*
-        Autorisation getBySalle
-        */
+         Autorisation getBySalle
+         */
 //        salle.setId(1);
 //        System.out.println("Autorisation getBySalle " + autorisationSrv.getBySalle(salle));
-        
         /*
-        Autorisation getByPersonne
-        */
+         Autorisation getByPersonne
+         */
 //        p.setId(5);
 //        System.out.println("Autorisation getByPersonne " + autorisationSrv.getByPersonne(p));
-        
         /*
-        Autorisation getByPersonneEtSalle
-        */
+         Autorisation getByPersonneEtSalle
+         */
 //        System.out.println("Autorisation getByPersonneEtSalle " + autorisationSrv.getByPeronneEtSalle(p, salle));
-        
         /*
-        Autorisation getCount
-        */
+         Autorisation getCount
+         */
 //        System.out.println("Autorisation getByCount " + autorisationSrv.getCount());
-        
         /*
-        Autorisation getByPlageHoraire
-        */
+         Autorisation getByPlageHoraire
+         */
 //        time.setId(2);
 //        System.out.println("Autorisation getByPlageHoraire " + autorisationSrv.getByPlageHoraire(time));
-        
 //        List<Personne> personnes = personneSrv.getAll();
 //        List<Badge> badges = badgeSrv.getAll();
 //        for (Personne p : personnes) {

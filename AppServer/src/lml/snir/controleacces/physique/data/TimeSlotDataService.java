@@ -7,6 +7,6 @@ import lml.snir.controleacces.metier.entity.TimeSlot;
  *
  * @author fanou
  */
-public interface TimeSlotDataService extends CrudService<TimeSlot>{
+public interface TimeSlotDataService extends CrudService<TimeSlot> {
 
 }

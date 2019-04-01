@@ -26,13 +26,11 @@ class PersonneServiceImpl implements PersonneService {
 
     @Override
     public void remove(Personne personne) throws Exception {
-        //throw new UnsupportedOperationException("Not supported yet.");
         this.personneSrv.remove(personne);
     }
 
     @Override
     public void update(Personne personne) throws Exception {
-        //throw new UnsupportedOperationException("Not supported yet.");
         this.personneSrv.update(personne);
     }
 

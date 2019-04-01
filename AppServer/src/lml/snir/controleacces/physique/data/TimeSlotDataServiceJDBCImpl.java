@@ -59,7 +59,7 @@ final class TimeSlotDataServiceJDBCImpl extends AbstracCrudServiceJDBC<TimeSlot>
                 + timeSlot.getEndHour() + "','"
                 + timeSlot.getBeginMinutes() + "','"
                 + timeSlot.getEndMinutes() + "')";
-        
+
         timeSlot.setId(super.executeAdd(query));
 
         return timeSlot;

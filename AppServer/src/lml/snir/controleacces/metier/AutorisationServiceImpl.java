@@ -10,7 +10,7 @@ import lml.snir.controleacces.physique.data.PhysiqueDataFactory;
 
 class AutorisationServiceImpl implements AutorisationService {
 
-    private final AutorisationDataService autorisationSrv =  PhysiqueDataFactory.getAutorisationDataService();
+    private final AutorisationDataService autorisationSrv = PhysiqueDataFactory.getAutorisationDataService();
 
     @Override
     public Autorisation add(Autorisation authorisation) throws Exception {
@@ -65,5 +65,5 @@ class AutorisationServiceImpl implements AutorisationService {
     @Override
     public List<Autorisation> getByPlageHoraire(TimeSlot plageHoraire) throws Exception {
         return this.autorisationSrv.getByPlageHoraire(plageHoraire);
-    }    
+    }
 }

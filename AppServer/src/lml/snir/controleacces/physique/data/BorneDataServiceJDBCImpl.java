@@ -70,8 +70,8 @@ class BorneDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Borne> implements 
     public void update(Borne t) throws Exception {
         String query = "UPDATE " + super.getEntityName() + " SET id = '" + t.getId()
                 + "', idSalle = '" + t.getSalle().getId()
-                + "' WHERE id = '" +t.getId() + "'";
-        
+                + "' WHERE id = '" + t.getId() + "'";
+
         t.setId(super.executeAdd(query));
     }
 

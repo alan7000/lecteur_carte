@@ -27,7 +27,7 @@ import lml.snir.controleacces.metier.entity.Personne;
 @Consumes("application/json")
 @Produces("application/json")
 public class PersonneServiceRestImpl {
-    
+
     private final PersonneService personneService = MetierFactory.getPersonneService();
 
     @GET
@@ -83,6 +83,5 @@ public class PersonneServiceRestImpl {
     public List<Personne> getAll(@PathParam("i") int i, @PathParam("i1") int i1) throws Exception {
         return personneService.getAll(i, i1);
     }
-    
-    
+
 }

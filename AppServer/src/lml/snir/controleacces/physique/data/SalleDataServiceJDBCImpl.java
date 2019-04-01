@@ -47,12 +47,10 @@ class SalleDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Salle> implements 
     @Override
     public Salle add(Salle t) throws Exception {
         String strProtege = "0";
-        if(t.isProtege()){
+        if (t.isProtege()) {
             strProtege = "1";
         }
-        
-        
-        
+
         String query = "INSERT INTO " + super.getEntityName() + " (id, protege) VALUES ('"
                 + t.getId() + "','"
                 + strProtege + "')";
@@ -72,15 +70,15 @@ class SalleDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Salle> implements 
 
     @Override
     public void update(Salle t) throws Exception {
-       String strProtege = "0";
-        if(t.isProtege()){
+        String strProtege = "0";
+        if (t.isProtege()) {
             strProtege = "1";
         }
-        
+
         String query = "UPDATE " + super.getEntityName() + " SET id = '" + t.getId()
                 + "', protege = '" + strProtege
                 + "' WHERE id = '" + t.getId() + "'";
-        
+
         t.setId(super.executeAdd(query));
     }
 

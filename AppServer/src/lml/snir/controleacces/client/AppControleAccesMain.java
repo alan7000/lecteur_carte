@@ -10,6 +10,7 @@ public class AppControleAccesMain {
 
     /**
      * @param args the command line arguments
+     * @throws java.lang.Exception
      */
     public static void main(String[] args) throws Exception {
         try {
@@ -17,7 +18,7 @@ public class AppControleAccesMain {
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
-        
+
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
         context.setContextPath("/MiniProject");
 

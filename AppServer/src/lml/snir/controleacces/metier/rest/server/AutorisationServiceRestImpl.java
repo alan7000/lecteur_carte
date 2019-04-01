@@ -29,7 +29,7 @@ import lml.snir.controleacces.metier.entity.TimeSlot;
 @Consumes("application/json")
 @Produces("application/json")
 public class AutorisationServiceRestImpl {
-    
+
     private final AutorisationService autorisationServiceRestImpl = MetierFactory.getAutorisationService();
 
     @GET
@@ -49,7 +49,7 @@ public class AutorisationServiceRestImpl {
     @GET
     @Path("/getByPlageHoraire/{plageHoraire}")
     public List<Autorisation> getByPlageHoraire(@PathParam("plageHoraire") long idplageHoraire) throws Exception {
-        TimeSlot plageHoraire = MetierFactory.getTimeSlotService().getById(idplageHoraire);
+        TimeSlot plageHoraire = MetierFactory.getAutorisationService().getById(idplageHoraire).getPlageHoraire();
         return autorisationServiceRestImpl.getByPlageHoraire(plageHoraire);
     }
 
@@ -84,7 +84,7 @@ public class AutorisationServiceRestImpl {
     public Autorisation getById(@PathParam("id") Long l) throws Exception {
         return autorisationServiceRestImpl.getById(l);
     }
-    
+
     @GET
     @Path("/Count")
     public long getCount() throws Exception {
@@ -102,5 +102,5 @@ public class AutorisationServiceRestImpl {
     public List<Autorisation> getAll(@PathParam("i") int i, @PathParam("i1") int i1) throws Exception {
         return autorisationServiceRestImpl.getAll(i, i1);
     }
-    
+
 }

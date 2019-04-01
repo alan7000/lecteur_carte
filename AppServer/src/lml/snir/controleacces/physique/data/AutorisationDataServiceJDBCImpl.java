@@ -20,15 +20,15 @@ import lml.snir.controleacces.metier.entity.TimeSlot;
 class AutorisationDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Autorisation> implements AutorisationDataService {
 
     AutorisationDataServiceJDBCImpl() {
-        try{
-        String query = "CREATE TABLE IF NOT EXISTS `" + super.getEntityName() + "` (\n"
-                + "  `id` int(11) NOT NULL AUTO_INCREMENT,\n"
-                + "  `idSalle` int(11) NOT NULL,\n"
-                + "  `idPersonne` int(11) NOT NULL,\n"
-                + "  `idPlageHoraire` int(11) NOT NULL,\n"
-                + "  PRIMARY KEY (`id`)\n"
-                + ") ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
-        super.executeQuery(query);
+        try {
+            String query = "CREATE TABLE IF NOT EXISTS `" + super.getEntityName() + "` (\n"
+                    + "  `id` int(11) NOT NULL AUTO_INCREMENT,\n"
+                    + "  `idSalle` int(11) NOT NULL,\n"
+                    + "  `idPersonne` int(11) NOT NULL,\n"
+                    + "  `idPlageHoraire` int(11) NOT NULL,\n"
+                    + "  PRIMARY KEY (`id`)\n"
+                    + ") ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
+            super.executeQuery(query);
 
         } catch (Exception ex) {
             System.out.println("AutorisationDataServiceJDBCImpl() : " + ex);
@@ -74,42 +74,42 @@ class AutorisationDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Autorisatio
 
     @Override
     public void remove(Autorisation t) throws Exception {
-    String query = "DELETE FROM " + super.getEntityName() + " WHERE id = '" + t.getId() + "'";
+        String query = "DELETE FROM " + super.getEntityName() + " WHERE id = '" + t.getId() + "'";
         super.executeQuery(query);
     }
 
     @Override
     public void update(Autorisation t) throws Exception {
-    String query = "UPDATE " + super.getEntityName() + " SET id = '"
-            + t.getId() + "', idSalle = '"
-            + t.getSalle().getId() + "', idPersonne = '"
-            + t.getPersonne().getId() + "', idPlageHoraire = '"
-            + t.getPlageHoraire().getId() + "' WHERE id = '" + t.getId() + "'";
-    
-    super.executeQuery(query);
+        String query = "UPDATE " + super.getEntityName() + " SET id = '"
+                + t.getId() + "', idSalle = '"
+                + t.getSalle().getId() + "', idPersonne = '"
+                + t.getPersonne().getId() + "', idPlageHoraire = '"
+                + t.getPlageHoraire().getId() + "' WHERE id = '" + t.getId() + "'";
+
+        super.executeQuery(query);
     }
 
     @Override
     public List<Autorisation> getBySalle(Salle salle) throws Exception {
-    String query = "SELECT * FROM " + super.getEntityName() + " WHERE idSalle = '" + salle.getId() + "'";
+        String query = "SELECT * FROM " + super.getEntityName() + " WHERE idSalle = '" + salle.getId() + "'";
         return super.getResults(query);
     }
 
     @Override
     public List<Autorisation> getByPersonne(Personne personne) throws Exception {
-    String query = "SELECT * FROM " + super.getEntityName() + " WHERE idPersonne = '" + personne.getId() + "'";
+        String query = "SELECT * FROM " + super.getEntityName() + " WHERE idPersonne = '" + personne.getId() + "'";
         return super.getResults(query);
     }
 
     @Override
     public List<Autorisation> getByPlageHoraire(TimeSlot plageHoraire) throws Exception {
-    String query = "SELECT * FROM " + super.getEntityName() + " WHERE idPlageHoraire = '" + plageHoraire.getId() + "'";
+        String query = "SELECT * FROM " + super.getEntityName() + " WHERE idPlageHoraire = '" + plageHoraire.getId() + "'";
         return super.getResults(query);
     }
 
     @Override
     public List<Autorisation> getByPeronneEtSalle(Personne personne, Salle salle) throws Exception {
-    String query = "SELECT * FROM " + super.getEntityName() + " WHERE idPersonne = '" + personne.getId() + "' AND idSalle = '" + salle.getId() + "'";
+        String query = "SELECT * FROM " + super.getEntityName() + " WHERE idPersonne = '" + personne.getId() + "' AND idSalle = '" + salle.getId() + "'";
         return super.getResults(query);
     }
 

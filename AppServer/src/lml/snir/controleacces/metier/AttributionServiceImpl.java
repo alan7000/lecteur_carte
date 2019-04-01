@@ -65,5 +65,5 @@ class AttributionServiceImpl implements AttributionService {
     public Boolean isBadgeAttribue(Badge badge) throws Exception {
         return this.attributionSrv.isBadgeAttribue(badge);
     }
-    
+
 }

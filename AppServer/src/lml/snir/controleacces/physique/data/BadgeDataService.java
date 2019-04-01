@@ -7,6 +7,7 @@ import lml.snir.controleacces.metier.entity.Badge;
  *
  * @author fanou
  */
-public interface BadgeDataService extends CrudService<Badge> { 
+public interface BadgeDataService extends CrudService<Badge> {
+
     public Badge getByContenu(String contenu) throws Exception;
 }

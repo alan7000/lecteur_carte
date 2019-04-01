@@ -27,6 +27,7 @@ import lml.snir.controleacces.metier.entity.Salle;
 @Consumes("application/json")
 @Produces("application/json")
 public class BorneServiceRestImpl {
+
     private final BorneService borneServiceRestImpl = MetierFactory.getBorneService();
 
     @GET

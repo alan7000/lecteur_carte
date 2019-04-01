@@ -26,7 +26,7 @@ import lml.snir.controleacces.metier.entity.Badge;
 @Consumes("application/json")
 @Produces("application/json")
 public class BadgeServiceRestImpl {
-    
+
     private final BadgeService badgeServiceRestImpl = MetierFactory.getBadgeService();
 
     @GET
@@ -34,7 +34,7 @@ public class BadgeServiceRestImpl {
     public Badge getByContenu(@PathParam("contenu") String contenu) throws Exception {
         return badgeServiceRestImpl.getByContenu(contenu);
     }
-    
+
     @POST
     @Path("/")
     public Badge add(Badge t) throws Exception {
@@ -48,6 +48,7 @@ public class BadgeServiceRestImpl {
     }
 
     @PUT
+    @Path("/")
     public void update(Badge t) throws Exception {
         badgeServiceRestImpl.update(t);
     }
@@ -75,7 +76,5 @@ public class BadgeServiceRestImpl {
     public List<Badge> getAll(@PathParam("i") int i, @PathParam("i1") int i1) throws Exception {
         return badgeServiceRestImpl.getAll(i, i1);
     }
-    
-    
-    
+
 }

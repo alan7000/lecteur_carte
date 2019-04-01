@@ -39,14 +39,14 @@ class PersonneDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Personne> imple
     }
 
     @Override
-    protected Personne createEntity(ResultSet rs) throws Exception { 
+    protected Personne createEntity(ResultSet rs) throws Exception {
 
         long id = rs.getLong("id");
         String nom = rs.getString("nom");
         String prenom = rs.getString("prenom");
         String classe = rs.getString("classe");
         Personne p;
-        if(classe.equals(Personne.class.getSimpleName())){
+        if (classe.equals(Personne.class.getSimpleName())) {
             p = new Personne(nom, prenom);
         } else {
             Administrateur adm = new Administrateur(nom, prenom);
@@ -56,9 +56,9 @@ class PersonneDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Personne> imple
             adm.setMdp(password);
             p = adm;
         }
-        
+
         p.setId(id);
-        
+
         return p;
 
     }
