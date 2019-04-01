@@ -12,7 +12,6 @@ import java.util.Locale;
  */
 public class TimeSlot {
     private long id;
-    private final SimpleDateFormat sdf = new SimpleDateFormat("EEEEE;HH;mm", Locale.UK);
     private int beginHour;
     private int endHour;
     private int beginMinutes;
@@ -61,7 +60,8 @@ public class TimeSlot {
      * @param begin : true if the is date is the begin of the time slot, false if end
      */
     private void extract(Date date, boolean begin) {
-        String str = this.sdf.format(date);
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEEE;HH;mm", Locale.UK);
+        String str = sdf.format(date);
         String[] split = str.split(";");
         int hour = Integer.parseInt(split[1]);
         int minutes = Integer.parseInt(split[2]);
@@ -85,7 +85,8 @@ public class TimeSlot {
      */
     public boolean isIn(Date date) {
         boolean isIn = false;
-        String str = this.sdf.format(date);
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEEE;HH;mm", Locale.UK);
+        String str = sdf.format(date);
 
         // extract day, hour and minutes of date
         String[] split = str.split(";");
