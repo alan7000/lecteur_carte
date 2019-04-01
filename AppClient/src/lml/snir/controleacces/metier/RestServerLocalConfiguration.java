@@ -6,6 +6,7 @@
 package lml.snir.controleacces.metier;
 
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.Properties;
 import lml.rest.client.RestServerConfig;
 
@@ -16,6 +17,7 @@ import lml.rest.client.RestServerConfig;
 public class RestServerLocalConfiguration extends RestServerConfig {
 
     private static String url = "http://localhost:9999";
+
     static {
         FileInputStream in = null;
         try {
@@ -24,21 +26,21 @@ public class RestServerLocalConfiguration extends RestServerConfig {
             prop.load(in);
             in.close();
             url = prop.getProperty("url = " + url);
-        } catch (Exception e) {
+        } catch (IOException e) {
             System.err.println(e.getMessage() + "\nusing default url : " + url);
         } finally {
             try {
                 if (in != null) {
                     in.close();
                 }
-            } catch (Exception e) {
+            } catch (IOException e) {
                 System.err.println(e.getMessage());
             }
         }
     }
-    
+
     public RestServerLocalConfiguration() {
         super(url, "MiniProject", "rest");
     }
-    
+
 }
