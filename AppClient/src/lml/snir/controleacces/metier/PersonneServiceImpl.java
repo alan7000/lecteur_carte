@@ -1,5 +1,7 @@
 package lml.snir.controleacces.metier;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import lml.rest.client.ClientRest;
 import lml.snir.controleacces.metier.entity.Administrateur;
@@ -11,6 +13,10 @@ class PersonneServiceImpl extends ClientRest<Personne> implements PersonneServic
 
     public PersonneServiceImpl() {
         super.init("PersonneService", new RestServerLocalConfiguration());
+        
+        List<Class> classes = new ArrayList<>();
+        classes.add(Administrateur.class);
+        super.polymorphicInit(classes);
     }
 
     @Override
@@ -70,7 +76,7 @@ class PersonneServiceImpl extends ClientRest<Personne> implements PersonneServic
     public Personne[] sort() throws Exception {
         Personne[] personnes = this.getAll().toArray(new Personne[0]);
         
-        //Arrays.sort(users);     
+        //Arrays.sort(personnes);     
         ComparatorByAge cmp = new ComparatorByAge();
         Sort trieuse = MetierFactory.getSortSerivce();
         trieuse.sort(personnes, cmp);

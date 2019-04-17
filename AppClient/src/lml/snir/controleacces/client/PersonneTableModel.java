@@ -17,7 +17,7 @@ import lml.snir.controleacces.metier.entity.Personne;
  */
 class PersonneTableModel extends AbstractTableModel {
 
-    private final String[] header = {"Nom", "Prenom", "Login", "Password", "Type"};
+    private final String[] header = {"Nom", "Prenom", "Login", "Badge"};
     private Personne[] personnes;
 
     public PersonneTableModel(Personne[] personnes) {
@@ -54,13 +54,13 @@ class PersonneTableModel extends AbstractTableModel {
                     login = adm.getLogin();
                 }
                 return login;
-                case 3:
-                    boolean attribue = false;
-                    try {
-                        attribue = (MetierFactory.getAttributionService().getByPersonne(p) != null);
-                    } catch (Exception e) {
-                    }
-                    return attribue;
+            case 3:
+                boolean attribue = false;
+                try {
+                    attribue = (MetierFactory.getAttributionService().getByPersonne(p) != null);
+                } catch (Exception e) {
+                }
+                return attribue;
             default:
                 return null;
         }
@@ -103,9 +103,9 @@ class PersonneTableModel extends AbstractTableModel {
     }
 
     @Override
-    public Class<?> getColumnClass(int columIndex) {
+    public Class getColumnClass(int columIndex) {
         switch (columIndex) {
-            case 5:
+            case 3:
                 return Boolean.class;
             default:
                 return String.class;

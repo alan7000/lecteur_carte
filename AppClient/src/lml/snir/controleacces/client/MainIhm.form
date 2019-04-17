@@ -69,11 +69,11 @@
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jButton9" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonAdd" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jButton10" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonRemove" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jButton11" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonUpdate" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -87,9 +87,9 @@
                   <Component id="jScrollPane1" min="-2" pref="369" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jButton9" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton10" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton11" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonAdd" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonRemove" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonUpdate" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="18" max="32767" attributes="0"/>
               </Group>
@@ -150,17 +150,23 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JButton" name="jButton9">
+        <Component class="javax.swing.JButton" name="jButtonAdd">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ajouter"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAddActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton10">
+        <Component class="javax.swing.JButton" name="jButtonRemove">
           <Properties>
             <Property name="text" type="java.lang.String" value="Supprimer"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRemoveActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton11">
+        <Component class="javax.swing.JButton" name="jButtonUpdate">
           <Properties>
             <Property name="text" type="java.lang.String" value="Modifier"/>
           </Properties>
@@ -277,6 +283,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Quitter"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

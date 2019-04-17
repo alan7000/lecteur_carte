@@ -7,8 +7,10 @@ package lml.snir.controleacces.client;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import lml.snir.controleacces.metier.MetierFactory;
 import lml.snir.controleacces.metier.PersonneService;
+import lml.snir.controleacces.metier.entity.Personne;
 
 /**
  *
@@ -33,7 +35,7 @@ public class MainIhm extends javax.swing.JFrame {
         this.jTable1.setModel(model);
         String[] iconTrue = {"/lml/snir/controleacces/client/images/ok.png"};
         String[] iconFalse = {"/lml/snir/controleacces/client/images/ko.png"};
-        int[] columns = {4};
+        int[] columns = {3};
         this.jTable1.setDefaultRenderer(Boolean.class, new BooleanCellRenderer(columns, iconTrue, iconFalse));
         this.setDefaultCloseOperation(DISPOSE_ON_CLOSE); //Destruction de l'objet
     }
@@ -51,9 +53,9 @@ public class MainIhm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton9 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
-        jButton11 = new javax.swing.JButton();
+        jButtonAdd = new javax.swing.JButton();
+        jButtonRemove = new javax.swing.JButton();
+        jButtonUpdate = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -82,11 +84,21 @@ public class MainIhm extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton9.setText("Ajouter");
+        jButtonAdd.setText("Ajouter");
+        jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAddActionPerformed(evt);
+            }
+        });
 
-        jButton10.setText("Supprimer");
+        jButtonRemove.setText("Supprimer");
+        jButtonRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoveActionPerformed(evt);
+            }
+        });
 
-        jButton11.setText("Modifier");
+        jButtonUpdate.setText("Modifier");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -102,11 +114,11 @@ public class MainIhm extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton9)
+                .addComponent(jButtonAdd)
                 .addGap(18, 18, 18)
-                .addComponent(jButton10)
+                .addComponent(jButtonRemove)
                 .addGap(18, 18, 18)
-                .addComponent(jButton11)
+                .addComponent(jButtonUpdate)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -118,9 +130,9 @@ public class MainIhm extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton9)
-                    .addComponent(jButton10)
-                    .addComponent(jButton11))
+                    .addComponent(jButtonAdd)
+                    .addComponent(jButtonRemove)
+                    .addComponent(jButtonUpdate))
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
@@ -180,6 +192,11 @@ public class MainIhm extends javax.swing.JFrame {
         );
 
         jButton1.setText("Quitter");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -231,6 +248,38 @@ public class MainIhm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
+        //Ouverture de la fenetre d'ajout d'un utilisateur
+        AddUserDlg dlg = new AddUserDlg(this, true);
+        dlg.setVisible(true);
+        
+        Personne personne = dlg.getPersonne();
+        
+        if (personne != null) {
+            try {
+                this.persSrv.add(personne);
+                this.model.update(this.persSrv.sort());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jButtonAddActionPerformed
+
+    private void jButtonRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveActionPerformed
+        Personne personne = (Personne) this.model.getPersonneAt(this.jTable1.getSelectedRow());
+        try {
+            this.persSrv.remove(personne);
+            this.model.update(this.persSrv.sort());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
+        
+    }//GEN-LAST:event_jButtonRemoveActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -273,8 +322,6 @@ public class MainIhm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -282,7 +329,9 @@ public class MainIhm extends javax.swing.JFrame {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
+    private javax.swing.JButton jButtonAdd;
+    private javax.swing.JButton jButtonRemove;
+    private javax.swing.JButton jButtonUpdate;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -291,5 +340,4 @@ public class MainIhm extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 
-    
 }
