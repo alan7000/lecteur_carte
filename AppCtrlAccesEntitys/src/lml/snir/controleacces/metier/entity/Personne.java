@@ -6,6 +6,7 @@ public class Personne {
     private long id;
     private String nom;
     private String prenom;
+    private int age;
 
     public Personne(){
         this.nom = null;
@@ -80,5 +81,9 @@ public class Personne {
         hash = 47 * hash + Objects.hashCode(this.nom);
         hash = 47 * hash + Objects.hashCode(this.prenom);
         return hash;
+    }
+
+    public int getAge() {
+        return this.age;
     }
 }
