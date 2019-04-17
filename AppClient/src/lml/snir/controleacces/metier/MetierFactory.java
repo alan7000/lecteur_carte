@@ -1,5 +1,8 @@
 package lml.snir.controleacces.metier;
 
+import lml.snir.controleacces.metier.sort.InsertionOptimisedSort;
+import lml.snir.controleacces.metier.sort.Sort;
+
 public class MetierFactory {
 
     private static final BadgeService badgeService = new BadgeServiceImpl();
@@ -42,6 +45,11 @@ public class MetierFactory {
 
     public static BorneService getBorneService() {
         return borneService;
+    }
+    
+    private static final Sort sortSrv = new InsertionOptimisedSort();
+    public static Sort getSortSerivce() {
+        return sortSrv;
     }
 
     private MetierFactory() {

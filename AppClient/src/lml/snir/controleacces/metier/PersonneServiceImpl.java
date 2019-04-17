@@ -4,6 +4,8 @@ import java.util.List;
 import lml.rest.client.ClientRest;
 import lml.snir.controleacces.metier.entity.Administrateur;
 import lml.snir.controleacces.metier.entity.Personne;
+import lml.snir.controleacces.metier.sort.ComparatorByAge;
+import lml.snir.controleacces.metier.sort.Sort;
 
 class PersonneServiceImpl extends ClientRest<Personne> implements PersonneService {
 
@@ -65,6 +67,16 @@ class PersonneServiceImpl extends ClientRest<Personne> implements PersonneServic
     return super.getEntitys();
     }
 
-    
+    public Personne[] sort() throws Exception {
+        Personne[] personnes = this.getAll().toArray(new Personne[0]);
+        
+        //Arrays.sort(users);     
+        ComparatorByAge cmp = new ComparatorByAge();
+        Sort trieuse = MetierFactory.getSortSerivce();
+        trieuse.sort(personnes, cmp);
+        
+        return personnes;
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
