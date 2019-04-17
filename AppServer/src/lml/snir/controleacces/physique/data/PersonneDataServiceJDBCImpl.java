@@ -27,8 +27,6 @@ class PersonneDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Personne> imple
                     + "  `password` varchar(255),\n"
                     + "  `classe` varchar(255) NOT NULL,\n"
                     + "  PRIMARY KEY (`id`),\n"
-                    + "  UNIQUE KEY `nom` (`nom`),\n"
-                    + "  UNIQUE KEY `prenom` (`prenom`),\n"
                     + "  UNIQUE KEY `login` (`login`)\n"
                     + ") ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;";
             super.executeQuery(query);

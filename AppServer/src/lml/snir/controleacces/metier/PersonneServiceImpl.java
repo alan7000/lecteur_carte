@@ -1,5 +1,6 @@
 package lml.snir.controleacces.metier;
 
+import java.util.Arrays;
 import java.util.List;
 import lml.snir.controleacces.metier.entity.Administrateur;
 import lml.snir.controleacces.metier.entity.Personne;
@@ -69,7 +70,7 @@ class PersonneServiceImpl implements PersonneService {
     public Personne[] sort() throws Exception {
         Personne[] personnes = this.getAll().toArray(new Personne[0]);
         
-        //Arrays.sort(users);     
+        //Arrays.sort(personnes);     
         ComparatorByAge cmp = new ComparatorByAge();
         Sort trieuse = MetierFactory.getSortService();
         trieuse.sort(personnes, cmp);

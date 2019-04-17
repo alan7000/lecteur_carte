@@ -33,7 +33,7 @@ public class PersonneServiceRestImpl {
     @GET
     @Path("/getByUtilisateur/{login}")
     public Administrateur getByLogin(@PathParam("login") String login) throws Exception {
-        return personneService.getByLogin(login);
+        return this.personneService.getByLogin(login);
     }
 
     @GET
