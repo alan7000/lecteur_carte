@@ -1,5 +1,7 @@
 package lml.snir.controleacces.metier;
 
+import lml.snir.controleacces.metier.sort.InsertionOptimisedSort;
+import lml.snir.controleacces.metier.sort.Sort;
 import lml.snir.controleacces.physique.data.TimeSlotDataService;
 
 public class MetierFactory {
@@ -65,6 +67,14 @@ public class MetierFactory {
     public static TimeSlotService getTimeSlotService(){
         return timeSlotService;
     }
+
+    private static final Sort sortService = new InsertionOptimisedSort();
+    public  static Sort getSortService() {
+        return sortService;
+    }
+    
+    
+    
     private MetierFactory() {
     }
 

@@ -3,6 +3,8 @@ package lml.snir.controleacces.metier;
 import java.util.List;
 import lml.snir.controleacces.metier.entity.Administrateur;
 import lml.snir.controleacces.metier.entity.Personne;
+import lml.snir.controleacces.metier.sort.ComparatorByAge;
+import lml.snir.controleacces.metier.sort.Sort;
 import lml.snir.controleacces.physique.data.PersonneDataService;
 import lml.snir.controleacces.physique.data.PhysiqueDataFactory;
 
@@ -63,4 +65,16 @@ class PersonneServiceImpl implements PersonneService {
     public List<Personne> getAll() throws Exception {
         return this.personneSrv.getAll();
     }   
+    
+    public Personne[] sort() throws Exception {
+        Personne[] personnes = this.getAll().toArray(new Personne[0]);
+        
+        //Arrays.sort(users);     
+        ComparatorByAge cmp = new ComparatorByAge();
+        Sort trieuse = MetierFactory.getSortService();
+        trieuse.sort(personnes, cmp);
+        
+        return personnes;
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
