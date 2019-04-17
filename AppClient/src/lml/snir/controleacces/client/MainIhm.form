@@ -170,6 +170,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Modifier"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonUpdateActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -184,7 +187,7 @@
                       <Component id="jButton3" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jButton4" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jButton5" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton2" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButtonAttribution" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jButton6" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jButton7" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jButton8" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -197,7 +200,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-                  <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                  <Component id="jButtonAttribution" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jButton3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -216,12 +219,12 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="jButton2">
+        <Component class="javax.swing.JButton" name="jButtonAttribution">
           <Properties>
             <Property name="text" type="java.lang.String" value="Attribution"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonAttributionActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButton3">

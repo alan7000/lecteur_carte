@@ -14,4 +14,6 @@ public interface AttributionService extends CrudService<Attribution> {
     public Boolean isBadgeAttribue(Personne personne) throws Exception;
 
     public Boolean isBadgeAttribue(Badge badge) throws Exception;
+
+    public Attribution[] sort() throws Exception;
 }

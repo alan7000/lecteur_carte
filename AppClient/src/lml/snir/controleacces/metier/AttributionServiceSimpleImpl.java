@@ -5,6 +5,8 @@ import lml.rest.client.ClientRest;
 import lml.snir.controleacces.metier.entity.Attribution;
 import lml.snir.controleacces.metier.entity.Badge;
 import lml.snir.controleacces.metier.entity.Personne;
+import lml.snir.controleacces.metier.sort.ComparatorByAge;
+import lml.snir.controleacces.metier.sort.Sort;
 
 public class AttributionServiceSimpleImpl extends ClientRest<Attribution> implements AttributionService {
 
@@ -78,4 +80,15 @@ public class AttributionServiceSimpleImpl extends ClientRest<Attribution> implem
         return super.getEntitys();
     }
 
+    public Attribution[] sort() throws Exception {
+        Attribution[] attributions = this.getAll().toArray(new Attribution[0]);
+
+        //Arrays.sort(personnes);     
+        ComparatorByAge cmp = new ComparatorByAge();
+        Sort trieuse = MetierFactory.getSortSerivce();
+        trieuse.sort(attributions, cmp);
+
+        return attributions;
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

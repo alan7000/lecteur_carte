@@ -57,7 +57,7 @@ public class MainIhm extends javax.swing.JFrame {
         jButtonRemove = new javax.swing.JButton();
         jButtonUpdate = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
+        jButtonAttribution = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -99,6 +99,11 @@ public class MainIhm extends javax.swing.JFrame {
         });
 
         jButtonUpdate.setText("Modifier");
+        jButtonUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonUpdateActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -136,10 +141,10 @@ public class MainIhm extends javax.swing.JFrame {
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
-        jButton2.setText("Attribution");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAttribution.setText("Attribution");
+        jButtonAttribution.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButtonAttributionActionPerformed(evt);
             }
         });
 
@@ -165,7 +170,7 @@ public class MainIhm extends javax.swing.JFrame {
                     .addComponent(jButton3)
                     .addComponent(jButton4)
                     .addComponent(jButton5)
-                    .addComponent(jButton2)
+                    .addComponent(jButtonAttribution)
                     .addComponent(jButton6)
                     .addComponent(jButton7)
                     .addComponent(jButton8))
@@ -175,7 +180,7 @@ public class MainIhm extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(40, 40, 40)
-                .addComponent(jButton2)
+                .addComponent(jButtonAttribution)
                 .addGap(18, 18, 18)
                 .addComponent(jButton3)
                 .addGap(18, 18, 18)
@@ -244,9 +249,10 @@ public class MainIhm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void jButtonAttributionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAttributionActionPerformed
+        AttributionIhm att = new AttributionIhm();
+        att.setVisible(true);
+    }//GEN-LAST:event_jButtonAttributionActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         dispose();
@@ -279,6 +285,24 @@ public class MainIhm extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jButtonRemoveActionPerformed
+
+    private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
+        Personne personne = (Personne) this.model.getPersonneAt(this.jTable1.getSelectedRow());
+        
+        AddUserDlg dlg = new AddUserDlg(this, true, personne);
+        dlg.setVisible(true);
+        
+        personne = dlg.getPersonne();
+        
+        if (personne != null) {
+            try {
+                this.persSrv.update(personne);
+                this.model.update(this.persSrv.sort());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jButtonUpdateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -322,7 +346,6 @@ public class MainIhm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -330,6 +353,7 @@ public class MainIhm extends javax.swing.JFrame {
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButtonAdd;
+    private javax.swing.JButton jButtonAttribution;
     private javax.swing.JButton jButtonRemove;
     private javax.swing.JButton jButtonUpdate;
     private javax.swing.JLabel jLabel1;
