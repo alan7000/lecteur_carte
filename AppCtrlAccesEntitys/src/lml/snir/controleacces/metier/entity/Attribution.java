@@ -5,6 +5,16 @@ public class Attribution {
     private Badge badge;
     private Personne personne;
 
+    public Attribution() {
+    }
+
+    
+    
+    public Attribution(Badge badge, Personne personne) {
+        this.badge = badge;
+        this.personne = personne;
+    }   
+    
     /**
      * @return the id
      */

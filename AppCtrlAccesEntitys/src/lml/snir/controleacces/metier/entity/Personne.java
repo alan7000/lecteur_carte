@@ -64,7 +64,7 @@ public class Personne {
     
     @Override
     public String toString() {
-        return this.nom + " " + this.prenom;
+        return this.id + " : " + this.nom + " " + this.prenom;
     }
     
     @Override
