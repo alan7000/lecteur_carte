@@ -190,7 +190,7 @@ public class TimeSlot {
 
     @Override
     public String toString() {
-        return this.beginDay + " " + this.beginHour + ":" + this.beginMinutes + " to " + this.endDay + " " + this.endHour + ":" + this.endMinutes;
+        return this.id + " " + this.beginDay + " " + this.beginHour + ":" + this.beginMinutes + " to " + this.endDay + " " + this.endHour + ":" + this.endMinutes;
     }
 
     /**
