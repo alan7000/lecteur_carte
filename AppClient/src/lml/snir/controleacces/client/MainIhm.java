@@ -149,6 +149,11 @@ public class MainIhm extends javax.swing.JFrame {
         });
 
         jButton3.setText("Autorisation");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Badge");
 
@@ -316,6 +321,22 @@ public class MainIhm extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_jButtonUpdateActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        AutorisationIhm autorisationIhm = null;
+        try {
+            autorisationIhm = new AutorisationIhm(this, true);
+        } catch (Exception ex) {
+            Logger.getLogger(MainIhm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        autorisationIhm.setVisible(true);
+        
+        try {
+            this.model.update(this.persSrv.sort());
+        } catch (Exception e) {
+            Logger.getLogger(MainIhm.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

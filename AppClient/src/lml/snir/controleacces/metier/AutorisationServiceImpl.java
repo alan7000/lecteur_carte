@@ -6,9 +6,17 @@ import lml.snir.controleacces.metier.entity.Autorisation;
 import lml.snir.controleacces.metier.entity.Personne;
 import lml.snir.controleacces.metier.entity.Salle;
 import lml.snir.controleacces.metier.entity.TimeSlot;
+import lml.snir.controleacces.metier.sort.ComparatorByIdAutorisation;
+import lml.snir.controleacces.metier.sort.Sort;
 
 class AutorisationServiceImpl extends ClientRest<Autorisation> implements AutorisationService {
 
+    public AutorisationServiceImpl() {
+        super.init("AutorisationService", new RestServerLocalConfiguration());
+    }
+
+    
+    
     @Override
     public List<Autorisation> getBySalle(Salle salle) throws Exception {
         super.setPath("getBySalle/" + salle.getId());
@@ -75,4 +83,13 @@ class AutorisationServiceImpl extends ClientRest<Autorisation> implements Autori
         return super.getEntitys();
     }
 
+    public Autorisation[] sort() throws Exception {
+        Autorisation[] autorisations = this.getAll().toArray(new Autorisation[0]);
+        
+        ComparatorByIdAutorisation cmp = new ComparatorByIdAutorisation();
+        Sort trieuse = MetierFactory.getSortSerivce();
+        trieuse.sort(autorisations, cmp);
+        return autorisations;
+    }
+    
 }
