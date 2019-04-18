@@ -156,6 +156,11 @@ public class MainIhm extends javax.swing.JFrame {
         });
 
         jButton4.setText("Badge");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Borne");
 
@@ -337,6 +342,22 @@ public class MainIhm extends javax.swing.JFrame {
             Logger.getLogger(MainIhm.class.getName()).log(Level.SEVERE, null, e);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        BadgeIhm badgeIhm = null;
+        try {
+            badgeIhm = new BadgeIhm(this, true);
+        } catch (Exception e) {
+            Logger.getLogger(MainIhm.class.getName()).log(Level.SEVERE, null, e);
+        }
+        badgeIhm.setVisible(true);
+        
+        try {
+            this.model.update(this.persSrv.sort());
+        } catch (Exception e) {
+            Logger.getLogger(MainIhm.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
