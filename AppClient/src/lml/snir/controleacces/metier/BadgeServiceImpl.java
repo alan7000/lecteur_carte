@@ -6,6 +6,10 @@ import lml.snir.controleacces.metier.entity.Badge;
 
 class BadgeServiceImpl extends ClientRest<Badge> implements BadgeService {
 
+    public BadgeServiceImpl() {
+        super.init("BadgeService", new RestServerLocalConfiguration());
+    }
+    
     @Override
     public Badge getByContenu(String contenu) throws Exception {
         super.setPath("getByContenu/" + contenu);

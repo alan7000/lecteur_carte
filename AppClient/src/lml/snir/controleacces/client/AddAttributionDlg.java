@@ -5,19 +5,72 @@
  */
 package lml.snir.controleacces.client;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import lml.snir.controleacces.metier.AttributionService;
+import lml.snir.controleacces.metier.BadgeService;
+import lml.snir.controleacces.metier.MetierFactory;
+import lml.snir.controleacces.metier.PersonneService;
+import lml.snir.controleacces.metier.entity.Attribution;
+import lml.snir.controleacces.metier.entity.Badge;
+import lml.snir.controleacces.metier.entity.Personne;
+
 /**
  *
  * @author alan
  */
-public class AddAttributionDlg extends javax.swing.JFrame {
-
+public class AddAttributionDlg extends javax.swing.JDialog {
+    
+    private long id = 0;
+    private Attribution attribution = null;
+    
+    AttributionService attributionService = MetierFactory.getAttributionService();
+    BadgeService badgeService = MetierFactory.getBadgeService();
+    PersonneService personneService = MetierFactory.getPersonneService();
     /**
-     * Creates new form AddAttributionDlg
+     * Creates new form AddAttributionDialog
+     * @param parent
+     * @param modal
      */
-    public AddAttributionDlg() {
+    public AddAttributionDlg(java.awt.Frame parent, boolean modal) {
+        super(parent, modal);
         initComponents();
+        
+        try {
+            for (int i = 0; i < badgeService.getCount(); i++) {
+                this.jComboBox1.addItem(this.badgeService.getAll(i, 1).toString());
+                
+            }
+            for (int i = 0; i < personneService.getCount(); i++) {
+                this.jComboBox2.addItem(this.personneService.getAll(i, 1).toString());
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(AddAttributionDlg.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-//TODO Faire le add
+
+    AddAttributionDlg(JFrame parent, boolean modal, Attribution attribution) {
+        super(parent, modal);
+        initComponents();
+        this.id = attribution.getId();
+        try {
+            for (int i = 0; i < badgeService.getCount(); i++) {
+                this.jComboBox1.addItem(this.badgeService.getAll(i, 1).toString());
+                
+            }
+            for (int i = 0; i < personneService.getCount(); i++) {
+                this.jComboBox2.addItem(this.personneService.getAll(i, 1).toString());
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(AddAttributionDlg.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    Attribution getAttribution() {
+        return attribution;
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,53 +88,65 @@ public class AddAttributionDlg extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Badge");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel2.setText("Personne");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jButton1.setText("Ok");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Annuler");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(147, 147, 147)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
+                        .addContainerGap()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(163, 163, 163)
                         .addComponent(jLabel1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addComponent(jButton1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
-                .addComponent(jButton2)
-                .addGap(53, 53, 53))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(163, 163, 163)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(148, 148, 148)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(419, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(62, 62, 62)
                 .addComponent(jLabel2)
-                .addGap(18, 18, 18)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addGap(67, 67, 67)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -107,6 +172,49 @@ public class AddAttributionDlg extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.attributionService = null;
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String idBadge = this.jComboBox1.getSelectedItem().toString();
+        String idPersonne = this.jComboBox2.getSelectedItem().toString();
+        
+        String b = idBadge.replaceAll("[^0-9]", "");
+        
+        long IdBadge = Long.parseLong(b);
+        
+        Badge badge = null;
+        try {
+            badge = MetierFactory.getBadgeService().getById(IdBadge);
+        } catch (Exception ex) {
+            Logger.getLogger(AddAttributionDlg.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        String p = idPersonne.replaceAll("[^0-9]", "");
+        
+        long IdPersonne = Long.parseLong(p);
+        
+        Personne personne = null;
+        try {
+            personne = MetierFactory.getPersonneService().getById(IdPersonne);
+        } catch (Exception ex) {
+            Logger.getLogger(AddAttributionDlg.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        this.attribution = new Attribution();
+        
+        this.attribution.setBadge(badge);
+        
+        this.attribution.setPersonne(personne);
+        
+        this.attribution.setId(this.id);
+        
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -134,11 +242,19 @@ public class AddAttributionDlg extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(AddAttributionDlg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddAttributionDlg().setVisible(true);
+                AddAttributionDlg dialog = new AddAttributionDlg(new javax.swing.JFrame(), true);
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }

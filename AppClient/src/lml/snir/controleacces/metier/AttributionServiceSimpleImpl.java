@@ -1,11 +1,13 @@
 package lml.snir.controleacces.metier;
 
+import java.util.Comparator;
 import java.util.List;
 import lml.rest.client.ClientRest;
 import lml.snir.controleacces.metier.entity.Attribution;
 import lml.snir.controleacces.metier.entity.Badge;
 import lml.snir.controleacces.metier.entity.Personne;
 import lml.snir.controleacces.metier.sort.ComparatorByAge;
+import lml.snir.controleacces.metier.sort.ComparatorByIdAttribution;
 import lml.snir.controleacces.metier.sort.Sort;
 
 public class AttributionServiceSimpleImpl extends ClientRest<Attribution> implements AttributionService {
@@ -84,7 +86,7 @@ public class AttributionServiceSimpleImpl extends ClientRest<Attribution> implem
         Attribution[] attributions = this.getAll().toArray(new Attribution[0]);
 
         //Arrays.sort(personnes);     
-        ComparatorByAge cmp = new ComparatorByAge();
+        ComparatorByIdAttribution cmp = new ComparatorByIdAttribution();
         Sort trieuse = MetierFactory.getSortSerivce();
         trieuse.sort(attributions, cmp);
 

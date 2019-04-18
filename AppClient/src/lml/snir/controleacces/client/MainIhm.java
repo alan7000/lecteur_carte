@@ -250,8 +250,21 @@ public class MainIhm extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonAttributionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAttributionActionPerformed
-        AttributionIhm att = new AttributionIhm();
+        AttributionIhm att = null;
+        try {
+            att = new AttributionIhm(this, true);
+        } catch (Exception ex) {
+            Logger.getLogger(MainIhm.class.getName()).log(Level.SEVERE, null, ex);
+        }
         att.setVisible(true);
+        
+        try {
+            this.model.update(this.persSrv.sort());
+        } catch (Exception e) {
+            Logger.getLogger(MainIhm.class.getName()).log(Level.SEVERE, null, e);
+        }
+        
+        
     }//GEN-LAST:event_jButtonAttributionActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

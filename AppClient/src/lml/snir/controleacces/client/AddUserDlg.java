@@ -1,7 +1,6 @@
 package lml.snir.controleacces.client;
 
 import javax.swing.JOptionPane;
-import lml.snir.controleacces.metier.MetierFactory;
 import lml.snir.controleacces.metier.entity.Administrateur;
 import lml.snir.controleacces.metier.entity.Personne;
 

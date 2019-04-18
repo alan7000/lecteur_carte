@@ -51,7 +51,7 @@ class PersonneServiceImpl extends ClientRest<Personne> implements PersonneServic
 
     @Override
     public Personne getById(Long l) throws Exception {
-    super.setPath("/" + l);
+    super.setPath("" + l);
     return super.getEntity();
     }
 
@@ -73,6 +73,7 @@ class PersonneServiceImpl extends ClientRest<Personne> implements PersonneServic
     return super.getEntitys();
     }
 
+    @Override
     public Personne[] sort() throws Exception {
         Personne[] personnes = this.getAll().toArray(new Personne[0]);
         

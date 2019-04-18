@@ -7,23 +7,31 @@ package lml.snir.controleacces.client;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.table.TableModel;
 import lml.snir.controleacces.metier.AttributionService;
 import lml.snir.controleacces.metier.MetierFactory;
+import lml.snir.controleacces.metier.entity.Attribution;
 
 /**
  *
  * @author alan
  */
-public class AttributionIhm extends javax.swing.JFrame {
+public class AttributionIhm extends javax.swing.JDialog {
 
     private final AttributionService attributionService;
     private final AttributionTableModel model;
     
     /**
-     * Creates new form AttributionIhm
+     * Creates new form AttributionIhM
+     * @param parent
+     * @param modal
+     * @throws java.lang.Exception
      */
-    public AttributionIhm() throws Exception {
+    public AttributionIhm(java.awt.Frame parent, boolean modal) throws Exception {
+        super(parent, modal);
         initComponents();
         
         this.attributionService = MetierFactory.getAttributionService();
@@ -44,13 +52,12 @@ public class AttributionIhm extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jPanel2 = new javax.swing.JPanel();
         jButtonAdd = new javax.swing.JButton();
         jButtonRemove = new javax.swing.JButton();
         jButtonChanged = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        Quitter = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Liste des attributions");
 
@@ -68,65 +75,55 @@ public class AttributionIhm extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jButtonAdd.setText("Ajouter");
-
-        jButtonRemove.setText("Supprimer");
-
-        jButtonChanged.setText("Modifier");
-
-        jButton1.setText("Quitter");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonAddActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jButtonAdd)
-                .addGap(91, 91, 91)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jButton1)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButtonRemove)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonChanged)
-                        .addContainerGap())))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonAdd)
-                    .addComponent(jButtonRemove)
-                    .addComponent(jButtonChanged))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addComponent(jButton1))
-        );
+        jButtonRemove.setText("Supprimer");
+        jButtonRemove.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRemoveActionPerformed(evt);
+            }
+        });
+
+        jButtonChanged.setText("Modifier");
+        jButtonChanged.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonChangedActionPerformed(evt);
+            }
+        });
+
+        Quitter.setText("Quitter");
+        Quitter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                QuitterActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(112, 112, 112))
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(163, 163, 163)
-                                .addComponent(jLabel1))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 1, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButtonAdd)
+                        .addGap(46, 46, 46)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(Quitter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonRemove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonChanged)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -135,9 +132,15 @@ public class AttributionIhm extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonAdd)
+                    .addComponent(jButtonRemove)
+                    .addComponent(jButtonChanged))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(Quitter)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -160,9 +163,64 @@ public class AttributionIhm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void QuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuitterActionPerformed
         dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_QuitterActionPerformed
+
+    private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
+        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        
+        AddAttributionDlg dlg;
+        dlg = new AddAttributionDlg(frame, true);
+        dlg.setVisible(true);
+        
+        Attribution attribution = dlg.getAttribution();
+        
+        if(attribution != null){
+            try {
+                this.attributionService.add(attribution);
+                this.model.update(this.attributionService.sort());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.getMessage(), "erreur", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jButtonAddActionPerformed
+
+    private void jButtonRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveActionPerformed
+        Attribution attribution = this.model.getAttributionAt(this.jTable1.getSelectedRow());
+        
+        try {
+            this.attributionService.remove(attribution);
+        } catch (Exception ex) {
+            Logger.getLogger(AttributionIhm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            this.model.update(this.attributionService.sort());
+        } catch (Exception ex) {
+            Logger.getLogger(AttributionIhm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButtonRemoveActionPerformed
+
+    private void jButtonChangedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangedActionPerformed
+        Attribution attribution = (Attribution) this.model.getAttributionAt(this.jTable1.getSelectedRow());
+        
+        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        
+        AddAttributionDlg dlg;
+        dlg = new AddAttributionDlg(frame, true, attribution);
+        dlg.setVisible(true);
+        
+        attribution = dlg.getAttribution();
+        
+        if(attribution != null){
+            try {
+                this.attributionService.update(attribution);
+                this.model.update(this.attributionService.sort());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.getMessage(), "erreur", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }//GEN-LAST:event_jButtonChangedActionPerformed
 
     /**
      * @param args the command line arguments
@@ -190,27 +248,35 @@ public class AttributionIhm extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(AttributionIhm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        //</editor-fold>
 
-        /* Create and display the form */
+        /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                AttributionIhm dialog = null;
                 try {
-                    new AttributionIhm().setVisible(true);
+                    dialog = new AttributionIhm(new javax.swing.JFrame(), true);
                 } catch (Exception ex) {
                     Logger.getLogger(AttributionIhm.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
+                    @Override
+                    public void windowClosing(java.awt.event.WindowEvent e) {
+                        System.exit(0);
+                    }
+                });
+                dialog.setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton Quitter;
     private javax.swing.JButton jButtonAdd;
     private javax.swing.JButton jButtonChanged;
     private javax.swing.JButton jButtonRemove;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
