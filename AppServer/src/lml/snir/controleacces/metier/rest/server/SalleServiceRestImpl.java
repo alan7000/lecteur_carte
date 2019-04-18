@@ -73,7 +73,7 @@ public class SalleServiceRestImpl {
 
     @GET
     @Path("/{i}/{i1}")
-    public List<Salle> getAll(int i, int i1) throws Exception {
+    public List<Salle> getAll(@PathParam("i") int i, @PathParam("i1") int i1) throws Exception {
         return salleServiceRestImpl.getAll(i, i1);
     }
 

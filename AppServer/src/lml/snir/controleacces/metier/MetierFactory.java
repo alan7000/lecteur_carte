@@ -72,9 +72,7 @@ public class MetierFactory {
     public  static Sort getSortService() {
         return sortService;
     }
-    
-    
-    
+       
     private MetierFactory() {
     }
 
