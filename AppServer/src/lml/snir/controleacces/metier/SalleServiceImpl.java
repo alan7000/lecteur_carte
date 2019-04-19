@@ -10,6 +10,7 @@ import lml.snir.controleacces.physique.data.SalleDataService;
  * @author fanou
  */
 public final class SalleServiceImpl implements SalleService {
+
     private final SalleDataService salleDataSrv = PhysiqueDataFactory.getSalleDataService();
 
     @Override
@@ -51,5 +52,10 @@ public final class SalleServiceImpl implements SalleService {
     public List<Salle> getAll(int i, int i1) throws Exception {
         return this.salleDataSrv.getAll(i, i1);
     }
-   
+
+    @Override
+    public List<Salle> getNumero(long numero) throws Exception {
+        return this.salleDataSrv.getNumero(numero);
+    }
+
 }

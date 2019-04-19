@@ -77,4 +77,11 @@ public class SalleServiceRestImpl {
         return salleServiceRestImpl.getAll(i, i1);
     }
 
+    @GET
+    @Path("/Numero/{i}")
+    public List<Salle> getNumero(@PathParam("i") long numero) throws Exception {
+        return salleServiceRestImpl.getNumero(numero);
+    }
+
+    
 }
