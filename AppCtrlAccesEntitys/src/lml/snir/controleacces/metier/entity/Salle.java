@@ -2,6 +2,7 @@ package lml.snir.controleacces.metier.entity;
 
 public class Salle {
     private long id;
+    private long numero;
     private boolean protege;
 
     public Salle(){
@@ -63,4 +64,14 @@ public class Salle {
         }
         return (o.hashCode() == this.hashCode());
     }
+
+    public long getNumero() {
+        return numero;
+    }
+
+    public void setNumero(long numero) {
+        this.numero = numero;
+    }
+    
+    
 }

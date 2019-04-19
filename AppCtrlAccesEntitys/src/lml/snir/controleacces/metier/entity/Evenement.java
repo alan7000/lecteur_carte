@@ -59,7 +59,7 @@ public class Evenement {
     }
 
     /**
-     * @param autorise the autorise to set
+     * @param authoriser
      */
     public void setAutorise(boolean authoriser) {
         this.autorise = authoriser;

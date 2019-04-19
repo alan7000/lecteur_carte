@@ -206,4 +206,29 @@ public class TimeSlot {
     public void setId(long id) {
         this.id = id;
     }
+
+    public void setBeginHour(int beginHour) {
+        this.beginHour = beginHour;
+    }
+
+    public void setEndHour(int endHour) {
+        this.endHour = endHour;
+    }
+
+    public void setBeginMinutes(int beginMinutes) {
+        this.beginMinutes = beginMinutes;
+    }
+
+    public void setEndMinutes(int endMinutes) {
+        this.endMinutes = endMinutes;
+    }
+
+    public void setBeginDay(Day beginDay) {
+        this.beginDay = beginDay;
+    }
+
+    public void setEndDay(Day endDay) {
+        this.endDay = endDay;
+    }
+    
 }
