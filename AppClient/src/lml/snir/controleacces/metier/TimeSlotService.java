@@ -14,4 +14,6 @@ import lml.snir.controleacces.metier.entity.TimeSlot;
  */
 public interface TimeSlotService extends CrudService<TimeSlot>{
     
+    public TimeSlot[] sort() throws Exception;
+    
 }

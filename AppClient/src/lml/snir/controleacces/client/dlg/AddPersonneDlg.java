@@ -1,4 +1,4 @@
-package lml.snir.controleacces.client;
+package lml.snir.controleacces.client.dlg;
 
 import javax.swing.JOptionPane;
 import lml.snir.controleacces.metier.entity.Administrateur;
@@ -8,7 +8,7 @@ import lml.snir.controleacces.metier.entity.Personne;
  *
  * @author fanou
  */
-public class AddUserDlg extends javax.swing.JDialog {
+public class AddPersonneDlg extends javax.swing.JDialog {
 
     private long id = 0;
     private Personne personne = null;
@@ -21,13 +21,13 @@ public class AddUserDlg extends javax.swing.JDialog {
      * @param parent
      * @param modal
      */
-    public AddUserDlg(java.awt.Frame parent, boolean modal) {
+    public AddPersonneDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         this.update = false;
     }
 
-    public AddUserDlg(java.awt.Frame parent, boolean modal, Personne personne) {
+    public AddPersonneDlg(java.awt.Frame parent, boolean modal, Personne personne) {
         super(parent, modal);
         initComponents();
         this.update = true;
@@ -45,7 +45,7 @@ public class AddUserDlg extends javax.swing.JDialog {
         }
     }
 
-    Personne getPersonne() {
+    public Personne getPersonne() {
         return personne;
     }
 
@@ -286,14 +286,16 @@ public class AddUserDlg extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddUserDlg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddPersonneDlg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddUserDlg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddPersonneDlg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddUserDlg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddPersonneDlg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddUserDlg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddPersonneDlg.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
@@ -301,7 +303,7 @@ public class AddUserDlg extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                AddUserDlg dialog = new AddUserDlg(new javax.swing.JFrame(), true);
+                AddPersonneDlg dialog = new AddPersonneDlg(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

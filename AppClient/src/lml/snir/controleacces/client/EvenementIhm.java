@@ -1,41 +1,50 @@
+package lml.snir.controleacces.client;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import lml.snir.controleacces.client.model.BooleanCellRenderer;
+import lml.snir.controleacces.client.model.EvenementTableModel;
+import lml.snir.controleacces.metier.EvenementService;
+import lml.snir.controleacces.metier.MetierFactory;
+import lml.snir.controleacces.metier.entity.Evenement;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lml.snir.controleacces.client;
-
-import lml.snir.controleacces.client.dlg.AddBadgeDlg;
-import lml.snir.controleacces.client.model.BadgeTableModel;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
-import lml.snir.controleacces.metier.BadgeService;
-import lml.snir.controleacces.metier.MetierFactory;
-import lml.snir.controleacces.metier.entity.Badge;
-
 /**
  *
  * @author alan
  */
-public class BadgeIhm extends javax.swing.JDialog {
+public class EvenementIhm extends javax.swing.JDialog {
 
-    private final BadgeService badgeService;
-    private final BadgeTableModel model;
+    private final EvenementService evenementService;
+    private final EvenementTableModel model;
+
     /**
-     * Creates new form BadgeIhm
+     * Creates new form EvenementIhm
+     *
      * @param parent
      * @param modal
+     * @throws java.lang.Exception
      */
-    public BadgeIhm(java.awt.Frame parent, boolean modal) throws Exception {
+    public EvenementIhm(java.awt.Frame parent, boolean modal) throws Exception {
         super(parent, modal);
         initComponents();
-        
-        this.badgeService = MetierFactory.getBadgeService();
-        this.model = new BadgeTableModel(this.badgeService.sort());
+
+        this.evenementService = MetierFactory.getEvenementService();
+        this.model = new EvenementTableModel(this.evenementService.sort());
         this.jTable1.setModel(model);
+        String[] iconTrue = {"/lml/snir/controleacces/client/images/ok.png"};
+        String[] iconFalse = {"/lml/snir/controleacces/client/images/ko.png"};
+        int[] columns = {3};
+        this.jTable1.setDefaultRenderer(Boolean.class, new BooleanCellRenderer(columns, iconTrue, iconFalse));
     }
 
     /**
@@ -47,17 +56,19 @@ public class BadgeIhm extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton2 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButtonAdd = new javax.swing.JButton();
-        jButtonRemove = new javax.swing.JButton();
-        jButtonQuit = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+
+        jButton2.setText("jButton2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Liste des badges");
+        jLabel1.setText("Liste des evenements");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -72,24 +83,17 @@ public class BadgeIhm extends javax.swing.JDialog {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButtonAdd.setText("Ajouter");
-        jButtonAdd.addActionListener(new java.awt.event.ActionListener() {
+        jButton3.setText("Supprimer");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonAddActionPerformed(evt);
+                jButton3ActionPerformed(evt);
             }
         });
 
-        jButtonRemove.setText("Supprimer");
-        jButtonRemove.addActionListener(new java.awt.event.ActionListener() {
+        jButton4.setText("Quitter");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonRemoveActionPerformed(evt);
-            }
-        });
-
-        jButtonQuit.setText("Quitter");
-        jButtonQuit.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonQuitActionPerformed(evt);
+                jButton4ActionPerformed(evt);
             }
         });
 
@@ -101,36 +105,31 @@ public class BadgeIhm extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(137, 137, 137)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(130, 130, 130))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButtonAdd)
+                        .addComponent(jButton3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonRemove)))
+                        .addComponent(jButton4))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(113, 113, 113)
+                                .addComponent(jLabel1))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)))
+                        .addGap(1, 1, 1)))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(142, 142, 142)
-                .addComponent(jButtonQuit)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(24, 24, 24)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonAdd)
-                    .addComponent(jButtonRemove))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonQuit)
-                .addContainerGap())
+                    .addComponent(jButton3)
+                    .addComponent(jButton4)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -153,44 +152,32 @@ public class BadgeIhm extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButtonQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonQuitActionPerformed
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         dispose();
-    }//GEN-LAST:event_jButtonQuitActionPerformed
+    }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
-        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        
-        AddBadgeDlg dlg;
-        dlg = new AddBadgeDlg(frame, true);
-        dlg.setVisible(true);
-        
-        Badge badge = dlg.getBadge();
-        
-        if (badge != null) {
-            try {
-                this.badgeService.add(badge);
-                this.model.update(this.badgeService.sort());
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, e.getMessage(), "erreur", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-    }//GEN-LAST:event_jButtonAddActionPerformed
-
-    private void jButtonRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveActionPerformed
-        Badge badge = this.model.getBadgeAt(this.jTable1.getSelectedRow());
-        
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        Evenement evenement = this.model.getEvenementAt(this.jTable1.getSelectedRow());
+//        Evenement evenement1 = this.jTable1.getModel().getValueAt(this.jTable1.getSelectedRow());
+//        String s = (String) 
+//        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//        Date d = null;
+//        try {
+//            d = df.parse(s);
+//        } catch (ParseException ex) {
+//            Logger.getLogger(EvenementIhm.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+//        evenement.setDate(d);
         try {
-            this.badgeService.remove(badge);
+            this.evenementService.remove(evenement);
+            this.model.update(this.evenementService.sort());
+            throw new Exception("Erreur pendant la suppression");
         } catch (Exception ex) {
-            Logger.getLogger(BadgeIhm.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EvenementIhm.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
         }
-        
-        try {
-            this.model.update(this.badgeService.sort());
-        } catch (Exception ex) {
-            Logger.getLogger(BadgeIhm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButtonRemoveActionPerformed
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -209,13 +196,13 @@ public class BadgeIhm extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BadgeIhm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EvenementIhm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BadgeIhm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EvenementIhm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BadgeIhm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EvenementIhm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BadgeIhm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EvenementIhm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -223,11 +210,11 @@ public class BadgeIhm extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                BadgeIhm dialog = null;
+                EvenementIhm dialog = null;
                 try {
-                    dialog = new BadgeIhm(new javax.swing.JFrame(), true);
+                    dialog = new EvenementIhm(new javax.swing.JFrame(), true);
                 } catch (Exception ex) {
-                    Logger.getLogger(BadgeIhm.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(EvenementIhm.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
@@ -241,12 +228,13 @@ public class BadgeIhm extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonAdd;
-    private javax.swing.JButton jButtonQuit;
-    private javax.swing.JButton jButtonRemove;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
 }

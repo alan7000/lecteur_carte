@@ -5,6 +5,8 @@ import java.util.List;
 import lml.rest.client.ClientRest;
 import lml.snir.controleacces.metier.entity.Evenement;
 import lml.snir.controleacces.metier.entity.Salle;
+import lml.snir.controleacces.metier.sort.ComparatorByIdEvenement;
+import lml.snir.controleacces.metier.sort.Sort;
 
 class EvenementServiceImpl extends ClientRest<Evenement> implements EvenementService {
 
@@ -64,6 +66,16 @@ class EvenementServiceImpl extends ClientRest<Evenement> implements EvenementSer
     public List<Evenement> getAll(int i, int i1) throws Exception {
         super.setPath("" + i + "/" + i1);
         return super.getEntitys();
+    }
+
+    @Override
+    public Evenement[] sort() throws Exception {
+        Evenement[] evenements = this.getAll().toArray(new Evenement[0]);
+        
+        ComparatorByIdEvenement cmp = new ComparatorByIdEvenement();
+        Sort trieuse = MetierFactory.getSortSerivce();
+        trieuse.sort(evenements, cmp);
+        return evenements;
     }
 
 }

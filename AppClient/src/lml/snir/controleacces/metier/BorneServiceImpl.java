@@ -4,6 +4,8 @@ import java.util.List;
 import lml.rest.client.ClientRest;
 import lml.snir.controleacces.metier.entity.Borne;
 import lml.snir.controleacces.metier.entity.Salle;
+import lml.snir.controleacces.metier.sort.ComparatorByIdBorne;
+import lml.snir.controleacces.metier.sort.Sort;
 
 /**
  *
@@ -61,6 +63,16 @@ public class BorneServiceImpl extends ClientRest<Borne> implements BorneService 
     public List<Borne> getAll(int i, int i1) throws Exception {
         super.setPath("" + i + "/" + i1);
         return super.getEntitys();
+    }
+
+    @Override
+    public Borne[] sort() throws Exception {
+        Borne[] bornes = this.getAll().toArray(new Borne[0]);
+        
+        ComparatorByIdBorne cmp = new ComparatorByIdBorne();
+        Sort trieuse = MetierFactory.getSortSerivce();
+        trieuse.sort(bornes, cmp);
+        return bornes;
     }
 
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lml.snir.controleacces.client;
+package lml.snir.controleacces.client.model;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
@@ -15,7 +15,7 @@ import lml.snir.controleacces.metier.entity.Personne;
  *
  * @author jupiter
  */
-class PersonneTableModel extends AbstractTableModel {
+public class PersonneTableModel extends AbstractTableModel {
 
     private final String[] header = {"Nom", "Prenom", "Login", "Badge"};
     private Personne[] personnes;

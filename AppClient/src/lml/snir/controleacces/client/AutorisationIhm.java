@@ -5,6 +5,8 @@
  */
 package lml.snir.controleacces.client;
 
+import lml.snir.controleacces.client.dlg.AddAutorisationDlg;
+import lml.snir.controleacces.client.model.AutorisationTableModel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lml.snir.controleacces.client;
+package lml.snir.controleacces.client.dlg;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -55,7 +55,7 @@ public class AddAutorisationDlg extends javax.swing.JDialog {
         
     }
 
-    AddAutorisationDlg(JFrame parent, boolean modal, Autorisation autorisation) {
+    public AddAutorisationDlg(JFrame parent, boolean modal, Autorisation autorisation) {
         super(parent, modal);
         initComponents();
         this.id = autorisation.getId();
@@ -270,6 +270,7 @@ public class AddAutorisationDlg extends javax.swing.JDialog {
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 AddAutorisationDlg dialog = new AddAutorisationDlg(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -295,7 +296,7 @@ public class AddAutorisationDlg extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 
-    Autorisation getAutorisation() {
+    public Autorisation getAutorisation() {
         return autorisation;
     }
 }

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lml.snir.controleacces.client;
+package lml.snir.controleacces.client.dlg;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,6 +23,8 @@ import lml.snir.controleacces.metier.entity.Personne;
 public class AddAttributionDlg extends javax.swing.JDialog {
     
     private long id = 0;
+    private long idBadge = 0;
+    private long idPersonne = 0;
     private Attribution attribution = null;
     
     AttributionService attributionService = MetierFactory.getAttributionService();
@@ -50,7 +52,7 @@ public class AddAttributionDlg extends javax.swing.JDialog {
         }
     }
 
-    AddAttributionDlg(JFrame parent, boolean modal, Attribution attribution) {
+    public AddAttributionDlg(JFrame parent, boolean modal, Attribution attribution) throws Exception {
         super(parent, modal);
         initComponents();
         this.id = attribution.getId();
@@ -65,9 +67,16 @@ public class AddAttributionDlg extends javax.swing.JDialog {
         } catch (Exception ex) {
             Logger.getLogger(AddAttributionDlg.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+//        this.id = attribution.getId();
+//        this.idBadge = attribution.getBadge().getId();
+//        this.idPersonne = attribution.getPersonne().getId();
+//        
+//        jComboBox1.setSelectedItem(badgeService.getById(idBadge));
+//        jComboBox2.setSelectedItem(personneService.getById(idPersonne));
     }
 
-    Attribution getAttribution() {
+    public Attribution getAttribution() {
         return attribution;
     }
     

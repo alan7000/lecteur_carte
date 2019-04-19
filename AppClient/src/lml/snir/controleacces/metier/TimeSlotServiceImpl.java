@@ -8,6 +8,8 @@ package lml.snir.controleacces.metier;
 import java.util.List;
 import lml.rest.client.ClientRest;
 import lml.snir.controleacces.metier.entity.TimeSlot;
+import lml.snir.controleacces.metier.sort.ComparatorByIdTimeSlot;
+import lml.snir.controleacces.metier.sort.Sort;
 
 /**
  *
@@ -59,6 +61,16 @@ public class TimeSlotServiceImpl extends ClientRest<TimeSlot> implements TimeSlo
     public List<TimeSlot> getAll(int i, int i1) throws Exception {
         super.setPath("" + i + "/" + i1);
         return super.getEntitys();
+    }
+
+    @Override
+    public TimeSlot[] sort() throws Exception {
+        TimeSlot[] timeSlots = this.getAll().toArray(new TimeSlot[0]);
+        
+        ComparatorByIdTimeSlot cmp = new ComparatorByIdTimeSlot();
+        Sort trieuse = MetierFactory.getSortSerivce();
+        trieuse.sort(timeSlots, cmp);
+        return timeSlots;
     }
     
 }

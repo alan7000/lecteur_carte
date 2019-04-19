@@ -3,36 +3,34 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lml.snir.controleacces.client;
+package lml.snir.controleacces.client.model;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 import lml.snir.controleacces.metier.MetierFactory;
-import lml.snir.controleacces.metier.entity.Attribution;
 import lml.snir.controleacces.metier.entity.Badge;
-import lml.snir.controleacces.metier.entity.Personne;
 
 /**
  *
  * @author alan
  */
-public class AttributionTableModel extends AbstractTableModel{
+public class BadgeTableModel extends AbstractTableModel {
 
-    private final String[] header = {"Badge", "Personne"};
-    private Attribution[] attributions;
+    private final String[] header = {"Badge", "Contenu"};
+    private Badge[] badges;
 
-    public AttributionTableModel(Attribution[] attributions) {
-        this.attributions = attributions;
+    public BadgeTableModel(Badge[] badges) {
+        this.badges = badges;
     }
 
     @Override
     public String getColumnName(int column) {
-        return this.header[column]; //To change body of generated methods, choose Tools | Templates.
+        return this.header[column];
     }
 
     @Override
     public int getRowCount() {
-        return this.attributions.length;
+        return this.badges.length;
     }
 
     @Override
@@ -42,12 +40,12 @@ public class AttributionTableModel extends AbstractTableModel{
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Attribution attribution = this.attributions[rowIndex];
+        Badge badge = this.badges[rowIndex];
         switch (columnIndex) {
             case 0:
-                return attribution.getBadge();
+                return badge.getId();
             case 1:
-                return attribution.getPersonne();
+                return badge.getContenu();
             default:
                 return null;
         }
@@ -56,24 +54,25 @@ public class AttributionTableModel extends AbstractTableModel{
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         try {
-            Attribution attribution = this.attributions[rowIndex];
+            Badge badge = this.badges[rowIndex];
             switch (columnIndex) {
                 case 0:
-                    attribution.setBadge((Badge) aValue);
+                    badge.setId((long) aValue);
                     break;
                 case 1:
-                    attribution.setPersonne((Personne) aValue);
+                    badge.setContenu((String) aValue);
             }
-            MetierFactory.getAttributionService().update(attribution);
+            MetierFactory.getBadgeService().update(badge);
             this.fireTableDataChanged();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "erreur", JOptionPane.ERROR_MESSAGE);
         }
+        //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        switch(columnIndex) {
+        switch (columnIndex) {
             default:
                 return false;
         }
@@ -81,18 +80,20 @@ public class AttributionTableModel extends AbstractTableModel{
 
     @Override
     public Class<?> getColumnClass(int columnIndex) {
-         switch(columnIndex){
-             default:
-                 return Object.class;
-         }
+        switch (columnIndex) {
+            case 0:
+                return Long.class;
+            default:
+                return String.class;
+        }
     }
     
-    public Attribution getAttributionAt(int rowIndex) {
-        return this.attributions[rowIndex];
+    public Badge getBadgeAt(int rowIndex) {
+        return this.badges[rowIndex];
     }
-    
-    public void update(Attribution[] attributions) {
-        this.attributions = attributions;
+
+    public void update(Badge[] badges) {
+        this.badges = badges;
         this.fireTableDataChanged();
     }
 }

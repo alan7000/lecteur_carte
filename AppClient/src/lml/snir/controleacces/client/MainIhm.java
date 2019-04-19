@@ -5,6 +5,9 @@
  */
 package lml.snir.controleacces.client;
 
+import lml.snir.controleacces.client.dlg.AddPersonneDlg;
+import lml.snir.controleacces.client.model.BooleanCellRenderer;
+import lml.snir.controleacces.client.model.PersonneTableModel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -163,12 +166,32 @@ public class MainIhm extends javax.swing.JFrame {
         });
 
         jButton5.setText("Borne");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("Evenement");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setText("Salle");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setText("Timeslot");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -283,7 +306,7 @@ public class MainIhm extends javax.swing.JFrame {
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
         //Ouverture de la fenetre d'ajout d'un utilisateur
-        AddUserDlg dlg = new AddUserDlg(this, true);
+        AddPersonneDlg dlg = new AddPersonneDlg(this, true);
         dlg.setVisible(true);
         
         Personne personne = dlg.getPersonne();
@@ -312,7 +335,7 @@ public class MainIhm extends javax.swing.JFrame {
     private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
         Personne personne = (Personne) this.model.getPersonneAt(this.jTable1.getSelectedRow());
         
-        AddUserDlg dlg = new AddUserDlg(this, true, personne);
+        AddPersonneDlg dlg = new AddPersonneDlg(this, true, personne);
         dlg.setVisible(true);
         
         personne = dlg.getPersonne();
@@ -358,6 +381,71 @@ public class MainIhm extends javax.swing.JFrame {
             Logger.getLogger(MainIhm.class.getName()).log(Level.SEVERE, null, e);
         }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        BorneIhm borneIhm = null;
+        try {
+            borneIhm = new BorneIhm(this, true);
+        } catch (Exception e) {
+            Logger.getLogger(MainIhm.class.getName()).log(Level.SEVERE, null, e);
+        }
+        borneIhm.setVisible(true);
+        
+        try {
+            this.model.update(this.persSrv.sort());
+        } catch (Exception e) {
+            Logger.getLogger(MainIhm.class.getName()).log(Level.SEVERE, null, e);
+        }
+        
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        SalleIhm salleIhm = null;
+        try {
+            salleIhm = new SalleIhm(this, true);
+        } catch (Exception e) {
+            Logger.getLogger(MainIhm.class.getName()).log(Level.SEVERE, null, e);
+        }
+        salleIhm.setVisible(true);
+        
+        try {
+            this.model.update(this.persSrv.sort());
+        } catch (Exception e) {
+            Logger.getLogger(MainIhm.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        EvenementIhm evenementIhm = null;
+        try {
+            evenementIhm = new EvenementIhm(this, true);
+        } catch (Exception e) {
+            Logger.getLogger(MainIhm.class.getName()).log(Level.SEVERE, null, e);
+        }
+        evenementIhm.setVisible(true);
+        
+        try {
+            this.model.update(this.persSrv.sort());
+        } catch (Exception e) {
+            Logger.getLogger(MainIhm.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        TimeSlotIhm timeSlotIhm = null;
+        try {
+            timeSlotIhm = new TimeSlotIhm(this, true);
+        } catch (Exception e) {
+            Logger.getLogger(MainIhm.class.getName()).log(Level.SEVERE, null, e);
+        }
+        timeSlotIhm.setVisible(true);
+        
+        try {
+            this.model.update(this.persSrv.sort());
+        } catch (Exception e) {
+            Logger.getLogger(MainIhm.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments

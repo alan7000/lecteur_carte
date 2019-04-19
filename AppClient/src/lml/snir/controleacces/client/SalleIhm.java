@@ -5,40 +5,45 @@
  */
 package lml.snir.controleacces.client;
 
-import lml.snir.controleacces.client.dlg.AddAttributionDlg;
-import lml.snir.controleacces.client.model.AttributionTableModel;
+import lml.snir.controleacces.client.dlg.AddSalleDlg;
+import lml.snir.controleacces.client.model.BooleanCellRenderer;
+import lml.snir.controleacces.client.model.SalleTableModel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.TableModel;
-import lml.snir.controleacces.metier.AttributionService;
 import lml.snir.controleacces.metier.MetierFactory;
-import lml.snir.controleacces.metier.entity.Attribution;
+import lml.snir.controleacces.metier.SalleService;
+import lml.snir.controleacces.metier.entity.Salle;
 
 /**
  *
  * @author alan
  */
-public class AttributionIhm extends javax.swing.JDialog {
+public class SalleIhm extends javax.swing.JDialog {
 
-    private final AttributionService attributionService;
-    private final AttributionTableModel model;
+    private final SalleService salleService;
+    private final SalleTableModel model;
     
     /**
-     * Creates new form AttributionIhM
+     * Creates new form SalleIhm
      * @param parent
      * @param modal
      * @throws java.lang.Exception
      */
-    public AttributionIhm(java.awt.Frame parent, boolean modal) throws Exception {
+    public SalleIhm(java.awt.Frame parent, boolean modal) throws Exception {
         super(parent, modal);
         initComponents();
         
-        this.attributionService = MetierFactory.getAttributionService();
-        this.model = new AttributionTableModel(this.attributionService.sort());
+        this.salleService = MetierFactory.getSalleService();
+        this.model = new SalleTableModel(this.salleService.sort());
         this.jTable1.setModel((TableModel) model);
+        String[] iconTrue = {"/lml/snir/controleacces/client/images/ok.png"};
+        String[] iconFalse = {"/lml/snir/controleacces/client/images/ko.png"};
+        int[] columns = {1};
+        this.jTable1.setDefaultRenderer(Boolean.class, new BooleanCellRenderer(columns, iconTrue, iconFalse));
     }
 
     /**
@@ -57,11 +62,11 @@ public class AttributionIhm extends javax.swing.JDialog {
         jButtonAdd = new javax.swing.JButton();
         jButtonRemove = new javax.swing.JButton();
         jButtonChanged = new javax.swing.JButton();
-        Quitter = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Liste des attributions");
+        jLabel1.setText("Liste des salles");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -97,10 +102,10 @@ public class AttributionIhm extends javax.swing.JDialog {
             }
         });
 
-        Quitter.setText("Quitter");
-        Quitter.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("Quitter");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                QuitterActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -108,40 +113,38 @@ public class AttributionIhm extends javax.swing.JDialog {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(112, 112, 112))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 1, Short.MAX_VALUE))
+                        .addGap(140, 140, 140)
+                        .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButtonAdd)
-                        .addGap(46, 46, 46)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Quitter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonRemove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonChanged)))
-                .addContainerGap())
+                        .addContainerGap()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(7, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButtonAdd)
+                .addGap(52, 52, 52)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonRemove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButtonChanged))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAdd)
                     .addComponent(jButtonRemove)
                     .addComponent(jButtonChanged))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(Quitter)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
                 .addContainerGap())
         );
 
@@ -165,23 +168,23 @@ public class AttributionIhm extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void QuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuitterActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         dispose();
-    }//GEN-LAST:event_QuitterActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         
-        AddAttributionDlg dlg;
-        dlg = new AddAttributionDlg(frame, true);
+        AddSalleDlg dlg;
+        dlg = new AddSalleDlg(frame, true);
         dlg.setVisible(true);
         
-        Attribution attribution = dlg.getAttribution();
+        Salle salle = dlg.getSalle();
         
-        if(attribution != null){
+        if (salle != null) {
             try {
-                this.attributionService.add(attribution);
-                this.model.update(this.attributionService.sort());
+                this.salleService.add(salle);
+                this.model.update(this.salleService.sort());
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e.getMessage(), "erreur", JOptionPane.ERROR_MESSAGE);
             }
@@ -189,35 +192,36 @@ public class AttributionIhm extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonAddActionPerformed
 
     private void jButtonRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveActionPerformed
-        Attribution attribution = this.model.getAttributionAt(this.jTable1.getSelectedRow());
+        Salle salle = this.model.getSalleAt(this.jTable1.getSelectedRow());
         
         try {
-            this.attributionService.remove(attribution);
-        } catch (Exception ex) {
-            Logger.getLogger(AttributionIhm.class.getName()).log(Level.SEVERE, null, ex);
+            this.salleService.remove(salle);
+        } catch (Exception e) {
+            Logger.getLogger(SalleIhm.class.getName()).log(Level.SEVERE, null, e);
         }
+        
         try {
-            this.model.update(this.attributionService.sort());
-        } catch (Exception ex) {
-            Logger.getLogger(AttributionIhm.class.getName()).log(Level.SEVERE, null, ex);
+            this.model.update(this.salleService.sort());
+        } catch (Exception e) {
+            Logger.getLogger(SalleIhm.class.getName()).log(Level.SEVERE, null, e);
         }
     }//GEN-LAST:event_jButtonRemoveActionPerformed
 
     private void jButtonChangedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangedActionPerformed
-        Attribution attribution = (Attribution) this.model.getAttributionAt(this.jTable1.getSelectedRow());
-        
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         
-        AddAttributionDlg dlg;
-        dlg = new AddAttributionDlg(frame, true, attribution);
+        Salle salle = this.model.getSalleAt(this.jTable1.getSelectedRow());
+        
+        AddSalleDlg dlg;
+        dlg = new AddSalleDlg(frame, true, salle);
         dlg.setVisible(true);
         
-        attribution = dlg.getAttribution();
+        salle = dlg.getSalle();
         
-        if(attribution != null){
+        if (salle != null) {
             try {
-                this.attributionService.update(attribution);
-                this.model.update(this.attributionService.sort());
+                this.salleService.update(salle);
+                this.model.update(this.salleService.sort());
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e.getMessage(), "erreur", JOptionPane.ERROR_MESSAGE);
             }
@@ -241,25 +245,25 @@ public class AttributionIhm extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AttributionIhm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SalleIhm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AttributionIhm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SalleIhm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AttributionIhm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SalleIhm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AttributionIhm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SalleIhm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                AttributionIhm dialog = null;
+                SalleIhm dialog = null;
                 try {
-                    dialog = new AttributionIhm(new javax.swing.JFrame(), true);
+                    dialog = new SalleIhm(new javax.swing.JFrame(), true);
                 } catch (Exception ex) {
-                    Logger.getLogger(AttributionIhm.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(SalleIhm.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
@@ -273,7 +277,7 @@ public class AttributionIhm extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Quitter;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAdd;
     private javax.swing.JButton jButtonChanged;
     private javax.swing.JButton jButtonRemove;

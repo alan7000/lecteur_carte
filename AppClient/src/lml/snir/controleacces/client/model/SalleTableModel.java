@@ -3,24 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lml.snir.controleacces.client;
+package lml.snir.controleacces.client.model;
 
+import java.util.EventListener;
 import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 import lml.snir.controleacces.metier.MetierFactory;
-import lml.snir.controleacces.metier.entity.Badge;
+import lml.snir.controleacces.metier.entity.Salle;
 
 /**
  *
  * @author alan
  */
-public class BadgeTableModel extends AbstractTableModel {
+public class SalleTableModel extends AbstractTableModel {
 
-    private final String[] header = {"Badge", "Contenu"};
-    private Badge[] badges;
+    private final String[] header = {"Numero de la salle", "Protégé"};
 
-    public BadgeTableModel(Badge[] badges) {
-        this.badges = badges;
+    private Salle[] salles;
+
+    public SalleTableModel(Salle[] salles) {
+        this.salles = salles;
     }
 
     @Override
@@ -30,7 +32,7 @@ public class BadgeTableModel extends AbstractTableModel {
 
     @Override
     public int getRowCount() {
-        return this.badges.length;
+        return this.salles.length;
     }
 
     @Override
@@ -40,12 +42,12 @@ public class BadgeTableModel extends AbstractTableModel {
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Badge badge = this.badges[rowIndex];
+        Salle salle = this.salles[rowIndex];
         switch (columnIndex) {
             case 0:
-                return badge.getId();
+                return salle.getNumero();
             case 1:
-                return badge.getContenu();
+                return salle.isProtege();
             default:
                 return null;
         }
@@ -54,20 +56,18 @@ public class BadgeTableModel extends AbstractTableModel {
     @Override
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         try {
-            Badge badge = this.badges[rowIndex];
+            Salle salle = this.salles[rowIndex];
             switch (columnIndex) {
                 case 0:
-                    badge.setId((long) aValue);
-                    break;
+                    salle.setNumero((long) aValue);
                 case 1:
-                    badge.setContenu((String) aValue);
+                    salle.setProtege((boolean) aValue);
             }
-            MetierFactory.getBadgeService().update(badge);
+            MetierFactory.getSalleService().update(salle);
             this.fireTableDataChanged();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "erreur", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
         }
-        //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -79,21 +79,23 @@ public class BadgeTableModel extends AbstractTableModel {
     }
 
     @Override
-    public Class<?> getColumnClass(int columnIndex) {
+    public Class getColumnClass(int columnIndex) {
         switch (columnIndex) {
             case 0:
                 return Long.class;
+            case 1:
+                return Boolean.class;
             default:
                 return String.class;
         }
     }
-    
-    public Badge getBadgeAt(int rowIndex) {
-        return this.badges[rowIndex];
-    }
 
-    public void update(Badge[] badges) {
-        this.badges = badges;
+    public Salle getSalleAt(int rowIndex) {
+        return this.salles[rowIndex];
+    }
+    
+    public void update(Salle[] salles) {
+        this.salles = salles;
         this.fireTableDataChanged();
     }
 }

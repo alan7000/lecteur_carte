@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package lml.snir.controleacces.client;
+package lml.snir.controleacces.client.model;
 
 import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;

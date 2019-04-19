@@ -2,9 +2,7 @@ package lml.snir.controleacces.metier;
 
 import java.util.List;
 import lml.rest.client.ClientRest;
-import lml.snir.controleacces.metier.entity.Autorisation;
 import lml.snir.controleacces.metier.entity.Badge;
-import lml.snir.controleacces.metier.sort.ComparatorByIdAutorisation;
 import lml.snir.controleacces.metier.sort.ComparatorByIdBadge;
 import lml.snir.controleacces.metier.sort.Sort;
 

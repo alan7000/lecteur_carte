@@ -5,40 +5,40 @@
  */
 package lml.snir.controleacces.client;
 
-import lml.snir.controleacces.client.dlg.AddAttributionDlg;
-import lml.snir.controleacces.client.model.AttributionTableModel;
+import lml.snir.controleacces.client.dlg.AddBorneDlg;
+import lml.snir.controleacces.client.model.BorneTableModel;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
-import javax.swing.table.TableModel;
-import lml.snir.controleacces.metier.AttributionService;
+import lml.snir.controleacces.metier.BorneService;
 import lml.snir.controleacces.metier.MetierFactory;
-import lml.snir.controleacces.metier.entity.Attribution;
+import lml.snir.controleacces.metier.entity.Borne;
 
 /**
  *
  * @author alan
  */
-public class AttributionIhm extends javax.swing.JDialog {
+public class BorneIhm extends javax.swing.JDialog {
 
-    private final AttributionService attributionService;
-    private final AttributionTableModel model;
-    
+    private final BorneService borneService;
+    private final BorneTableModel model;
+
     /**
-     * Creates new form AttributionIhM
+     * Creates new form BorneIhm
+     *
      * @param parent
      * @param modal
      * @throws java.lang.Exception
      */
-    public AttributionIhm(java.awt.Frame parent, boolean modal) throws Exception {
+    public BorneIhm(java.awt.Frame parent, boolean modal) throws Exception {
         super(parent, modal);
         initComponents();
-        
-        this.attributionService = MetierFactory.getAttributionService();
-        this.model = new AttributionTableModel(this.attributionService.sort());
-        this.jTable1.setModel((TableModel) model);
+
+        this.borneService = MetierFactory.getBorneService();
+        this.model = new BorneTableModel(this.borneService.sort());
+        this.jTable1.setModel(model);
     }
 
     /**
@@ -57,11 +57,11 @@ public class AttributionIhm extends javax.swing.JDialog {
         jButtonAdd = new javax.swing.JButton();
         jButtonRemove = new javax.swing.JButton();
         jButtonChanged = new javax.swing.JButton();
-        Quitter = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Liste des attributions");
+        jLabel1.setText("Liste des bornes");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -97,10 +97,10 @@ public class AttributionIhm extends javax.swing.JDialog {
             }
         });
 
-        Quitter.setText("Quitter");
-        Quitter.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("Quitter");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                QuitterActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -111,22 +111,22 @@ public class AttributionIhm extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(112, 112, 112))
+                .addGap(87, 87, 87))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 1, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGap(7, 7, 7))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButtonAdd)
-                        .addGap(46, 46, 46)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Quitter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonRemove, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonChanged)))
-                .addContainerGap())
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonChanged)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,14 +134,14 @@ public class AttributionIhm extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 317, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonAdd)
                     .addComponent(jButtonRemove)
                     .addComponent(jButtonChanged))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(Quitter)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
                 .addContainerGap())
         );
 
@@ -165,64 +165,65 @@ public class AttributionIhm extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void QuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QuitterActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         dispose();
-    }//GEN-LAST:event_QuitterActionPerformed
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        
-        AddAttributionDlg dlg;
-        dlg = new AddAttributionDlg(frame, true);
+
+        AddBorneDlg dlg;
+        dlg = new AddBorneDlg(frame, true);
         dlg.setVisible(true);
-        
-        Attribution attribution = dlg.getAttribution();
-        
-        if(attribution != null){
+
+        Borne borne = dlg.getBorne();
+
+        if (borne != null) {
             try {
-                this.attributionService.add(attribution);
-                this.model.update(this.attributionService.sort());
+                this.borneService.add(borne);
+                this.model.update(this.borneService.sort());
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e.getMessage(), "erreur", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jButtonAddActionPerformed
 
-    private void jButtonRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveActionPerformed
-        Attribution attribution = this.model.getAttributionAt(this.jTable1.getSelectedRow());
-        
-        try {
-            this.attributionService.remove(attribution);
-        } catch (Exception ex) {
-            Logger.getLogger(AttributionIhm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            this.model.update(this.attributionService.sort());
-        } catch (Exception ex) {
-            Logger.getLogger(AttributionIhm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_jButtonRemoveActionPerformed
-
     private void jButtonChangedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangedActionPerformed
-        Attribution attribution = (Attribution) this.model.getAttributionAt(this.jTable1.getSelectedRow());
-        
+        Borne borne = (Borne) this.model.getBorneAt(this.jTable1.getSelectedRow());
+
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        
-        AddAttributionDlg dlg;
-        dlg = new AddAttributionDlg(frame, true, attribution);
+
+        AddBorneDlg dlg;
+        dlg = new AddBorneDlg(frame, true, borne);
         dlg.setVisible(true);
-        
-        attribution = dlg.getAttribution();
-        
-        if(attribution != null){
+
+        borne = dlg.getBorne();
+
+        if (borne != null) {
             try {
-                this.attributionService.update(attribution);
-                this.model.update(this.attributionService.sort());
+                this.borneService.update(borne);
+                this.model.update(this.borneService.sort());
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e.getMessage(), "erreur", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_jButtonChangedActionPerformed
+
+    private void jButtonRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveActionPerformed
+        Borne borne = this.model.getBorneAt(this.jTable1.getSelectedRow());
+
+        try {
+            this.borneService.remove(borne);
+        } catch (Exception e) {
+            Logger.getLogger(BorneIhm.class.getName()).log(Level.SEVERE, null, e);
+        }
+
+        try {
+            this.model.update(this.borneService.sort());
+        } catch (Exception e) {
+            Logger.getLogger(BorneIhm.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }//GEN-LAST:event_jButtonRemoveActionPerformed
 
     /**
      * @param args the command line arguments
@@ -241,25 +242,25 @@ public class AttributionIhm extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AttributionIhm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BorneIhm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AttributionIhm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BorneIhm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AttributionIhm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BorneIhm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AttributionIhm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BorneIhm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                AttributionIhm dialog = null;
+                BorneIhm dialog = null;
                 try {
-                    dialog = new AttributionIhm(new javax.swing.JFrame(), true);
+                    dialog = new BorneIhm(new javax.swing.JFrame(), true);
                 } catch (Exception ex) {
-                    Logger.getLogger(AttributionIhm.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(BorneIhm.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
@@ -273,7 +274,7 @@ public class AttributionIhm extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Quitter;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonAdd;
     private javax.swing.JButton jButtonChanged;
     private javax.swing.JButton jButtonRemove;
