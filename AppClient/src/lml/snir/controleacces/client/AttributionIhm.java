@@ -208,8 +208,12 @@ public class AttributionIhm extends javax.swing.JDialog {
         
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
         
-        AddAttributionDlg dlg;
-        dlg = new AddAttributionDlg(frame, true, attribution);
+        AddAttributionDlg dlg = null;
+        try {
+            dlg = new AddAttributionDlg(frame, true, attribution);
+        } catch (Exception ex) {
+            Logger.getLogger(AttributionIhm.class.getName()).log(Level.SEVERE, null, ex);
+        }
         dlg.setVisible(true);
         
         attribution = dlg.getAttribution();
@@ -254,6 +258,7 @@ public class AttributionIhm extends javax.swing.JDialog {
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 AttributionIhm dialog = null;
                 try {

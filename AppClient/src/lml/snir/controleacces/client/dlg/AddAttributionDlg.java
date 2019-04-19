@@ -23,8 +23,8 @@ import lml.snir.controleacces.metier.entity.Personne;
 public class AddAttributionDlg extends javax.swing.JDialog {
     
     private long id = 0;
-    private long idBadge = 0;
-    private long idPersonne = 0;
+//    private long idBadge = 0;
+//    private long idPersonne = 0;
     private Attribution attribution = null;
     
     AttributionService attributionService = MetierFactory.getAttributionService();

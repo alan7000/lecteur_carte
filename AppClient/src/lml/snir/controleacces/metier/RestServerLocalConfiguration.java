@@ -25,7 +25,7 @@ public class RestServerLocalConfiguration extends RestServerConfig {
             in = new FileInputStream("server.properties");
             prop.load(in);
             in.close();
-            url = prop.getProperty("url = " + url);
+            url = prop.getProperty("server.url");
         } catch (IOException e) {
             System.err.println(e.getMessage() + "\nusing default url : " + url);
         } finally {
