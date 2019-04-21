@@ -23,7 +23,7 @@ public class AppBorne implements Observer {
     public static void main(String[] args) throws Exception {
         new AppBorne();
     }
-    
+
     private AppBorne() throws Exception {
         LecteurRFIDDriver lecteur = new LecteurRFIDDriverID12Impl("/dev/ttyUSB0");
         lecteur.addObserver(this);
@@ -33,7 +33,7 @@ public class AppBorne implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         System.out.println("Badge : " + arg);
-        
+
         AutorisationRPCService rpc = MetierFactory.getAutorisationRPCService();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         boolean ok;
@@ -44,11 +44,11 @@ public class AppBorne implements Observer {
             } else {
                 System.out.println("Desole pas le droit");
             }
-            
+
         } catch (Exception ex) {
             Logger.getLogger(AppBorne.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
+
 }
