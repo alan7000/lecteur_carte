@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package lml.snir.controleacces.metier;
 
 import java.util.List;
@@ -53,5 +52,5 @@ class TimeSlotServiceImpl implements TimeSlotService {
     public List<TimeSlot> getAll(int i, int i1) throws Exception {
         return timeSlotService.getAll(i, i1);
     }
-    
+
 }

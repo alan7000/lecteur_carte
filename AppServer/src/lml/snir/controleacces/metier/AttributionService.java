@@ -1,6 +1,5 @@
 package lml.snir.controleacces.metier;
 
-
 import lml.persistence.CrudService;
 import lml.snir.controleacces.metier.entity.Attribution;
 import lml.snir.controleacces.metier.entity.Badge;

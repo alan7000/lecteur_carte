@@ -72,12 +72,12 @@ class AttributionServiceImpl implements AttributionService {
 
     public Attribution[] sort() throws Exception {
         Attribution[] attributions = this.getAll().toArray(new Attribution[0]);
-        
+
         //Arrays.sort(personnes);     
         ComparatorByIdAttribution cma = new ComparatorByIdAttribution();
         Sort trieuse = MetierFactory.getSortService();
         trieuse.sort(attributions, cma);
-        
+
         return attributions;
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

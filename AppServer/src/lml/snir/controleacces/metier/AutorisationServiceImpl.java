@@ -68,10 +68,10 @@ class AutorisationServiceImpl implements AutorisationService {
     public List<Autorisation> getByPlageHoraire(TimeSlot plageHoraire) throws Exception {
         return this.autorisationSrv.getByPlageHoraire(plageHoraire);
     }
-    
+
     public Autorisation[] sort() throws Exception {
         Autorisation[] autorisations = this.getAll().toArray(new Autorisation[0]);
-        
+
         ComparatorByIdAutorisation cmp = new ComparatorByIdAutorisation();
         Sort trieuse = MetierFactory.getSortService();
         trieuse.sort(autorisations, cmp);

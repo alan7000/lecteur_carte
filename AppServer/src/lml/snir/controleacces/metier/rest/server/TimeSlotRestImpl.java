@@ -26,10 +26,9 @@ import lml.snir.controleacces.metier.entity.TimeSlot;
 @Consumes("application/json")
 @Produces("application/json")
 public class TimeSlotRestImpl {
-    
+
     private final TimeSlotService timeSlotService = MetierFactory.getTimeSlotService();
 
-    
     @POST
     @Path("/")
     public TimeSlot add(TimeSlot t) throws Exception {
@@ -71,8 +70,5 @@ public class TimeSlotRestImpl {
     public List<TimeSlot> getAll(@PathParam("i") int i, @PathParam("i1") int i1) throws Exception {
         return timeSlotService.getAll(i, i1);
     }
-    
-    
-    
-    
+
 }

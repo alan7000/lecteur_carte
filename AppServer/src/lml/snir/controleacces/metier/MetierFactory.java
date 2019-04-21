@@ -64,15 +64,17 @@ public class MetierFactory {
     }
 
     private static TimeSlotService timeSlotService = new TimeSlotServiceImpl();
-    public static TimeSlotService getTimeSlotService(){
+
+    public static TimeSlotService getTimeSlotService() {
         return timeSlotService;
     }
 
     private static final Sort sortService = new InsertionOptimisedSort();
-    public  static Sort getSortService() {
+
+    public static Sort getSortService() {
         return sortService;
     }
-       
+
     private MetierFactory() {
     }
 

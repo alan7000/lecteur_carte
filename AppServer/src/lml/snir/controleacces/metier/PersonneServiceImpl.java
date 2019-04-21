@@ -21,7 +21,7 @@ class PersonneServiceImpl implements PersonneService {
             if (this.getByLogin(admin.getLogin()) != null) {
                 throw new Exception("Login déjà attribué");
             }
-            
+
             //if (admin.getMdp())
         }
         return this.personneSrv.add(personne);
@@ -65,17 +65,17 @@ class PersonneServiceImpl implements PersonneService {
     @Override
     public List<Personne> getAll() throws Exception {
         return this.personneSrv.getAll();
-    }   
-    
+    }
+
     public Personne[] sort() throws Exception {
         Personne[] personnes = this.getAll().toArray(new Personne[0]);
-        
+
         //Arrays.sort(personnes);     
         ComparatorByAge cmp = new ComparatorByAge();
         Sort trieuse = MetierFactory.getSortService();
         trieuse.sort(personnes, cmp);
-        
+
         return personnes;
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }    
+    }
 }

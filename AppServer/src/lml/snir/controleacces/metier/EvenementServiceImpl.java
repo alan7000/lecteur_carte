@@ -26,7 +26,6 @@ class EvenementServiceImpl implements EvenementService {
         this.evenementSrv.update(evenement);
     }
 
-    
     @Override
     public List<Evenement> getAll(int debut, int count) throws Exception {
         return this.evenementSrv.getAll(debut, count);
@@ -56,5 +55,5 @@ class EvenementServiceImpl implements EvenementService {
     public List<Evenement> getAll() throws Exception {
         return this.evenementSrv.getAll();
     }
-   
+
 }

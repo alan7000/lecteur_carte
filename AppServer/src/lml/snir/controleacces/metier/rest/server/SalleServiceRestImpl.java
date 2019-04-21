@@ -83,5 +83,4 @@ public class SalleServiceRestImpl {
         return salleServiceRestImpl.getNumero(numero);
     }
 
-    
 }

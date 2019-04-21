@@ -1,7 +1,5 @@
 package lml.snir.controleacces.client;
 
-import lml.snir.controleacces.metier.AppControleAcces;
-import lml.snir.controleacces.metier.MetierFactory;
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
@@ -13,11 +11,11 @@ public class AppControleAccesMain {
      * @throws java.lang.Exception
      */
     public static void main(String[] args) throws Exception {
-        try {
-            AppControleAcces appControleAcces = MetierFactory.getAppControleAcces();
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
+//        try {
+//            AppControleAcces appControleAcces = MetierFactory.getAppControleAcces();
+//        } catch (Exception ex) {
+//            System.out.println(ex.getMessage());
+//        }
 
         ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
         context.setContextPath("/MiniProject");

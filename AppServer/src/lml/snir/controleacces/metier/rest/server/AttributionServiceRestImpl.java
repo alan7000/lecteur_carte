@@ -28,6 +28,7 @@ import lml.snir.controleacces.metier.entity.Personne;
 @Consumes("application/json")
 @Produces("application/json")
 public class AttributionServiceRestImpl {
+
     private final AttributionService attributionServiceRestImpl = MetierFactory.getAttributionService();
 
     @POST
@@ -86,8 +87,6 @@ public class AttributionServiceRestImpl {
         return attributionServiceRestImpl.getByPersonne(personne);
     }
 
-    
-
     @GET
     @Path("/badgeAttribuePersonne/{personne}")
     public Boolean isBadgeAttribue(@PathParam("personne") long idpersonne) throws Exception {
@@ -100,5 +99,5 @@ public class AttributionServiceRestImpl {
     public Boolean isBadgeAttribueBadge(@PathParam("badge") long idbadge) throws Exception {
         Badge badge = MetierFactory.getBadgeService().getById(idbadge);
         return attributionServiceRestImpl.isBadgeAttribue(badge);
-    } 
+    }
 }
