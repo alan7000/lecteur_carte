@@ -12,11 +12,11 @@ import lml.snir.controleacces.metier.entity.Autorisation;
  *
  * @author alan
  */
-public class ComparatorByIdAutorisation implements Comparator<Autorisation>{
+public class ComparatorByIdAutorisation implements Comparator<Autorisation> {
 
     @Override
     public int compare(Autorisation t, Autorisation t1) {
         return (int) (t.getId() - t1.getId());
     }
-    
+
 }

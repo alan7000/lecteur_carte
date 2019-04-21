@@ -12,11 +12,11 @@ import lml.snir.controleacces.metier.entity.TimeSlot;
  *
  * @author alan
  */
-public class ComparatorByIdTimeSlot implements Comparator<TimeSlot>{
+public class ComparatorByIdTimeSlot implements Comparator<TimeSlot> {
 
     @Override
     public int compare(TimeSlot o1, TimeSlot o2) {
         return (int) (o1.getId() - o2.getId());
     }
-    
+
 }

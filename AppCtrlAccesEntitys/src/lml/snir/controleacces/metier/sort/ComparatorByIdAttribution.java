@@ -12,15 +12,11 @@ import lml.snir.controleacces.metier.entity.Attribution;
  *
  * @author alan
  */
-public class ComparatorByIdAttribution implements Comparator<Attribution>{
+public class ComparatorByIdAttribution implements Comparator<Attribution> {
 
     @Override
     public int compare(Attribution t, Attribution t1) {
         return (int) (t.getId() - t1.getId());
     }
 
-   
-
-    
-    
 }

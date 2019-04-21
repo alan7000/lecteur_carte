@@ -1,6 +1,7 @@
 package lml.snir.controleacces.metier.entity;
 
 public class Borne {
+
     private long id;
     private Salle salle;
 
@@ -34,8 +35,8 @@ public class Borne {
 
     @Override
     public String toString() {
-        String st = "Borne : " + this.id + " " + this.salle;        
-        
+        String st = "Borne : " + this.id + " " + this.salle;
+
         return st;
     }
 }

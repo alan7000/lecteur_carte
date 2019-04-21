@@ -12,11 +12,11 @@ import lml.snir.controleacces.metier.entity.Salle;
  *
  * @author alan
  */
-public class ComparatorByNumeroSalle implements Comparator<Salle>{
+public class ComparatorByNumeroSalle implements Comparator<Salle> {
 
     @Override
     public int compare(Salle o1, Salle o2) {
         return (int) (o1.getNumero() - o2.getNumero());
     }
-    
+
 }

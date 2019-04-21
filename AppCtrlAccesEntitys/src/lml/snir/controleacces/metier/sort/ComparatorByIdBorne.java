@@ -12,11 +12,11 @@ import lml.snir.controleacces.metier.entity.Borne;
  *
  * @author alan
  */
-public class ComparatorByIdBorne implements Comparator<Borne>{
+public class ComparatorByIdBorne implements Comparator<Borne> {
 
     @Override
     public int compare(Borne o1, Borne o2) {
         return (int) (o1.getId() - o2.getId());
     }
-    
+
 }

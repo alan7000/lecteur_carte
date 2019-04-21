@@ -12,11 +12,11 @@ import lml.snir.controleacces.metier.entity.Badge;
  *
  * @author alan
  */
-public class ComparatorByIdBadge implements Comparator<Badge>{
+public class ComparatorByIdBadge implements Comparator<Badge> {
 
     @Override
     public int compare(Badge o1, Badge o2) {
         return (int) (o1.getId() - o2.getId());
     }
-    
+
 }

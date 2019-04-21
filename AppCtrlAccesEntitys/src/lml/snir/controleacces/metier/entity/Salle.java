@@ -1,14 +1,15 @@
 package lml.snir.controleacces.metier.entity;
 
 public class Salle {
+
     private long id;
     private long numero;
     private boolean protege;
 
-    public Salle(){
+    public Salle() {
         this.protege = false;
     }
-    
+
     public Salle(boolean protege) {
         this.protege = protege;
     }
@@ -40,7 +41,7 @@ public class Salle {
     public void setProtege(boolean protege) {
         this.protege = protege;
     }
-    
+
     @Override
     public String toString() {
         String protec = " est protégée";
@@ -56,9 +57,9 @@ public class Salle {
         hash = (int) (29 * hash + this.id);
         return hash;
     }
-    
+
     @Override
-    public boolean equals(Object o){
+    public boolean equals(Object o) {
         if (!(o instanceof Salle)) {
             throw new ClassCastException();
         }
@@ -72,6 +73,5 @@ public class Salle {
     public void setNumero(long numero) {
         this.numero = numero;
     }
-    
-    
+
 }

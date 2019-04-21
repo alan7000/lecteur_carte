@@ -3,6 +3,7 @@ package lml.snir.controleacces.metier.entity;
 import java.util.Objects;
 
 public class Autorisation {
+
     private long id;
     private Salle salle;
     private Personne personne;
@@ -63,14 +64,14 @@ public class Autorisation {
     public void setPlageHoraire(TimeSlot plageHoraire) {
         this.plageHoraire = plageHoraire;
     }
-    
+
     @Override
     public String toString() {
         return "autorisation : " + this.personne.toString() + " salle " + this.salle.toString() + " horaire" + this.plageHoraire.toString();
     }
-    
+
     @Override
-    public boolean equals(Object o){
+    public boolean equals(Object o) {
         if (!(o instanceof Autorisation)) {
             throw new ClassCastException();
         }

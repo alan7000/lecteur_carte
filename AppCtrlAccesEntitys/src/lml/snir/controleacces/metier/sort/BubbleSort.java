@@ -5,7 +5,7 @@ import java.util.Comparator;
 public class BubbleSort extends Sort {
 
     @Override
-    public long  sort(Comparable[] values) {
+    public long sort(Comparable[] values) {
         this.start();
         for (int i = 0; i < values.length; i++) {
             for (int j = 1; j < values.length; j++) {
@@ -20,7 +20,7 @@ public class BubbleSort extends Sort {
     }
 
     @Override
-    public long  sort(Object[] values, Comparator comparator) {
+    public long sort(Object[] values, Comparator comparator) {
         this.start();
         for (int i = 0; i < values.length; i++) {
             for (int j = 1; j < values.length; j++) {

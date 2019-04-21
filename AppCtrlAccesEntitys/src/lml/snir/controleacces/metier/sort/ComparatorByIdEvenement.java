@@ -12,11 +12,11 @@ import lml.snir.controleacces.metier.entity.Evenement;
  *
  * @author alan
  */
-public class ComparatorByIdEvenement implements Comparator<Evenement>{
+public class ComparatorByIdEvenement implements Comparator<Evenement> {
 
     @Override
     public int compare(Evenement o1, Evenement o2) {
         return (int) (o1.getId() - o2.getId());
     }
-    
+
 }

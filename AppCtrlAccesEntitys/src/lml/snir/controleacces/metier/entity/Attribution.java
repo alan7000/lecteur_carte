@@ -1,6 +1,7 @@
 package lml.snir.controleacces.metier.entity;
 
 public class Attribution {
+
     private long id;
     private Badge badge;
     private Personne personne;
@@ -8,13 +9,11 @@ public class Attribution {
     public Attribution() {
     }
 
-    
-    
     public Attribution(Badge badge, Personne personne) {
         this.badge = badge;
         this.personne = personne;
-    }   
-    
+    }
+
     /**
      * @return the id
      */
@@ -56,7 +55,7 @@ public class Attribution {
     public void setPersonne(Personne personne) {
         this.personne = personne;
     }
-    
+
     @Override
     public String toString() {
         return "Badge : " + this.badge.getId() + " attribué à " + this.personne.toString();
