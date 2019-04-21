@@ -5,14 +5,14 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
- * Manage a time slot beetween two date get the day, hour and minutes
- * of the begin and the end of the time slot
- * 
+ * Manage a time slot beetween two date get the day, hour and minutes of the
+ * begin and the end of the time slot
+ *
  * @author fanou
  */
 public class TimeSlot {
+
     private long id;
-    private final SimpleDateFormat sdf = new SimpleDateFormat("EEEEE;HH;mm", Locale.UK);
     private int beginHour;
     private int endHour;
     private int beginMinutes;
@@ -23,6 +23,7 @@ public class TimeSlot {
 
     /**
      * constructor
+     *
      * @param beginDate : date object of the begin of the time slot
      * @param endDate : date object of the end of the time slot
      * @throws Exception : if end is before begin raise an error
@@ -38,7 +39,7 @@ public class TimeSlot {
         long diff = Math.abs(beginDate.getTime() - endDate.getTime());
         this.numberOfDay = (long) diff / MILLISECONDS_PER_DAY + 1;
     }
-    
+
     public TimeSlot(Day beginDay, int beginHour, int beginMinutes, Day endDay, int endHour, int endMinutes) {
         this.beginDay = beginDay;
         this.beginHour = beginHour;
@@ -46,22 +47,24 @@ public class TimeSlot {
         this.endDay = endDay;
         this.endHour = endHour;
         this.endMinutes = endMinutes;
-        
-        this.numberOfDay = Math.abs(beginDay.ordinal() - endDay.ordinal())+ 1;
+
+        this.numberOfDay = Math.abs(beginDay.ordinal() - endDay.ordinal()) + 1;
     }
 
     public TimeSlot() {
         this.numberOfDay = 0;
     }
 
-    
     /**
      * extarct day, hour and minute from a Date object
+     *
      * @param date : the date to extract data
-     * @param begin : true if the is date is the begin of the time slot, false if end
+     * @param begin : true if the is date is the begin of the time slot, false
+     * if end
      */
     private void extract(Date date, boolean begin) {
-        String str = this.sdf.format(date);
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEEE;HH;mm", Locale.UK);
+        String str = sdf.format(date);
         String[] split = str.split(";");
         int hour = Integer.parseInt(split[1]);
         int minutes = Integer.parseInt(split[2]);
@@ -85,7 +88,8 @@ public class TimeSlot {
      */
     public boolean isIn(Date date) {
         boolean isIn = false;
-        String str = this.sdf.format(date);
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEEE;HH;mm", Locale.UK);
+        String str = sdf.format(date);
 
         // extract day, hour and minutes of date
         String[] split = str.split(";");
@@ -189,7 +193,7 @@ public class TimeSlot {
 
     @Override
     public String toString() {
-        return this.beginDay + " " + this.beginHour + ":" + this.beginMinutes + " to " + this.endDay + " " + this.endHour + ":" + this.endMinutes;
+        return this.id + " " + this.beginDay + " " + this.beginHour + ":" + this.beginMinutes + " to " + this.endDay + " " + this.endHour + ":" + this.endMinutes;
     }
 
     /**
@@ -205,4 +209,29 @@ public class TimeSlot {
     public void setId(long id) {
         this.id = id;
     }
+
+    public void setBeginHour(int beginHour) {
+        this.beginHour = beginHour;
+    }
+
+    public void setEndHour(int endHour) {
+        this.endHour = endHour;
+    }
+
+    public void setBeginMinutes(int beginMinutes) {
+        this.beginMinutes = beginMinutes;
+    }
+
+    public void setEndMinutes(int endMinutes) {
+        this.endMinutes = endMinutes;
+    }
+
+    public void setBeginDay(Day beginDay) {
+        this.beginDay = beginDay;
+    }
+
+    public void setEndDay(Day endDay) {
+        this.endDay = endDay;
+    }
+
 }

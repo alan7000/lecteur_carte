@@ -3,6 +3,7 @@ package lml.snir.controleacces.metier.entity;
 import java.util.Objects;
 
 public class Badge {
+
     private long id;
     private String contenu;
 
@@ -33,14 +34,14 @@ public class Badge {
     public void setContenu(String contenu) {
         this.contenu = contenu;
     }
-    
+
     @Override
     public String toString() {
         return this.id + " : " + this.contenu;
     }
-    
+
     @Override
-    public boolean equals(Object o){
+    public boolean equals(Object o) {
         if (!(o instanceof Badge)) {
             throw new ClassCastException();
         }

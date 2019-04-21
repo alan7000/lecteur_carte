@@ -14,5 +14,5 @@ public abstract class LecteurRFIDDriver extends Observable {
     public abstract void open() throws Exception;
 
     public abstract void close() throws Exception;
-    
+
 }

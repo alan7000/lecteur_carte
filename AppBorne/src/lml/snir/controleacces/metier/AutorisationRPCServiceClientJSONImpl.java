@@ -3,16 +3,17 @@ package lml.snir.controleacces.metier;
 import lml.jsonrpc.client.JsonRPCClient;
 import lml.jsonrpc.core.transport.Transporter;
 
-
 /**
  *
  * @author fanou
  */
 public class AutorisationRPCServiceClientJSONImpl extends JsonRPCClient<AutorisationRPCService> implements AutorisationRPCService {
-    protected AutorisationRPCServiceClientJSONImpl() {}
+
+    protected AutorisationRPCServiceClientJSONImpl() {
+    }
 
     public AutorisationRPCServiceClientJSONImpl(Transporter transporter) {
-        System.out.println("AutorisationRPCServiceJSONImpl begin");        
+        System.out.println("AutorisationRPCServiceJSONImpl begin");
         super.setTransporter(transporter);
         System.out.println("AutorisationRPCServiceJSONImpl done");
     }

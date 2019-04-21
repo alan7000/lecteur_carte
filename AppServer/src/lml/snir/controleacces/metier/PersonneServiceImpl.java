@@ -1,8 +1,11 @@
 package lml.snir.controleacces.metier;
 
+import java.util.Arrays;
 import java.util.List;
 import lml.snir.controleacces.metier.entity.Administrateur;
 import lml.snir.controleacces.metier.entity.Personne;
+import lml.snir.controleacces.metier.sort.ComparatorByAge;
+import lml.snir.controleacces.metier.sort.Sort;
 import lml.snir.controleacces.physique.data.PersonneDataService;
 import lml.snir.controleacces.physique.data.PhysiqueDataFactory;
 
@@ -18,7 +21,7 @@ class PersonneServiceImpl implements PersonneService {
             if (this.getByLogin(admin.getLogin()) != null) {
                 throw new Exception("Login déjà attribué");
             }
-            
+
             //if (admin.getMdp())
         }
         return this.personneSrv.add(personne);
@@ -26,13 +29,11 @@ class PersonneServiceImpl implements PersonneService {
 
     @Override
     public void remove(Personne personne) throws Exception {
-        //throw new UnsupportedOperationException("Not supported yet.");
         this.personneSrv.remove(personne);
     }
 
     @Override
     public void update(Personne personne) throws Exception {
-        //throw new UnsupportedOperationException("Not supported yet.");
         this.personneSrv.update(personne);
     }
 
@@ -64,5 +65,17 @@ class PersonneServiceImpl implements PersonneService {
     @Override
     public List<Personne> getAll() throws Exception {
         return this.personneSrv.getAll();
-    }   
+    }
+
+    public Personne[] sort() throws Exception {
+        Personne[] personnes = this.getAll().toArray(new Personne[0]);
+
+        //Arrays.sort(personnes);     
+        ComparatorByAge cmp = new ComparatorByAge();
+        Sort trieuse = MetierFactory.getSortService();
+        trieuse.sort(personnes, cmp);
+
+        return personnes;
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

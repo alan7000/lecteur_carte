@@ -5,12 +5,14 @@ import lml.snir.controleacces.metier.entity.Autorisation;
 import lml.snir.controleacces.metier.entity.Personne;
 import lml.snir.controleacces.metier.entity.Salle;
 import lml.snir.controleacces.metier.entity.TimeSlot;
+import lml.snir.controleacces.metier.sort.ComparatorByIdAutorisation;
+import lml.snir.controleacces.metier.sort.Sort;
 import lml.snir.controleacces.physique.data.AutorisationDataService;
 import lml.snir.controleacces.physique.data.PhysiqueDataFactory;
 
 class AutorisationServiceImpl implements AutorisationService {
 
-    private final AutorisationDataService autorisationSrv =  PhysiqueDataFactory.getAutorisationDataService();
+    private final AutorisationDataService autorisationSrv = PhysiqueDataFactory.getAutorisationDataService();
 
     @Override
     public Autorisation add(Autorisation authorisation) throws Exception {
@@ -65,5 +67,14 @@ class AutorisationServiceImpl implements AutorisationService {
     @Override
     public List<Autorisation> getByPlageHoraire(TimeSlot plageHoraire) throws Exception {
         return this.autorisationSrv.getByPlageHoraire(plageHoraire);
-    }    
+    }
+
+    public Autorisation[] sort() throws Exception {
+        Autorisation[] autorisations = this.getAll().toArray(new Autorisation[0]);
+
+        ComparatorByIdAutorisation cmp = new ComparatorByIdAutorisation();
+        Sort trieuse = MetierFactory.getSortService();
+        trieuse.sort(autorisations, cmp);
+        return autorisations;
+    }
 }

@@ -1,9 +1,13 @@
 package lml.snir.controleacces.metier;
 
+import java.util.Comparator;
 import java.util.List;
 import lml.snir.controleacces.metier.entity.Attribution;
 import lml.snir.controleacces.metier.entity.Badge;
 import lml.snir.controleacces.metier.entity.Personne;
+import lml.snir.controleacces.metier.sort.ComparatorByAge;
+import lml.snir.controleacces.metier.sort.ComparatorByIdAttribution;
+import lml.snir.controleacces.metier.sort.Sort;
 import lml.snir.controleacces.physique.data.AttributionDataService;
 import lml.snir.controleacces.physique.data.PhysiqueDataFactory;
 
@@ -65,5 +69,16 @@ class AttributionServiceImpl implements AttributionService {
     public Boolean isBadgeAttribue(Badge badge) throws Exception {
         return this.attributionSrv.isBadgeAttribue(badge);
     }
-    
+
+    public Attribution[] sort() throws Exception {
+        Attribution[] attributions = this.getAll().toArray(new Attribution[0]);
+
+        //Arrays.sort(personnes);     
+        ComparatorByIdAttribution cma = new ComparatorByIdAttribution();
+        Sort trieuse = MetierFactory.getSortService();
+        trieuse.sort(attributions, cma);
+
+        return attributions;
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

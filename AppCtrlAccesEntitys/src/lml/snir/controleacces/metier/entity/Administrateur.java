@@ -30,7 +30,7 @@ public class Administrateur extends Personne {
                 if (x < 0) {
                     x += 256;
                 }
-                
+
                 String s = String.format("%02x", x);
                 code += s;
             }
@@ -72,7 +72,7 @@ public class Administrateur extends Personne {
     public void setMdp(String mdp) throws NoSuchAlgorithmException {
         this.mdp = this.codeMD5(mdp);
     }
-    
+
     public void setEncodedMdp(String mdp) throws NoSuchAlgorithmException {
         this.mdp = mdp;
     }

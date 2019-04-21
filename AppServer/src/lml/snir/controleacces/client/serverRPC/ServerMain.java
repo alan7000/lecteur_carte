@@ -14,30 +14,29 @@ import lml.snir.controleacces.metier.MetierFactory;
  * @author fanou
  */
 public class ServerMain extends Thread implements Runnable {
-     public static void main(String[] args) throws Exception {
-        
+
+    public static void main(String[] args) throws Exception {
+
         // init transporter
         Map<String, Object> services = new HashMap<>();
         services.put(AutorisationRPCService.class.getName(), MetierFactory.getAutorisationRPCService());
         Transporter transporter = new TcpServerTransporter(9999, services); //new SerialServerTransporter(serial, services);
         transporter.open();
-        
-        
+
         System.out.println("wait");
         new ServerMain().start();
     }
 
-     @Override
-     public void run() {
-         System.out.println("run");
-         while(true) {
-             try {
-                 Thread.sleep(1000);
-             } catch (InterruptedException ex) {
-                 Logger.getLogger(ServerMain.class.getName()).log(Level.SEVERE, null, ex);
-             }
-         }
-     }
-     
-   
+    @Override
+    public void run() {
+        System.out.println("run");
+        while (true) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(ServerMain.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
 }

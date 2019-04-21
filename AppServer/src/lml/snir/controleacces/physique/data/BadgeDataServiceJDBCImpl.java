@@ -6,8 +6,6 @@
 package lml.snir.controleacces.physique.data;
 
 import java.sql.ResultSet;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import lml.persistence.jdbc.AbstracCrudServiceJDBC;
 import lml.snir.controleacces.metier.entity.Badge;
 
@@ -34,7 +32,6 @@ class BadgeDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Badge> implements 
 
     @Override
     protected Badge createEntity(ResultSet rs) throws Exception {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         Badge b;
 
         long id = rs.getLong("id");
@@ -49,7 +46,6 @@ class BadgeDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Badge> implements 
 
     @Override
     public Badge add(Badge t) throws Exception {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         String query = "INSERT INTO " + super.getEntityName() + " (id, contenu) VALUES ('"
                 + t.getId() + "','"
                 + t.getContenu() + "')";
@@ -61,7 +57,6 @@ class BadgeDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Badge> implements 
 
     @Override
     public void remove(Badge t) throws Exception {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         String query = "DELETE FROM " + super.getEntityName() + " WHERE id = '" + t.getId() + "'";
         super.executeQuery(query);
 
@@ -69,12 +64,10 @@ class BadgeDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Badge> implements 
 
     @Override
     public void update(Badge t) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public Badge getByContenu(String contenu) throws Exception {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         String query = "SELECT * FROM " + super.getEntityName() + " WHERE contenu = '" + contenu.toString() + "'";
         return super.getSingleResult(query);
 

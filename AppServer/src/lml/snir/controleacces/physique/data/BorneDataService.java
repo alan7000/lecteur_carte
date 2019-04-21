@@ -9,5 +9,6 @@ import lml.snir.controleacces.metier.entity.Salle;
  * @author fanou
  */
 public interface BorneDataService extends CrudService<Borne> {
+
     public Borne getBySalle(Salle salle) throws Exception;
 }

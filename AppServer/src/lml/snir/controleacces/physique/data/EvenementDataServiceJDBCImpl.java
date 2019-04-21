@@ -97,5 +97,5 @@ final class EvenementDataServiceJDBCImpl extends AbstracCrudServiceJDBC<Evenemen
         String query = "SELECT * FROM " + super.getEntityName() + " WHERE idSalle = '" + salle.getId() + "'";
         return super.getResults(query);
     }
-  
+
 }

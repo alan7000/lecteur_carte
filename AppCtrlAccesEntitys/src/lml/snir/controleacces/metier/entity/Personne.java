@@ -3,22 +3,23 @@ package lml.snir.controleacces.metier.entity;
 import java.util.Objects;
 
 public class Personne {
+
     private long id;
     private String nom;
     private String prenom;
+    private int age;
 
-    public Personne(){
+    public Personne() {
         this.nom = null;
         this.prenom = null;
     }
-    
+
     public Personne(String nom, String prenom) {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         this.nom = nom;
         this.prenom = prenom;
     }
 
-    
     /**
      * @return the id
      */
@@ -60,14 +61,14 @@ public class Personne {
     public void setPrenom(String prenom) {
         this.prenom = prenom;
     }
-    
+
     @Override
     public String toString() {
-        return this.nom + " " + this.prenom;
+        return this.id + " : " + this.nom + " " + this.prenom;
     }
-    
+
     @Override
-    public boolean equals(Object o){
+    public boolean equals(Object o) {
         if (!(o instanceof Personne)) {
             throw new ClassCastException();
         }
@@ -80,5 +81,9 @@ public class Personne {
         hash = 47 * hash + Objects.hashCode(this.nom);
         hash = 47 * hash + Objects.hashCode(this.prenom);
         return hash;
+    }
+
+    public int getAge() {
+        return this.age;
     }
 }

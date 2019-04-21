@@ -6,9 +6,9 @@ import lml.snir.controleacces.physique.data.BadgeDataService;
 import lml.snir.controleacces.physique.data.PhysiqueDataFactory;
 
 class BadgeServiceImpl implements BadgeService {
-    
+
     private final BadgeDataService badgeSrv = PhysiqueDataFactory.getBadgeDataService();
-    
+
     public BadgeServiceImpl() {
     }
 

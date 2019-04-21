@@ -3,6 +3,7 @@ package lml.snir.controleacces.metier.entity;
 import java.util.Date;
 
 public class Evenement {
+
     private long id;
     private Personne personne;
     private Salle salle;
@@ -59,7 +60,7 @@ public class Evenement {
     }
 
     /**
-     * @param autorise the autorise to set
+     * @param authoriser
      */
     public void setAutorise(boolean authoriser) {
         this.autorise = authoriser;
@@ -78,14 +79,14 @@ public class Evenement {
     public void setPersonne(Personne personne) {
         this.personne = personne;
     }
-    
+
     @Override
     public String toString() {
         String s = " accede à ";
         if (!this.autorise) {
             s = " n'a pas eu accès à ";
         }
-        String str =  "Event : " + this.personne + s + this.salle + " le " + this.date;
+        String str = "Event : " + this.personne + s + this.salle + " le " + this.date;
         return str;
     }
 }

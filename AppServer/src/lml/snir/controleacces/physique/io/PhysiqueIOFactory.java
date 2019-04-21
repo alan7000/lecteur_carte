@@ -8,21 +8,23 @@ import lml.snir.controleacces.physique.ConfigReader;
  */
 public final class PhysiqueIOFactory {
 
-    private PhysiqueIOFactory() {}
-    
+    private PhysiqueIOFactory() {
+    }
+
     private static LecteurRFIDDriver lecteurRFIDDriver = null;
+
     synchronized public static LecteurRFIDDriver getLecteurRFID() throws Exception {
         if (lecteurRFIDDriver == null) {
             // lecture dans le fichier physiqueFactories.properties à la racine du projet de la propriété physique.io.borneDriver
             String drv = "lml.snir.controleacces.physique.io." + ConfigReader.getInstance("./physiqueFactories.properties").getProperty("lecteurRFID");
             String serialName = ConfigReader.getInstance("./physiqueFactories.properties").getProperty("serial");
-            
+
             // instanciation via le nom de la classe
             lecteurRFIDDriver = (LecteurRFIDDriver) Class.forName(drv).getDeclaredConstructor(String.class).newInstance(serialName);
         }
         return lecteurRFIDDriver;
     }
-    
+
 }
 /*
             // lecture dans le fichier physiqueFactories.properties à la racine du projet de la propriété physique.io.borneDriver
@@ -36,4 +38,4 @@ public final class PhysiqueIOFactory {
             Map parameters = new HashMap();
             parameters.put("serialName", serialName);
             borneDrv.openDriver(parameters);    
-*/
+ */

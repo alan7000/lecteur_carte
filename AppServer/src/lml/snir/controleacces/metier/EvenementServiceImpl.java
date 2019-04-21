@@ -2,7 +2,6 @@ package lml.snir.controleacces.metier;
 
 import java.util.Date;
 import java.util.List;
-import lml.snir.controleacces.metier.entity.Day;
 import lml.snir.controleacces.metier.entity.Evenement;
 import lml.snir.controleacces.metier.entity.Salle;
 import lml.snir.controleacces.physique.data.EvenementDataService;
@@ -27,7 +26,6 @@ class EvenementServiceImpl implements EvenementService {
         this.evenementSrv.update(evenement);
     }
 
-    
     @Override
     public List<Evenement> getAll(int debut, int count) throws Exception {
         return this.evenementSrv.getAll(debut, count);
@@ -57,5 +55,5 @@ class EvenementServiceImpl implements EvenementService {
     public List<Evenement> getAll() throws Exception {
         return this.evenementSrv.getAll();
     }
-   
+
 }

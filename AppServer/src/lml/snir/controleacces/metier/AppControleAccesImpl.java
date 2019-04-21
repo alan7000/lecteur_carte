@@ -78,7 +78,6 @@ public class AppControleAccesImpl implements AppControleAcces, Observer {
 //    public void run() {
 //        throw new UnsupportedOperationException("Not supported yet.");
 //    }
-
 //    @Override
 //    public void update(Observable o, Object arg) {
 //        if (o == this.borneDrv) {
@@ -128,7 +127,6 @@ public class AppControleAccesImpl implements AppControleAcces, Observer {
 //            }
 //        }
 //    }
-
     @Override
     public void update(Observable o, Object arg) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
