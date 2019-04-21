@@ -93,7 +93,7 @@ public class SalleTableModel extends AbstractTableModel {
     public Salle getSalleAt(int rowIndex) {
         return this.salles[rowIndex];
     }
-    
+
     public void update(Salle[] salles) {
         this.salles = salles;
         this.fireTableDataChanged();

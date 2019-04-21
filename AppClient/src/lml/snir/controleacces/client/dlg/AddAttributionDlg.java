@@ -21,28 +21,30 @@ import lml.snir.controleacces.metier.entity.Personne;
  * @author alan
  */
 public class AddAttributionDlg extends javax.swing.JDialog {
-    
+
     private long id = 0;
 //    private long idBadge = 0;
 //    private long idPersonne = 0;
     private Attribution attribution = null;
-    
+
     AttributionService attributionService = MetierFactory.getAttributionService();
     BadgeService badgeService = MetierFactory.getBadgeService();
     PersonneService personneService = MetierFactory.getPersonneService();
+
     /**
      * Creates new form AddAttributionDialog
+     *
      * @param parent
      * @param modal
      */
     public AddAttributionDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+
         try {
             for (int i = 0; i < badgeService.getCount(); i++) {
                 this.jComboBox1.addItem(this.badgeService.getAll(i, 1).toString());
-                
+
             }
             for (int i = 0; i < personneService.getCount(); i++) {
                 this.jComboBox2.addItem(this.personneService.getAll(i, 1).toString());
@@ -59,7 +61,7 @@ public class AddAttributionDlg extends javax.swing.JDialog {
         try {
             for (int i = 0; i < badgeService.getCount(); i++) {
                 this.jComboBox1.addItem(this.badgeService.getAll(i, 1).toString());
-                
+
             }
             for (int i = 0; i < personneService.getCount(); i++) {
                 this.jComboBox2.addItem(this.personneService.getAll(i, 1).toString());
@@ -67,7 +69,7 @@ public class AddAttributionDlg extends javax.swing.JDialog {
         } catch (Exception ex) {
             Logger.getLogger(AddAttributionDlg.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
 //        this.id = attribution.getId();
 //        this.idBadge = attribution.getBadge().getId();
 //        this.idPersonne = attribution.getPersonne().getId();
@@ -79,7 +81,7 @@ public class AddAttributionDlg extends javax.swing.JDialog {
     public Attribution getAttribution() {
         return attribution;
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -190,38 +192,37 @@ public class AddAttributionDlg extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String idBadge = this.jComboBox1.getSelectedItem().toString();
         String idPersonne = this.jComboBox2.getSelectedItem().toString();
-        
+
         String b = idBadge.replaceAll("[^0-9]", "");
-        
+
         long IdBadge = Long.parseLong(b);
-        
+
         Badge badge = null;
         try {
             badge = MetierFactory.getBadgeService().getById(IdBadge);
         } catch (Exception ex) {
             Logger.getLogger(AddAttributionDlg.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         String p = idPersonne.replaceAll("[^0-9]", "");
-        
+
         long IdPersonne = Long.parseLong(p);
-        
+
         Personne personne = null;
         try {
             personne = MetierFactory.getPersonneService().getById(IdPersonne);
         } catch (Exception ex) {
             Logger.getLogger(AddAttributionDlg.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
         this.attribution = new Attribution();
-        
+
         this.attribution.setBadge(badge);
-        
+
         this.attribution.setPersonne(personne);
-        
+
         this.attribution.setId(this.id);
-        
+
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

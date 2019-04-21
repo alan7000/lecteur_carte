@@ -15,7 +15,7 @@ import lml.snir.controleacces.metier.sort.Sort;
  *
  * @author alan
  */
-public class TimeSlotServiceImpl extends ClientRest<TimeSlot> implements TimeSlotService{
+public class TimeSlotServiceImpl extends ClientRest<TimeSlot> implements TimeSlotService {
 
     public TimeSlotServiceImpl() {
         super.init("TimeSlotService", new RestServerLocalConfiguration());
@@ -66,11 +66,11 @@ public class TimeSlotServiceImpl extends ClientRest<TimeSlot> implements TimeSlo
     @Override
     public TimeSlot[] sort() throws Exception {
         TimeSlot[] timeSlots = this.getAll().toArray(new TimeSlot[0]);
-        
+
         ComparatorByIdTimeSlot cmp = new ComparatorByIdTimeSlot();
         Sort trieuse = MetierFactory.getSortSerivce();
         trieuse.sort(timeSlots, cmp);
         return timeSlots;
     }
-    
+
 }

@@ -11,7 +11,7 @@ class BadgeServiceImpl extends ClientRest<Badge> implements BadgeService {
     public BadgeServiceImpl() {
         super.init("BadgeService", new RestServerLocalConfiguration());
     }
-    
+
     @Override
     public Badge getByContenu(String contenu) throws Exception {
         super.setPath("getByContenu/" + contenu);
@@ -63,7 +63,7 @@ class BadgeServiceImpl extends ClientRest<Badge> implements BadgeService {
     @Override
     public Badge[] sort() throws Exception {
         Badge[] badges = this.getAll().toArray(new Badge[0]);
-        
+
         ComparatorByIdBadge cmp = new ComparatorByIdBadge();
         Sort trieuse = MetierFactory.getSortSerivce();
         trieuse.sort(badges, cmp);

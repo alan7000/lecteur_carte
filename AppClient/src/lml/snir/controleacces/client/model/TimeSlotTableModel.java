@@ -107,8 +107,8 @@ public class TimeSlotTableModel extends AbstractTableModel {
     public TimeSlot getTimeSlotAt(int rowIndex) {
         return this.timeSlots[rowIndex];
     }
-    
-    public void update (TimeSlot[] timeSlots) {
+
+    public void update(TimeSlot[] timeSlots) {
         this.timeSlots = timeSlots;
         this.fireTableDataChanged();
     }

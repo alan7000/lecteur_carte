@@ -44,7 +44,7 @@ public class AutorisationTableModel extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Autorisation autorisation = this.autorisations[rowIndex];
-        switch(columnIndex) {
+        switch (columnIndex) {
             case 0:
                 return autorisation.getSalle();
             case 1:
@@ -60,7 +60,7 @@ public class AutorisationTableModel extends AbstractTableModel {
     public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
         try {
             Autorisation autorisation = this.autorisations[rowIndex];
-            switch(columnIndex) {
+            switch (columnIndex) {
                 case 0:
                     autorisation.setSalle((Salle) aValue);
                 case 1:
@@ -68,7 +68,7 @@ public class AutorisationTableModel extends AbstractTableModel {
                 case 2:
                     autorisation.setPlageHoraire((TimeSlot) aValue);
             }
-            
+
             MetierFactory.getAutorisationService().update(autorisation);
             this.fireTableDataChanged();
         } catch (Exception e) {
@@ -91,14 +91,14 @@ public class AutorisationTableModel extends AbstractTableModel {
                 return Object.class;
         }
     }
-    
+
     public Autorisation getAutorisationAt(int rowIndex) {
         return this.autorisations[rowIndex];
     }
-    
+
     public void update(Autorisation[] autorisations) {
         this.autorisations = autorisations;
         this.fireTableDataChanged();
     }
-    
+
 }

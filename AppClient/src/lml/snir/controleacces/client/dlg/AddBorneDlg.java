@@ -47,7 +47,7 @@ public class AddBorneDlg extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.id = borne.getId();
-        
+
         try {
             for (int i = 0; i < salleService.getCount(); i++) {
                 this.jComboBox1.addItem(this.salleService.getAll(i, 1).toString());

@@ -90,7 +90,7 @@ public class BorneTableModel extends AbstractTableModel {
     public Borne getBorneAt(int rowIndex) {
         return this.bornes[rowIndex];
     }
-    
+
     public void update(Borne[] bornes) {
         this.bornes = bornes;
         this.fireTableDataChanged();

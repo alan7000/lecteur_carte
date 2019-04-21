@@ -1,9 +1,5 @@
 package lml.snir.controleacces.client;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -157,7 +153,12 @@ public class EvenementIhm extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        Evenement evenement = this.model.getEvenementAt(this.jTable1.getSelectedRow());
+        try {
+            if (this.jTable1.getSelectedRow() == -1) {
+                throw new Exception("Veuillez selectionner un evenement");
+            }
+
+            Evenement evenement = this.model.getEvenementAt(this.jTable1.getSelectedRow());
 //        Evenement evenement1 = this.jTable1.getModel().getValueAt(this.jTable1.getSelectedRow());
 //        String s = (String) 
 //        DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -169,13 +170,15 @@ public class EvenementIhm extends javax.swing.JDialog {
 //        }
 //
 //        evenement.setDate(d);
-        try {
-            this.evenementService.remove(evenement);
-            this.model.update(this.evenementService.sort());
-            throw new Exception("Erreur pendant la suppression");
-        } catch (Exception ex) {
-            Logger.getLogger(EvenementIhm.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+            try {
+                this.evenementService.remove(evenement);
+                this.model.update(this.evenementService.sort());
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 

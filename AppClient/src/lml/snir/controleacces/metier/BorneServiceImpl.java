@@ -68,7 +68,7 @@ public class BorneServiceImpl extends ClientRest<Borne> implements BorneService 
     @Override
     public Borne[] sort() throws Exception {
         Borne[] bornes = this.getAll().toArray(new Borne[0]);
-        
+
         ComparatorByIdBorne cmp = new ComparatorByIdBorne();
         Sort trieuse = MetierFactory.getSortSerivce();
         trieuse.sort(bornes, cmp);

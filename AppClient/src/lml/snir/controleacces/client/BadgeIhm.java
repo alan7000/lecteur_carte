@@ -24,15 +24,17 @@ public class BadgeIhm extends javax.swing.JDialog {
 
     private final BadgeService badgeService;
     private final BadgeTableModel model;
+
     /**
      * Creates new form BadgeIhm
+     *
      * @param parent
      * @param modal
      */
     public BadgeIhm(java.awt.Frame parent, boolean modal) throws Exception {
         super(parent, modal);
         initComponents();
-        
+
         this.badgeService = MetierFactory.getBadgeService();
         this.model = new BadgeTableModel(this.badgeService.sort());
         this.jTable1.setModel(model);
@@ -159,13 +161,13 @@ public class BadgeIhm extends javax.swing.JDialog {
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        
+
         AddBadgeDlg dlg;
         dlg = new AddBadgeDlg(frame, true);
         dlg.setVisible(true);
-        
+
         Badge badge = dlg.getBadge();
-        
+
         if (badge != null) {
             try {
                 this.badgeService.add(badge);
@@ -177,18 +179,27 @@ public class BadgeIhm extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonAddActionPerformed
 
     private void jButtonRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveActionPerformed
-        Badge badge = this.model.getBadgeAt(this.jTable1.getSelectedRow());
-        
         try {
-            this.badgeService.remove(badge);
-        } catch (Exception ex) {
-            Logger.getLogger(BadgeIhm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        try {
-            this.model.update(this.badgeService.sort());
-        } catch (Exception ex) {
-            Logger.getLogger(BadgeIhm.class.getName()).log(Level.SEVERE, null, ex);
+
+            if (this.jTable1.getSelectedRow() == -1) {
+                throw new Exception("Veuillez selectionner un badge");
+            }
+
+            Badge badge = this.model.getBadgeAt(this.jTable1.getSelectedRow());
+
+            try {
+                this.badgeService.remove(badge);
+            } catch (Exception ex) {
+                Logger.getLogger(BadgeIhm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            try {
+                this.model.update(this.badgeService.sort());
+            } catch (Exception ex) {
+                Logger.getLogger(BadgeIhm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonRemoveActionPerformed
 

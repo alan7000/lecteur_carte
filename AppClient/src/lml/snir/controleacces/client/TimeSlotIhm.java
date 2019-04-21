@@ -11,7 +11,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import lml.snir.controleacces.client.dlg.AddTimeSlotDlg;
-import lml.snir.controleacces.client.model.BooleanCellRenderer;
 import lml.snir.controleacces.client.model.TimeSlotTableModel;
 import lml.snir.controleacces.metier.MetierFactory;
 import lml.snir.controleacces.metier.TimeSlotService;
@@ -25,8 +24,10 @@ public class TimeSlotIhm extends javax.swing.JDialog {
 
     private final TimeSlotService timeSlotService;
     private final TimeSlotTableModel model;
+
     /**
      * Creates new form TimeSlotIhm
+     *
      * @param parent
      * @param modal
      * @throws java.lang.Exception
@@ -34,11 +35,11 @@ public class TimeSlotIhm extends javax.swing.JDialog {
     public TimeSlotIhm(java.awt.Frame parent, boolean modal) throws Exception {
         super(parent, modal);
         initComponents();
-        
+
         this.timeSlotService = MetierFactory.getTimeSlotService();
         this.model = new TimeSlotTableModel(this.timeSlotService.sort());
         this.jTable1.setModel(model);
-        
+
     }
 
     /**
@@ -61,7 +62,7 @@ public class TimeSlotIhm extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Liste des timeSlot");
+        jLabel1.setText("Liste des plage horaire");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -125,14 +126,14 @@ public class TimeSlotIhm extends javax.swing.JDialog {
                                 .addComponent(jButton3)))
                         .addContainerGap())))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(200, 200, 200)
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(182, 182, 182)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -170,14 +171,14 @@ public class TimeSlotIhm extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        
+
         AddTimeSlotDlg dlg;
         dlg = new AddTimeSlotDlg(frame, true);
         dlg.setVisible(true);
-        
+
         TimeSlot timeSlot = dlg.getTimeSlot();
-        
-        if(timeSlot != null){
+
+        if (timeSlot != null) {
             try {
                 this.timeSlotService.add(timeSlot);
                 this.model.update(this.timeSlotService.sort());
@@ -188,34 +189,51 @@ public class TimeSlotIhm extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        TimeSlot timeSlot = this.model.getTimeSlotAt(this.jTable1.getSelectedRow());
-        
         try {
-            this.timeSlotService.remove(timeSlot);
-            this.model.update(this.timeSlotService.sort());
+            if (this.jTable1.getSelectedRow() == -1) {
+                throw new Exception("Veuillez selectionner une plage horaire");
+            }
+
+            TimeSlot timeSlot = this.model.getTimeSlotAt(this.jTable1.getSelectedRow());
+
+            try {
+                this.timeSlotService.remove(timeSlot);
+                this.model.update(this.timeSlotService.sort());
+            } catch (Exception e) {
+                Logger.getLogger(TimeSlotIhm.class.getName()).log(Level.SEVERE, null, e);
+            }
         } catch (Exception e) {
-            Logger.getLogger(TimeSlotIhm.class.getName()).log(Level.SEVERE, null, e);
+            JOptionPane.showMessageDialog(this, e.getMessage(), "erreur", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        TimeSlot timeSlot = this.model.getTimeSlotAt(this.jTable1.getSelectedRow());
-        
-        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        
-        AddTimeSlotDlg dlg;
-        dlg = new AddTimeSlotDlg(frame, true, timeSlot);
-        dlg.setVisible(true);
-        
-        timeSlot = dlg.getTimeSlot();
-        
-        if (timeSlot != null) {
-            try {
-                this.timeSlotService.update(timeSlot);
-                this.model.update(this.timeSlotService.sort());
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, e.getMessage(), "erreur", JOptionPane.ERROR_MESSAGE);
+        try {
+            if (this.jTable1.getSelectedRow() == -1) {
+                throw new Exception("Veuillez selectionner une plage horaire");
             }
+
+            TimeSlot timeSlot = this.model.getTimeSlotAt(this.jTable1.getSelectedRow());
+
+            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+
+            AddTimeSlotDlg dlg;
+            dlg = new AddTimeSlotDlg(frame, true, timeSlot);
+            dlg.setVisible(true);
+
+            timeSlot = dlg.getTimeSlot();
+
+            if (timeSlot != null) {
+                try {
+                    this.timeSlotService.update(timeSlot);
+                    this.model.update(this.timeSlotService.sort());
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, e.getMessage(), "erreur", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "erreur", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 

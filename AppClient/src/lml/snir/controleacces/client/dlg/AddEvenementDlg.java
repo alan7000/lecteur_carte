@@ -13,18 +13,16 @@ import lml.snir.controleacces.metier.entity.Evenement;
  */
 public class AddEvenementDlg extends javax.swing.JDialog {
 
-    
-    
     /**
      * Creates new form AddEvenementDlg
+     *
      * @param parent
      * @param modal
      */
     public AddEvenementDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
-        
+
     }
 
     /**
@@ -81,6 +79,7 @@ public class AddEvenementDlg extends javax.swing.JDialog {
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 AddEvenementDlg dialog = new AddEvenementDlg(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {

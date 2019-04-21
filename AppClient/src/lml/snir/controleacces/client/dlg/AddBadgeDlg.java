@@ -19,6 +19,7 @@ public class AddBadgeDlg extends javax.swing.JDialog {
 
     /**
      * Creates new form AddBadgeDlg
+     *
      * @param parent
      * @param modal
      */
@@ -117,12 +118,12 @@ public class AddBadgeDlg extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             this.badge = new Badge();
-            
+
             String contenu = this.jTextField1.getText();
-            if(contenu.length() == 0) {
+            if (contenu.length() == 0) {
                 throw new Exception("Veuillez mettre un contenu dans le badge");
             }
-            
+
             this.badge.setContenu(contenu);
             this.badge.setId(id);
             this.dispose();

@@ -26,9 +26,10 @@ public class SalleIhm extends javax.swing.JDialog {
 
     private final SalleService salleService;
     private final SalleTableModel model;
-    
+
     /**
      * Creates new form SalleIhm
+     *
      * @param parent
      * @param modal
      * @throws java.lang.Exception
@@ -36,7 +37,7 @@ public class SalleIhm extends javax.swing.JDialog {
     public SalleIhm(java.awt.Frame parent, boolean modal) throws Exception {
         super(parent, modal);
         initComponents();
-        
+
         this.salleService = MetierFactory.getSalleService();
         this.model = new SalleTableModel(this.salleService.sort());
         this.jTable1.setModel((TableModel) model);
@@ -174,13 +175,13 @@ public class SalleIhm extends javax.swing.JDialog {
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        
+
         AddSalleDlg dlg;
         dlg = new AddSalleDlg(frame, true);
         dlg.setVisible(true);
-        
+
         Salle salle = dlg.getSalle();
-        
+
         if (salle != null) {
             try {
                 this.salleService.add(salle);
@@ -192,39 +193,55 @@ public class SalleIhm extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonAddActionPerformed
 
     private void jButtonRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveActionPerformed
-        Salle salle = this.model.getSalleAt(this.jTable1.getSelectedRow());
-        
         try {
-            this.salleService.remove(salle);
+            if (this.jTable1.getSelectedRow() == -1) {
+                throw new Exception("Veuillez selectionner une salle");
+            }
+
+            Salle salle = this.model.getSalleAt(this.jTable1.getSelectedRow());
+
+            try {
+                this.salleService.remove(salle);
+            } catch (Exception e) {
+                Logger.getLogger(SalleIhm.class.getName()).log(Level.SEVERE, null, e);
+            }
+
+            try {
+                this.model.update(this.salleService.sort());
+            } catch (Exception e) {
+                Logger.getLogger(SalleIhm.class.getName()).log(Level.SEVERE, null, e);
+            }
         } catch (Exception e) {
-            Logger.getLogger(SalleIhm.class.getName()).log(Level.SEVERE, null, e);
-        }
-        
-        try {
-            this.model.update(this.salleService.sort());
-        } catch (Exception e) {
-            Logger.getLogger(SalleIhm.class.getName()).log(Level.SEVERE, null, e);
+            JOptionPane.showMessageDialog(this, e.getMessage(), "erreur", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonRemoveActionPerformed
 
     private void jButtonChangedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangedActionPerformed
-        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        
-        Salle salle = this.model.getSalleAt(this.jTable1.getSelectedRow());
-        
-        AddSalleDlg dlg;
-        dlg = new AddSalleDlg(frame, true, salle);
-        dlg.setVisible(true);
-        
-        salle = dlg.getSalle();
-        
-        if (salle != null) {
-            try {
-                this.salleService.update(salle);
-                this.model.update(this.salleService.sort());
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, e.getMessage(), "erreur", JOptionPane.ERROR_MESSAGE);
+        try {
+            if (this.jTable1.getSelectedRow() == -1) {
+                throw new Exception("Veuillez selectionner une salle");
             }
+
+            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+
+            Salle salle = this.model.getSalleAt(this.jTable1.getSelectedRow());
+
+            AddSalleDlg dlg;
+            dlg = new AddSalleDlg(frame, true, salle);
+            dlg.setVisible(true);
+
+            salle = dlg.getSalle();
+
+            if (salle != null) {
+                try {
+                    this.salleService.update(salle);
+                    this.model.update(this.salleService.sort());
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, e.getMessage(), "erreur", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "erreur", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonChangedActionPerformed
 

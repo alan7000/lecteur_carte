@@ -25,9 +25,10 @@ public class AttributionIhm extends javax.swing.JDialog {
 
     private final AttributionService attributionService;
     private final AttributionTableModel model;
-    
+
     /**
      * Creates new form AttributionIhM
+     *
      * @param parent
      * @param modal
      * @throws java.lang.Exception
@@ -35,7 +36,7 @@ public class AttributionIhm extends javax.swing.JDialog {
     public AttributionIhm(java.awt.Frame parent, boolean modal) throws Exception {
         super(parent, modal);
         initComponents();
-        
+
         this.attributionService = MetierFactory.getAttributionService();
         this.model = new AttributionTableModel(this.attributionService.sort());
         this.jTable1.setModel((TableModel) model);
@@ -171,14 +172,14 @@ public class AttributionIhm extends javax.swing.JDialog {
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        
+
         AddAttributionDlg dlg;
         dlg = new AddAttributionDlg(frame, true);
         dlg.setVisible(true);
-        
+
         Attribution attribution = dlg.getAttribution();
-        
-        if(attribution != null){
+
+        if (attribution != null) {
             try {
                 this.attributionService.add(attribution);
                 this.model.update(this.attributionService.sort());
@@ -189,42 +190,61 @@ public class AttributionIhm extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonAddActionPerformed
 
     private void jButtonRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveActionPerformed
-        Attribution attribution = this.model.getAttributionAt(this.jTable1.getSelectedRow());
-        
         try {
-            this.attributionService.remove(attribution);
-        } catch (Exception ex) {
-            Logger.getLogger(AttributionIhm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            this.model.update(this.attributionService.sort());
-        } catch (Exception ex) {
-            Logger.getLogger(AttributionIhm.class.getName()).log(Level.SEVERE, null, ex);
+
+            if (this.jTable1.getSelectedRow() == -1) {
+                throw new Exception("Veuillez selectionner une attribution");
+            }
+
+            Attribution attribution = this.model.getAttributionAt(this.jTable1.getSelectedRow());
+
+            try {
+                this.attributionService.remove(attribution);
+            } catch (Exception ex) {
+                Logger.getLogger(AttributionIhm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                this.model.update(this.attributionService.sort());
+            } catch (Exception ex) {
+                Logger.getLogger(AttributionIhm.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } catch (Exception e) {
         }
     }//GEN-LAST:event_jButtonRemoveActionPerformed
 
     private void jButtonChangedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangedActionPerformed
-        Attribution attribution = (Attribution) this.model.getAttributionAt(this.jTable1.getSelectedRow());
-        
-        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        
-        AddAttributionDlg dlg = null;
         try {
-            dlg = new AddAttributionDlg(frame, true, attribution);
-        } catch (Exception ex) {
-            Logger.getLogger(AttributionIhm.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        dlg.setVisible(true);
-        
-        attribution = dlg.getAttribution();
-        
-        if(attribution != null){
-            try {
-                this.attributionService.update(attribution);
-                this.model.update(this.attributionService.sort());
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, e.getMessage(), "erreur", JOptionPane.ERROR_MESSAGE);
+            if (this.jTable1.getSelectedRow() == -1) {
+                throw new Exception("Veuillez selectionner une attribution");
             }
+
+            Attribution attribution = (Attribution) this.model.getAttributionAt(this.jTable1.getSelectedRow());
+
+            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+
+            AddAttributionDlg dlg = null;
+
+            if (this.jTable1.getSelectedRow() != -1) {
+                dlg = new AddAttributionDlg(frame, true, attribution);
+            } else {
+
+            }
+
+            dlg.setVisible(true);
+
+            attribution = dlg.getAttribution();
+
+            if (attribution != null) {
+                try {
+                    this.attributionService.update(attribution);
+                    this.model.update(this.attributionService.sort());
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, e.getMessage(), "erreur", JOptionPane.ERROR_MESSAGE);
+                }
+
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonChangedActionPerformed
 

@@ -189,39 +189,57 @@ public class BorneIhm extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonAddActionPerformed
 
     private void jButtonChangedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangedActionPerformed
-        Borne borne = (Borne) this.model.getBorneAt(this.jTable1.getSelectedRow());
-
-        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-
-        AddBorneDlg dlg;
-        dlg = new AddBorneDlg(frame, true, borne);
-        dlg.setVisible(true);
-
-        borne = dlg.getBorne();
-
-        if (borne != null) {
-            try {
-                this.borneService.update(borne);
-                this.model.update(this.borneService.sort());
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, e.getMessage(), "erreur", JOptionPane.ERROR_MESSAGE);
+        try {
+            if (this.jTable1.getSelectedRow() == -1) {
+                throw new Exception("Veuillez selectionner une borne");
             }
+
+            Borne borne = (Borne) this.model.getBorneAt(this.jTable1.getSelectedRow());
+
+            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+
+            AddBorneDlg dlg;
+            dlg = new AddBorneDlg(frame, true, borne);
+            dlg.setVisible(true);
+
+            borne = dlg.getBorne();
+
+            if (borne != null) {
+                try {
+                    this.borneService.update(borne);
+                    this.model.update(this.borneService.sort());
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, e.getMessage(), "erreur", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "erreur", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonChangedActionPerformed
 
     private void jButtonRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveActionPerformed
-        Borne borne = this.model.getBorneAt(this.jTable1.getSelectedRow());
-
         try {
-            this.borneService.remove(borne);
-        } catch (Exception e) {
-            Logger.getLogger(BorneIhm.class.getName()).log(Level.SEVERE, null, e);
-        }
+            if (this.jTable1.getSelectedRow() == -1) {
+                throw new Exception("Veuillez selectionner une borne");
+            }
 
-        try {
-            this.model.update(this.borneService.sort());
+            Borne borne = this.model.getBorneAt(this.jTable1.getSelectedRow());
+
+            try {
+                this.borneService.remove(borne);
+            } catch (Exception e) {
+                Logger.getLogger(BorneIhm.class.getName()).log(Level.SEVERE, null, e);
+            }
+
+            try {
+                this.model.update(this.borneService.sort());
+            } catch (Exception e) {
+                Logger.getLogger(BorneIhm.class.getName()).log(Level.SEVERE, null, e);
+            }
+
         } catch (Exception e) {
-            Logger.getLogger(BorneIhm.class.getName()).log(Level.SEVERE, null, e);
+            JOptionPane.showMessageDialog(this, e.getMessage(), "erreur", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonRemoveActionPerformed
 

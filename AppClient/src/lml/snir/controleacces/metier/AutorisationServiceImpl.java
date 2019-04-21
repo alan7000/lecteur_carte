@@ -15,8 +15,6 @@ class AutorisationServiceImpl extends ClientRest<Autorisation> implements Autori
         super.init("AutorisationService", new RestServerLocalConfiguration());
     }
 
-    
-    
     @Override
     public List<Autorisation> getBySalle(Salle salle) throws Exception {
         super.setPath("getBySalle/" + salle.getId());
@@ -86,11 +84,11 @@ class AutorisationServiceImpl extends ClientRest<Autorisation> implements Autori
     @Override
     public Autorisation[] sort() throws Exception {
         Autorisation[] autorisations = this.getAll().toArray(new Autorisation[0]);
-        
+
         ComparatorByIdAutorisation cmp = new ComparatorByIdAutorisation();
         Sort trieuse = MetierFactory.getSortSerivce();
         trieuse.sort(autorisations, cmp);
         return autorisations;
     }
-    
+
 }

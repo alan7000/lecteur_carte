@@ -6,7 +6,6 @@
 package lml.snir.controleacces.client.dlg;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import lml.snir.controleacces.metier.MetierFactory;
 import lml.snir.controleacces.metier.TimeSlotService;
@@ -21,74 +20,75 @@ public class AddTimeSlotDlg extends javax.swing.JDialog {
 
     private long id = 0;
     private TimeSlot timeSlot = null;
-    
+
     TimeSlotService timeSlotService = MetierFactory.getTimeSlotService();
-    
+
     /**
      * Creates new form AddTimeSlotDlg
+     *
      * @param parent
      * @param modal
      */
     public AddTimeSlotDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+
         jComboBox1.setModel(new DefaultComboBoxModel(Day.values()));
-        
+
         for (int i = 0; i < 24; i++) {
             String str1 = Integer.toString(i);
             this.jComboBox2.addItem(str1);
         }
-        
+
         for (int i = 0; i < 60; i++) {
             String str1 = Integer.toString(i);
             this.jComboBox3.addItem(str1);
         }
- 
+
         jComboBox4.setModel(new DefaultComboBoxModel(Day.values()));
-        
+
         for (int i = 0; i < 24; i++) {
             String str1 = Integer.toString(i);
             this.jComboBox5.addItem(str1);
         }
-        
+
         for (int i = 0; i < 60; i++) {
             String str1 = Integer.toString(i);
             this.jComboBox6.addItem(str1);
-        }    
-        
+        }
+
     }
 
     public AddTimeSlotDlg(JFrame parent, boolean modal, TimeSlot timeSlot) {
         super(parent, modal);
         initComponents();
-        
+
         jComboBox1.setModel(new DefaultComboBoxModel(Day.values()));
-        
+
         for (int i = 0; i < 24; i++) {
             String str1 = Integer.toString(i);
             this.jComboBox2.addItem(str1);
         }
-        
+
         for (int i = 0; i < 60; i++) {
             String str1 = Integer.toString(i);
             this.jComboBox3.addItem(str1);
         }
- 
+
         jComboBox4.setModel(new DefaultComboBoxModel(Day.values()));
-        
+
         for (int i = 0; i < 24; i++) {
             String str1 = Integer.toString(i);
             this.jComboBox5.addItem(str1);
         }
-        
+
         for (int i = 0; i < 60; i++) {
             String str1 = Integer.toString(i);
             this.jComboBox6.addItem(str1);
-        }   
-        
+        }
+
         this.id = timeSlot.getId();
-        
+
         jComboBox1.setSelectedItem(timeSlot.getBeginDay());
         jComboBox2.setSelectedIndex(timeSlot.getBeginHour());
         jComboBox3.setSelectedIndex(timeSlot.getBeginMinutes());
@@ -253,14 +253,12 @@ public class AddTimeSlotDlg extends javax.swing.JDialog {
         String endDay = this.jComboBox4.getSelectedItem().toString();
         String endHour = this.jComboBox5.getSelectedItem().toString();
         String endMinute = this.jComboBox6.getSelectedItem().toString();
-        
-        
-        
+
         int BeginDay = Integer.parseInt(beginHour);
         int BeginMinute = Integer.parseInt(beginMinute);
         int EndHour = Integer.parseInt(endHour);
         int EndMinute = Integer.parseInt(endMinute);
-        
+
         this.timeSlot = new TimeSlot();
         this.timeSlot.setBeginDay(Day.valueOf(beginDay));
         this.timeSlot.setBeginHour(BeginDay);

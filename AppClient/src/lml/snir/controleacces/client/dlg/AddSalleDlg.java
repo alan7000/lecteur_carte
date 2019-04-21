@@ -15,22 +15,22 @@ import lml.snir.controleacces.metier.entity.Salle;
  *
  * @author alan
  */
-public class AddSalleDlg extends javax.swing.JDialog{
-    
+public class AddSalleDlg extends javax.swing.JDialog {
+
     private long id = 0;
     private Salle salle = null;
     private boolean protege;
-    
+
     /**
      * Creates new form AddSalleDlg
+     *
      * @param parent
      * @param modal
      */
     public AddSalleDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
-        
+
     }
 
     public AddSalleDlg(JFrame parent, boolean modal, Salle salle) {
@@ -58,10 +58,9 @@ public class AddSalleDlg extends javax.swing.JDialog{
         } catch (Exception e) {
             evt.consume();
         }
-        
+
     }
-    
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -172,34 +171,32 @@ public class AddSalleDlg extends javax.swing.JDialog{
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
             String numero = this.jTextField1.getText();
-        if (numero.length() == 0) {
-            throw new Exception("Veuillez mettre un numéro de salle");
-        }
-        
-        if (jCheckBox1.isSelected()) {
-            protege = true;
-        }else{
-            protege = false;
-        }
-        
-        long numeroSalle = Long.parseLong(numero);
-        
-        this.salle = new Salle();
-        
-        this.salle.setNumero(numeroSalle);
-        
-        this.salle.setProtege(protege);
-        
-        this.salle.setId(this.id);
-        
-        this.dispose();
-            
-        
+            if (numero.length() == 0) {
+                throw new Exception("Veuillez mettre un numéro de salle");
+            }
+
+            if (jCheckBox1.isSelected()) {
+                protege = true;
+            } else {
+                protege = false;
+            }
+
+            long numeroSalle = Long.parseLong(numero);
+
+            this.salle = new Salle();
+
+            this.salle.setNumero(numeroSalle);
+
+            this.salle.setProtege(protege);
+
+            this.salle.setId(this.id);
+
+            this.dispose();
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "erreur", JOptionPane.ERROR_MESSAGE);
         }
-        
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

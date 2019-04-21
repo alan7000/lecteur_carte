@@ -71,7 +71,7 @@ class EvenementServiceImpl extends ClientRest<Evenement> implements EvenementSer
     @Override
     public Evenement[] sort() throws Exception {
         Evenement[] evenements = this.getAll().toArray(new Evenement[0]);
-        
+
         ComparatorByIdEvenement cmp = new ComparatorByIdEvenement();
         Sort trieuse = MetierFactory.getSortSerivce();
         trieuse.sort(evenements, cmp);

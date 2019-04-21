@@ -16,6 +16,6 @@ public interface AutorisationService extends CrudService<Autorisation> {
     public List<Autorisation> getByPlageHoraire(TimeSlot plageHoraire) throws Exception;
 
     public List<Autorisation> getByPeronneEtSalle(Personne personne, Salle salle) throws Exception;
-    
+
     public Autorisation[] sort() throws Exception;
 }

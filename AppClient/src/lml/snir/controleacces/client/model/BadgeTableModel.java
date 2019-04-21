@@ -87,7 +87,7 @@ public class BadgeTableModel extends AbstractTableModel {
                 return String.class;
         }
     }
-    
+
     public Badge getBadgeAt(int rowIndex) {
         return this.badges[rowIndex];
     }

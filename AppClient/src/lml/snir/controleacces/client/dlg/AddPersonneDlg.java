@@ -228,15 +228,13 @@ public class AddPersonneDlg extends javax.swing.JDialog {
                 Administrateur adm = (Administrateur) this.personne;
                 adm.setLogin(login);
                 adm.setMdp(new String(this.jPasswordField1.getPassword()));
-                
+
 //                if (!this.update) {
 //                    if (MetierFactory.getPersonneService().getByLogin(login) != null) {
 //                        System.err.println("login déja attribué");
 //                        throw new Exception("login déjà attribué");
 //                    }
 //                }
-
-                
             } else {
                 // user
                 this.personne = new Personne(nom, prenom);
@@ -245,7 +243,7 @@ public class AddPersonneDlg extends javax.swing.JDialog {
             this.personne.setId(this.id);
             this.dispose();
         } catch (Exception ex) {
-                System.out.println(ex);
+            System.out.println(ex);
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonOKActionPerformed

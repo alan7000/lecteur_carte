@@ -12,15 +12,17 @@ import javax.swing.JFrame;
  * @author alan
  */
 public class ClientFactory {
-    private ClientFactory(){}
-    
+
+    private ClientFactory() {
+    }
+
     private static JFrame ihm = null;
-    
+
     public static JFrame getIhm() throws Exception {
         if (ClientFactory.ihm == null) {
             ClientFactory.ihm = new MainIhm();
         }
         return ClientFactory.ihm;
     }
-    
+
 }

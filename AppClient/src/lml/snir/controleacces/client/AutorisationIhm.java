@@ -24,9 +24,10 @@ public class AutorisationIhm extends javax.swing.JDialog {
 
     private final AutorisationService autorisationService;
     private final AutorisationTableModel model;
-    
+
     /**
      * Creates new form AutorisationIhm
+     *
      * @param parent
      * @param modal
      * @throws java.lang.Exception
@@ -34,7 +35,7 @@ public class AutorisationIhm extends javax.swing.JDialog {
     public AutorisationIhm(java.awt.Frame parent, boolean modal) throws Exception {
         super(parent, modal);
         initComponents();
-        
+
         this.autorisationService = MetierFactory.getAutorisationService();
         this.model = new AutorisationTableModel(this.autorisationService.sort());
         this.jTable1.setModel(model);
@@ -168,13 +169,13 @@ public class AutorisationIhm extends javax.swing.JDialog {
 
     private void jButtonAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAddActionPerformed
         JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        
+
         AddAutorisationDlg dlg;
         dlg = new AddAutorisationDlg(frame, true);
         dlg.setVisible(true);
-        
+
         Autorisation autorisation = dlg.getAutorisation();
-        
+
         if (autorisation != null) {
             try {
                 this.autorisationService.add(autorisation);
@@ -186,33 +187,50 @@ public class AutorisationIhm extends javax.swing.JDialog {
     }//GEN-LAST:event_jButtonAddActionPerformed
 
     private void jButtonRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveActionPerformed
-        Autorisation autorisation = this.model.getAutorisationAt(this.jTable1.getSelectedRow());
-        
         try {
-            this.autorisationService.remove(autorisation);
+            if (this.jTable1.getSelectedRow() == -1) {
+                throw new Exception("Veuillez selectionner une autorisation");
+            }
+
+            Autorisation autorisation = this.model.getAutorisationAt(this.jTable1.getSelectedRow());
+
+            try {
+                this.autorisationService.remove(autorisation);
+            } catch (Exception e) {
+                Logger.getLogger(AttributionIhm.class.getName()).log(Level.SEVERE, null, e);
+            }
+
         } catch (Exception e) {
-            Logger.getLogger(AttributionIhm.class.getName()).log(Level.SEVERE, null, e);
+            JOptionPane.showMessageDialog(this, e.getMessage(), "erreur", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonRemoveActionPerformed
 
     private void jButtonChangedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChangedActionPerformed
-        Autorisation autorisation = this.model.getAutorisationAt(this.jTable1.getSelectedRow());
-        
-        JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        
-        AddAutorisationDlg dlg;
-        dlg = new AddAutorisationDlg(frame, true, autorisation);
-        dlg.setVisible(true);
-                
-        autorisation = dlg.getAutorisation();
-        
-        if (autorisation != null) {
-            try {
-                this.autorisationService.update(autorisation);
-                this.model.update(this.autorisationService.sort());
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, e.getMessage(), "erreur", JOptionPane.ERROR_MESSAGE);
+        try {
+            if (this.jTable1.getSelectedRow() == -1) {
+                throw new Exception("Veuillez selectionner une autorisation");
             }
+
+            Autorisation autorisation = this.model.getAutorisationAt(this.jTable1.getSelectedRow());
+
+            JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(this);
+
+            AddAutorisationDlg dlg;
+            dlg = new AddAutorisationDlg(frame, true, autorisation);
+            dlg.setVisible(true);
+
+            autorisation = dlg.getAutorisation();
+
+            if (autorisation != null) {
+                try {
+                    this.autorisationService.update(autorisation);
+                    this.model.update(this.autorisationService.sort());
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, e.getMessage(), "erreur", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "erreur", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonChangedActionPerformed
 

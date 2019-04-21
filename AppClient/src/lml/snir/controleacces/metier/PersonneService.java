@@ -10,6 +10,6 @@ public interface PersonneService extends CrudService<Personne> {
     public Administrateur getByLogin(String login) throws Exception;
 
     public List<Personne> getByNom(String nom) throws Exception;
-    
+
     public Personne[] sort() throws Exception;
 }

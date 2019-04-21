@@ -47,13 +47,15 @@ public class MetierFactory {
     public static BorneService getBorneService() {
         return borneService;
     }
-    
+
     private static TimeSlotServiceImpl timeSlotService = new TimeSlotServiceImpl();
-    public static TimeSlotServiceImpl getTimeSlotService(){
+
+    public static TimeSlotServiceImpl getTimeSlotService() {
         return timeSlotService;
     }
-    
+
     private static final Sort sortSrv = new InsertionOptimisedSort();
+
     public static Sort getSortSerivce() {
         return sortSrv;
     }

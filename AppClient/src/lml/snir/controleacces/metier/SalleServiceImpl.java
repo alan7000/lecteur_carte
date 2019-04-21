@@ -73,7 +73,7 @@ public final class SalleServiceImpl extends ClientRest<Salle> implements SalleSe
     @Override
     public Salle[] sort() throws Exception {
         Salle[] salles = this.getAll().toArray(new Salle[0]);
-        
+
         ComparatorByNumeroSalle cmp = new ComparatorByNumeroSalle();
         Sort trieuse = MetierFactory.getSortSerivce();
         trieuse.sort(salles, cmp);

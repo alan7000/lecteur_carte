@@ -16,7 +16,7 @@ import lml.snir.controleacces.metier.entity.Personne;
  *
  * @author alan
  */
-public class AttributionTableModel extends AbstractTableModel{
+public class AttributionTableModel extends AbstractTableModel {
 
     private final String[] header = {"Badge", "Personne"};
     private Attribution[] attributions;
@@ -73,7 +73,7 @@ public class AttributionTableModel extends AbstractTableModel{
 
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        switch(columnIndex) {
+        switch (columnIndex) {
             default:
                 return false;
         }
@@ -81,16 +81,16 @@ public class AttributionTableModel extends AbstractTableModel{
 
     @Override
     public Class getColumnClass(int columnIndex) {
-         switch(columnIndex){
-             default:
-                 return Object.class;
-         }
+        switch (columnIndex) {
+            default:
+                return Object.class;
+        }
     }
-    
+
     public Attribution getAttributionAt(int rowIndex) {
         return this.attributions[rowIndex];
     }
-    
+
     public void update(Attribution[] attributions) {
         this.attributions = attributions;
         this.fireTableDataChanged();

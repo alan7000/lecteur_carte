@@ -25,20 +25,21 @@ public class AddAutorisationDlg extends javax.swing.JDialog {
 
     private long id = 0;
     private Autorisation autorisation = null;
-    
+
     SalleService salleService = MetierFactory.getSalleService();
     PersonneService personneService = MetierFactory.getPersonneService();
     TimeSlotService timeSlotService = MetierFactory.getTimeSlotService();
-    
+
     /**
      * Creates new form AutorisationIhm
+     *
      * @param parent
      * @param modal
      */
     public AddAutorisationDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+
         try {
             for (int i = 0; i < salleService.getCount(); i++) {
                 this.jComboBoxSalle.addItem(this.salleService.getAll(i, 1).toString());
@@ -52,7 +53,7 @@ public class AddAutorisationDlg extends javax.swing.JDialog {
         } catch (Exception ex) {
             Logger.getLogger(AddAttributionDlg.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
     public AddAutorisationDlg(JFrame parent, boolean modal, Autorisation autorisation) {
@@ -188,50 +189,49 @@ public class AddAutorisationDlg extends javax.swing.JDialog {
         String idSalle = this.jComboBoxSalle.getSelectedItem().toString();
         String idPersonne = this.jComboBoxPersonne.getSelectedItem().toString();
         String idPlageHoraire = this.jComboBoxPlageHoraire.getSelectedItem().toString();
-        
+
         String s = idSalle.replaceAll("[^0-9]", "");
         String p = idPersonne.replaceAll("[^0-9]", "");
         String ph = idPlageHoraire.replaceAll("[^0-9]", " ");
         String sph[] = ph.split(" ");
-        
+
         String fiph = sph[1];
-        
-        
+
         long IdSalle = Long.parseLong(s);
         long IdPersonne = Long.parseLong(p);
         long IdPlageHoraire = Long.parseLong(fiph);
-        
+
         Salle salle = null;
         try {
             salle = MetierFactory.getSalleService().getById(IdSalle);
         } catch (Exception e) {
             Logger.getLogger(AddAutorisationDlg.class.getName()).log(Level.SEVERE, null, e);
         }
-        
+
         Personne personne = null;
         try {
             personne = MetierFactory.getPersonneService().getById(IdPersonne);
         } catch (Exception e) {
             Logger.getLogger(AddAutorisationDlg.class.getName()).log(Level.SEVERE, null, e);
         }
-        
+
         TimeSlot timeSlot = null;
         try {
             timeSlot = MetierFactory.getTimeSlotService().getById(IdPlageHoraire);
         } catch (Exception e) {
             Logger.getLogger(AddAutorisationDlg.class.getName()).log(Level.SEVERE, null, e);
         }
-        
+
         this.autorisation = new Autorisation();
-        
+
         this.autorisation.setSalle(salle);
-        
+
         this.autorisation.setPersonne(personne);
-        
+
         this.autorisation.setPlageHoraire(timeSlot);
-        
+
         this.autorisation.setId(this.id);
-        
+
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 

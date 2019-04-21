@@ -186,7 +186,7 @@ public class MainIhm extends javax.swing.JFrame {
             }
         });
 
-        jButton8.setText("Timeslot");
+        jButton8.setText("Plage horaire");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
@@ -290,14 +290,13 @@ public class MainIhm extends javax.swing.JFrame {
             Logger.getLogger(MainIhm.class.getName()).log(Level.SEVERE, null, ex);
         }
         att.setVisible(true);
-        
+
         try {
             this.model.update(this.persSrv.sort());
         } catch (Exception e) {
             Logger.getLogger(MainIhm.class.getName()).log(Level.SEVERE, null, e);
         }
-        
-        
+
     }//GEN-LAST:event_jButtonAttributionActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -308,9 +307,9 @@ public class MainIhm extends javax.swing.JFrame {
         //Ouverture de la fenetre d'ajout d'un utilisateur
         AddPersonneDlg dlg = new AddPersonneDlg(this, true);
         dlg.setVisible(true);
-        
+
         Personne personne = dlg.getPersonne();
-        
+
         if (personne != null) {
             try {
                 this.persSrv.add(personne);
@@ -322,31 +321,46 @@ public class MainIhm extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonAddActionPerformed
 
     private void jButtonRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRemoveActionPerformed
-        Personne personne = (Personne) this.model.getPersonneAt(this.jTable1.getSelectedRow());
         try {
-            this.persSrv.remove(personne);
-            this.model.update(this.persSrv.sort());
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
-        }
-        
-    }//GEN-LAST:event_jButtonRemoveActionPerformed
+            if (this.jTable1.getSelectedRow() == -1) {
+                throw new Exception("Veuillez selectionner une personne");
+            }
 
-    private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
-        Personne personne = (Personne) this.model.getPersonneAt(this.jTable1.getSelectedRow());
-        
-        AddPersonneDlg dlg = new AddPersonneDlg(this, true, personne);
-        dlg.setVisible(true);
-        
-        personne = dlg.getPersonne();
-        
-        if (personne != null) {
+            Personne personne = (Personne) this.model.getPersonneAt(this.jTable1.getSelectedRow());
             try {
-                this.persSrv.update(personne);
+                this.persSrv.remove(personne);
                 this.model.update(this.persSrv.sort());
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
             }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jButtonRemoveActionPerformed
+
+    private void jButtonUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUpdateActionPerformed
+        try {
+            if (this.jTable1.getSelectedRow() == -1) {
+                throw new Exception("Veuillez selectionner une personne");
+            }
+
+            Personne personne = (Personne) this.model.getPersonneAt(this.jTable1.getSelectedRow());
+
+            AddPersonneDlg dlg = new AddPersonneDlg(this, true, personne);
+            dlg.setVisible(true);
+
+            personne = dlg.getPersonne();
+
+            if (personne != null) {
+                try {
+                    this.persSrv.update(personne);
+                    this.model.update(this.persSrv.sort());
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Erreur", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jButtonUpdateActionPerformed
 
@@ -358,7 +372,7 @@ public class MainIhm extends javax.swing.JFrame {
             Logger.getLogger(MainIhm.class.getName()).log(Level.SEVERE, null, ex);
         }
         autorisationIhm.setVisible(true);
-        
+
         try {
             this.model.update(this.persSrv.sort());
         } catch (Exception e) {
@@ -374,7 +388,7 @@ public class MainIhm extends javax.swing.JFrame {
             Logger.getLogger(MainIhm.class.getName()).log(Level.SEVERE, null, e);
         }
         badgeIhm.setVisible(true);
-        
+
         try {
             this.model.update(this.persSrv.sort());
         } catch (Exception e) {
@@ -390,13 +404,13 @@ public class MainIhm extends javax.swing.JFrame {
             Logger.getLogger(MainIhm.class.getName()).log(Level.SEVERE, null, e);
         }
         borneIhm.setVisible(true);
-        
+
         try {
             this.model.update(this.persSrv.sort());
         } catch (Exception e) {
             Logger.getLogger(MainIhm.class.getName()).log(Level.SEVERE, null, e);
         }
-        
+
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -407,7 +421,7 @@ public class MainIhm extends javax.swing.JFrame {
             Logger.getLogger(MainIhm.class.getName()).log(Level.SEVERE, null, e);
         }
         salleIhm.setVisible(true);
-        
+
         try {
             this.model.update(this.persSrv.sort());
         } catch (Exception e) {
@@ -423,7 +437,7 @@ public class MainIhm extends javax.swing.JFrame {
             Logger.getLogger(MainIhm.class.getName()).log(Level.SEVERE, null, e);
         }
         evenementIhm.setVisible(true);
-        
+
         try {
             this.model.update(this.persSrv.sort());
         } catch (Exception e) {
@@ -439,7 +453,7 @@ public class MainIhm extends javax.swing.JFrame {
             Logger.getLogger(MainIhm.class.getName()).log(Level.SEVERE, null, e);
         }
         timeSlotIhm.setVisible(true);
-        
+
         try {
             this.model.update(this.persSrv.sort());
         } catch (Exception e) {
