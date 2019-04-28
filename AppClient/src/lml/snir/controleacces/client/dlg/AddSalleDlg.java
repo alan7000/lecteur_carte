@@ -160,7 +160,7 @@ public class AddSalleDlg extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
-        this.checkKeyTyped(evt, 120);
+        this.checkKeyTyped(evt, 1000);
     }//GEN-LAST:event_jTextField1KeyTyped
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
